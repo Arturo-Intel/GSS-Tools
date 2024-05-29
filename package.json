@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "GCS Services base",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
   }
 }
