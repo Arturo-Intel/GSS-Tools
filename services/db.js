@@ -16,10 +16,13 @@ connection.query = util.promisify(connection.query).bind(connection);
 // connect to the database
 connection.connect(function(err){
     if (err) {
-        console.log("error connecting: " + err.stack);
+        console.log(typeof (err));
+        for (var k in err) {
+            console.log(`${k}: ${err[k]}`)
+        }
         return;
     };
-    console.log("connected as... " + connection.threadId);
+    console.log("Database online!");
 });
 
 module.exports = connection;

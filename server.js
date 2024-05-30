@@ -15,7 +15,10 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.json({ message: "ok" });
+    res.json({
+        message: "ok",
+        dbStatus: db.state 
+    });
 })
 
 app.get("/tc", async (req, res) => {
