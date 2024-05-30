@@ -10,6 +10,7 @@ var logger = require('morgan');
 
 var flash = require('express-flash');
 var session = require('express-session');
+const MemoryStore = require('memorystore')(session)
 var mysql = require('mysql');
 var connection = require('./services/db');
 
@@ -30,7 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     cookie: { maxAge: 60000 },
-    store: new session.MemoryStore,
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+    }), 
     saveUninitialized: true,
     resave: 'true',
     secret: 'secret'

@@ -23,7 +23,7 @@
                     <a class="nav-link">Game Inventory</a>
                 </li>
                 <li class="nav-pill ml-auto">
-                    <a class="nav-link active" href="/books/add">Add Game</a>
+                    <a class="nav-link active" href="/games/add">Add Game</a>
                 </li>
             </ul>
         </div>
@@ -53,11 +53,9 @@
                     <td><%= data[i].platform%></td>
                     <td><%= data[i].purchase_date%></td>
                     <td><%= data[i].price%></td>
-                    
-
                     <td>
-                        <a class="btn btn-success edit" href="../books/edit/<%=data[i].id%>">Edit</a>                       
-                        <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../books/delete/<%=data[i].id%>">Delete</a>                       
+                        <a class="btn btn-success edit" href="../games/edit/<%=data[i].id%>">Edit</a>                       
+                        <a class="btn btn-danger delete" onclick="return confirm('Are You sure?')" href="../games/delete/<%=data[i].id%>">Delete</a>                       
                     </td>
                 </tr>
             <% } %>
