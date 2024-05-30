@@ -1,4 +1,7 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config();
+}
+
 const db = require("./services/db"); 
 var express = require('express')
 var app = express()
@@ -28,13 +31,9 @@ app.get("/tc", async (req, res) => {
   }
 });
 
-/*const getUser = async (req, res) => {
-    let queryString = `SELECT * from acct WHERE ACCT_KEY = 89`;  
-    const [user] = await db.query(queryString).catch(err => {throw err}); 
-    res.json(user); 
-}*/
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`GCS-Services app listening at ${PORT}`);
 });
+
