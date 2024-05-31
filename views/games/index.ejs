@@ -51,8 +51,8 @@
                     <td><%= data[i].name%></td>
                     <td><%= data[i].geo%></td>
                     <td><%= data[i].platform%></td>
-                    <td><%= data[i].purchase_date%></td>
-                    <td><%= data[i].price%></td>
+                    <td><%= dateFormat(data[i].purchase_date).format('Do MMMM, YYYY')%></td>
+                    <td>$<%= data[i].price%></td>
                     <td>
                         <a class="btn btn-success edit" href="../games/edit/<%=data[i].id%>">Edit</a>                       
                         <a class="btn btn-danger delete" onclick="return confirm('Are You sure?')" href="../games/delete/<%=data[i].id%>">Delete</a>                       

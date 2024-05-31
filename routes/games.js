@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var dbConn = require('../services/db');
+const dateFormat = require('moment')
 
 router.get('/', async (req, res, next) => {
     try {
         const rows = await dbConn.query(`SELECT *  from game_inventory;`)
-        res.render('games', { data: rows });
+        res.render('games', { data: rows, dateFormat: dateFormat });
     } catch (err){
         req.flash('error', err);
         res.render('games', { data: '' });   
@@ -64,6 +65,7 @@ router.post('/add', async (req, res, next) => {
 router.get('/edit/(:id)', async (req, res, next) => {
 
     let id = req.params.id;
+   
     try {
         const rows = await dbConn.query('SELECT * FROM game_inventory WHERE id = ' + id)
 
@@ -81,7 +83,7 @@ router.get('/edit/(:id)', async (req, res, next) => {
                 name: rows[0].name,
                 geo: rows[0].geo,
                 platform: rows[0].platform,
-                purchase_date: rows[0].purchase_date,
+                purchase_date: dateFormat(rows[0].purchase_date).format('YYYY-MM-DD'),
                 price: rows[0].price,
 
             })
@@ -103,6 +105,8 @@ router.post('/update/:id', async (req, res, next) => {
     let platform = req.body.platform;
     let purchase_date = req.body.purchase_date;
     let price = req.body.price;
+
+
 
     var form_data = {
         name: name,
