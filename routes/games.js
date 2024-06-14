@@ -1,20 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var dbConn = require('../services/db');
+var dbConn = require('../lib/db');
+var fetch = require('../fetch');
 const dateFormat = require('moment')
+var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
     try {
         const rows = await dbConn.query(`SELECT *  from game_inventory;`)
-        res.render('games', { data: rows, dateFormat: dateFormat });
-    } catch (err){
+        res.render('games', {
+            isAuthenticated: req.session.isAuthenticated,
+            data: rows,
+            profile: await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken),
+            photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
+            sidebar: 'sidebarGI',
+        });
+    } catch (err) {
         req.flash('error', err);
-        res.render('games', { data: '' });   
+        res.render('games', { data: '' });
     }
 });
 
 // display add game page
-router.get('/add', async (req, res, next) => {
+router.get('/add',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
     // render to add.ejs
     res.render('games/add', {
         name: '',
@@ -26,7 +38,9 @@ router.get('/add', async (req, res, next) => {
 })
 
 // add a new game
-router.post('/add', async (req, res, next) => {
+router.post('/add',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
 
     let name = req.body.name;
     let geo = req.body.geo;
@@ -62,10 +76,12 @@ router.post('/add', async (req, res, next) => {
 })
 
 // display edit game page
-router.get('/edit/(:id)', async (req, res, next) => {
+router.get('/edit/(:id)',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
 
     let id = req.params.id;
-   
+
     try {
         const rows = await dbConn.query('SELECT * FROM game_inventory WHERE id = ' + id)
 
@@ -97,7 +113,9 @@ router.get('/edit/(:id)', async (req, res, next) => {
 })
 
 // update game data
-router.post('/update/:id', async (req, res, next) => {
+router.post('/update/:id',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
 
     let id = req.params.id;
     let name = req.body.name;
@@ -120,7 +138,7 @@ router.post('/update/:id', async (req, res, next) => {
     try {
         const rows = await dbConn.query('UPDATE game_inventory SET ? WHERE id = ' + id, form_data)
         req.flash('success', 'Game successfully updated');
-        res.redirect('/games');            
+        res.redirect('/games');
     } catch (err) {
         req.flash('error', err);
         res.render('games/edit', {
@@ -132,11 +150,13 @@ router.post('/update/:id', async (req, res, next) => {
             price: form_data.price
         })
     }
-    
+
 })
 
 // delete game
-router.get('/delete/(:id)', async (req, res, next) => {
+router.get('/delete/(:id)',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
 
     let id = req.params.id;
 

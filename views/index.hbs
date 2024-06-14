@@ -1,0 +1,12 @@
+{{#if isAuthenticated }}
+<h1>Welcome {{profile.givenName}}!</h1>
+<ul>
+    {{#each profile}}
+
+    <li>{{@key}}: {{this}}</li>
+
+    {{/each}}
+</ul>
+{{else}}
+<h1>One moment please...</h1>
+{{/if}}

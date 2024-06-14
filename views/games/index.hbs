@@ -1,0 +1,63 @@
+
+
+    {{#if success}}
+    <div class="alert alert-success" role="alert"><%- messages.success %></div>
+    {{/if}}
+
+    {{#if error}}
+    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+    {{/if}}
+
+    <div class="card"> 
+        <div class="card-header">
+            <ul class="nav nav-pills w-100">
+                <li class="nav-pill active">
+                    <a class="nav-link">Game Inventory</a>
+                </li>
+                <li class="nav-pill ml-auto">
+                    <a class="nav-link active" href="/games/add">Add Game</a>
+                </li>
+            </ul>
+        </div>
+        
+    <div class="card-body">
+        {{dateFormat}}
+        
+        {{#if data.length}}
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Geo</th>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Purchase date</th>
+                    <th scope="col">Price</th>
+                    <th width="200px">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each data}}  
+                <tr>
+                    <th scope="row">{{@index}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.geo}}</td>
+                    <td>{{this.platform}}</td>
+                    <td>{{ this.purchase_date}}</td>
+                    <td>${{this.price}}</td>
+                    <td>
+                        <a class="btn btn-success edit" href="../games/edit/<%=data[i].id%>">Edit</a>                       
+                        <a class="btn btn-danger delete" onclick="return confirm('Are You sure?')" href="../games/delete/<%=data[i].id%>">Delete</a>                       
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        {{else}}
+            <p class="text-center">No book found!</p>
+        {{/if}}
+
+        </div>
+    </div>
+
