@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
+const MemoryStore = require('memorystore')(session)
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -45,7 +46,10 @@ app.use(session({
     cookie: {
         httpOnly: true,
         secure: false, // set this to true on production
-    }
+    },
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+    }),
 }));
 
 // view engine setup
