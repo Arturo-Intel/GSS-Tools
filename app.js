@@ -45,7 +45,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: true, // set this to true on production
+        secure: false, // set this to true on production
     },
     store: new MemoryStore({
         checkPeriod: 86400000 // prune expired entries every 24h
