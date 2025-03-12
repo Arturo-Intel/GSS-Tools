@@ -7,7 +7,7 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        res.render('caseanalyzer', {});
+        res.render('caseAnalyzer', {});
     });
 
 module.exports = router;
