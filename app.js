@@ -13,8 +13,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
-var indexRouter = require('./routes/index');
 var gamesRouter = require('./routes/games');
+var wipRouter = require('./routes/wip');
 
 const moment = require('moment')
 const Handlebars = require('handlebars')
