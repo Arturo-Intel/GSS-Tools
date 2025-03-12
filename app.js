@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var gamesRouter = require('./routes/games');
 var wipRouter = require('./routes/wip');
+var caseAnalyzerRouter = require('./routes/caseanalyzer');
 
 const moment = require('moment')
 const Handlebars = require('handlebars')
@@ -73,6 +74,7 @@ app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/auth', authRouter);
 app.use('/wip', wipRouter);
+app.use('/caseAnalyzer', caseAnalyzerRouter);
 
 
 app.use((req, res, next) => {
