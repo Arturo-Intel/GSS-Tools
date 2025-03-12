@@ -74,7 +74,7 @@ app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/auth', authRouter);
 app.use('/wip', wipRouter);
-app.use('/caseAnalyzer', caseAnalyzerRouter);
+app.use('/caseanalyzer', caseAnalyzerRouter);
 
 
 app.use((req, res, next) => {
