@@ -1,5 +1,3 @@
-
-
     {{#if success}}
     <div class="alert alert-success" role="alert"><%- messages.success %></div>
     {{/if}}
@@ -44,7 +42,7 @@
                     <td>{{this.name}}</td>
                     <td>{{this.geo}}</td>
                     <td>{{this.platform}}</td>
-                    <td>{{ this.purchase_date}}</td>
+                    <td>{{this.purchase_date}}</td>
                     <td>${{this.price}}</td>
                     <td>
                         <a class="btn btn-success edit" href="../games/edit/<%=data[i].id%>">Edit</a>                       

@@ -72,6 +72,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/auth', authRouter);
+app.use('/wip', wipRouter);
 
 
 app.use((req, res, next) => {
