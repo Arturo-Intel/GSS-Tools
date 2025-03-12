@@ -5,6 +5,9 @@
 
 var axios = require('axios');
 
+
+
+
 /**
  * Attaches a given access token to a MS Graph API call
  * @param endpoint: REST API endpoint to call
@@ -53,6 +56,8 @@ async function fetchPhoto(endpoint, accessToken) {
 
 // custom middleware to check auth state
 function isAuthenticated(req, res, next) {
+    console.log(">>>>>>>>>" + process.env.NODE_ENV)
+    
     if (!req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
