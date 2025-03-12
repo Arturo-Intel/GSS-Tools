@@ -111,7 +111,8 @@
                         Home
                     </a>
                 </li>
-                {{#ifEquals profile.displayName "Medina Mendoza, Arturo"}}
+                {{#if isAuthenticated }}
+                {{#if (eq profile.displayName "Medina Mendoza, Arturo")}} 
                 <li> 
                     
                     <a id="sidebarGI" href="/games" class="nav-link text-white">
@@ -123,8 +124,9 @@
                         Remote Lab
                     </a>
                 </li>
-                {{/ifEquals}}
-                 <li>
+                {{/if}}
+                {{/if}}
+                <li>
                     <a id="sidebarHome" href="/" class="nav-link text-white" aria-current="page">
                         Case Analyzer
                     </a>
