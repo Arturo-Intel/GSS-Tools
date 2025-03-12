@@ -1,1 +1,15 @@
 <h1>Case Analyzer</h1>
+<div class="container">
+    <h1>Github case Number</h1>
+    <input type="number" id="numberInput" placeholder="Github case number">
+    <button onclick="showResult()">Submit</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    function showResult() {
+        const number = document.getElementById('numberInput').value;
+        const result = number * 2; // Example calculation: multiply the number by 2
+        document.getElementById('result').innerText = 'Result: ' + result;
+    }
+</script>
