@@ -21,10 +21,9 @@ router.get('/case/:id', async (req, res) => {
     try {
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         var analysis = ""
-        //analysis = await brains(await axios.get(url+req.params.id));
-        analysis = await brains("await axios.get(url+req.params.id)");
+        analysis = await brains(await axios.get(url+req.params.id));
         token = await getAccessToken();
-        res.json(analysis);
+        res.json(token);
     } catch (error) {
         console.error('Error calling API:', error);
         res.status(500).send('Error calling API');
@@ -34,15 +33,14 @@ router.get('/case/:id', async (req, res) => {
 async function brains(caseInfo) {
     try {
         persona = await fetchPersona(1);
-        //ssuPath = await findSSU(caseInfo["data"]["body"]);
-        ssuPath = await findSSU(caseInfo);
+        ssuPath = await findSSU(caseInfo["data"]["body"]);
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : "??", 
             "case-analysis": "??"
         }
     } catch (err) {
-        console.log("[ERROR] " + err)
+        console.log("[ERROR] brains - " + err)
     }
 }
 
@@ -61,7 +59,7 @@ async function getAccessToken(){
         response = await axios.post(url, data, { headers: headers});
         console.log(response);
     }catch (err) {
-        console.log("[ERROR] " + err)
+        console.log("[ERROR] token -  " + err)
     }
 }
 
@@ -88,7 +86,7 @@ async function fetchPersona(persona) {
         data = await fs.readFile(filePath, 'utf8');
         return data;
     } catch(err) {
-        console.log("[ERROR] " + err)
+        console.log("[ERROR] persona -  " + err)
     }
 }
    
