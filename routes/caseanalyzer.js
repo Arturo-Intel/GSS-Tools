@@ -22,9 +22,9 @@ router.post('/case',
     async (req, res) => {
         try {
             var analysis = ""
-            analysis = await brains(await axios.get(url+req.params.id, { httpsAgent: agent }));
-            token = await getAccessToken();
-            res.json(token);
+            analysis = await brains(req.body.body);
+            token =  await getAccessToken();
+            //res.json(token);
         } catch (error) {
             console.error('Error calling API:', error);
             res.status(500).send('Error calling API');
