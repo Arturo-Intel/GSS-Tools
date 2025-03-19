@@ -4,6 +4,7 @@ var fetch = require('../fetch');
 var axios = require('axios');
 const path = require('path');
 const fs = require('fs').promises;
+const HttpsProxyAgent = require('https-proxy-agent');
 
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
@@ -20,14 +21,12 @@ router.get('/',
 router.get('/case/:id', 
     fetch.isAuthenticated,
     async (req, res) => {
-    proxy = { 
-        host: 'proxy-chain.intel.com',
-        port: 911,
-    };    
+    proxy = 'proxy-chain.intel.com:911';    
+    const agent = new HttpsProxyAgent(proxy);
     try {
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         var analysis = ""
-        analysis = await brains(await axios.get(url+req.params.id, { proxy: proxy}));
+        analysis = await brains(await axios.get(url+req.params.id, { httpsAgent: agent }));
         token = await getAccessToken();
         res.json(token);
     } catch (error) {
