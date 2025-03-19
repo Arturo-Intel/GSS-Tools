@@ -24,7 +24,7 @@ router.post('/case',
             var analysis = ""
             analysis = await brains(req.body.body);
             token =  await getAccessToken();
-            //res.json(token);
+            res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
             res.status(500).send('Error calling API');
