@@ -7,7 +7,8 @@ const fs = require('fs').promises;
 const HttpsProxyAgent = require('https-proxy-agent');
 
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
-
+const proxy = 'proxy-chain.intel.com:911';  
+const agent = new HttpsProxyAgent(proxy);
 
 
 /* GET case analyzer page. */
@@ -21,8 +22,7 @@ router.get('/',
 router.get('/case/:id', 
     fetch.isAuthenticated,
     async (req, res) => {
-        proxy = 'proxy-chain.intel.com:911';    
-        agent = new HttpsProxyAgent(proxy);
+  
         try {
             const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
             var analysis = ""
