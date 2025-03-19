@@ -58,7 +58,7 @@ async function getAccessToken(){
             "Content-Type": "application/x-www-form-urlencoded"
         };
         response = await axios.post(url, data, { headers: headers});
-        console.log("[TOKEN] "+ response)
+        console.log("[TOKEN] "+ JSON.parse(response));
     }catch (err) {
         console.log("[ERROR] token -  " + err)
     }
