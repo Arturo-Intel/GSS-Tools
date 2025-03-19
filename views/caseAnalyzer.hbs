@@ -12,12 +12,23 @@
 
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         var num =  document.getElementById('numberCaseInput').value
+        const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         try {
-            const response = await fetch('/caseanalyzer/case/'+num);
+
+            const caseRaw = await fetch(url+num);
+            const caseInfo = await caseRaw.json();
+
+            response = await fetch("/caseanalyzer/case", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(caseInfo),
+            });
             const data = await response.json();
-            document.getElementById('result').innerText = data["SSU-path"];
+            document.getElementById('result').innerText = caseInfo["body"];
         } catch (error) {
-            document.getElementById('result').innerText = 'Error fetching data';
+            document.getElementById('result').innerText = error;
         }
     });
 

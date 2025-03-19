@@ -7,8 +7,6 @@ const fs = require('fs').promises;
 const HttpsProxyAgent = require('https-proxy-agent');
 
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
-const proxy = 'proxy-chain.intel.com:911';  
-const agent = new HttpsProxyAgent(proxy);
 
 
 /* GET case analyzer page. */
@@ -19,16 +17,14 @@ router.get('/',
         });
     });
 
-router.get('/case/:id', 
+router.post('/case', 
     fetch.isAuthenticated,
     async (req, res) => {
-  
         try {
-            const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
             var analysis = ""
-            analysis = await brains(await axios.get(url+req.params.id, { httpsAgent: agent }));
-            token = await getAccessToken();
-            res.json(token);
+            analysis = await brains(req.body.body);
+            token =  await getAccessToken();
+            //res.json(token);
         } catch (error) {
             console.error('Error calling API:', error);
             res.status(500).send('Error calling API');
@@ -38,7 +34,7 @@ router.get('/case/:id',
 async function brains(caseInfo) {
     try {
         persona = await fetchPersona(1);
-        ssuPath = await findSSU(caseInfo["data"]["body"]);
+        ssuPath = await findSSU(caseInfo);
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : "??", 
@@ -62,7 +58,7 @@ async function getAccessToken(){
             "Content-Type": "application/x-www-form-urlencoded"
         };
         response = await axios.post(url, data, { headers: headers});
-        console.log(response);
+        console.log(">>>>" + response);
     }catch (err) {
         console.log("[ERROR] token -  " + err)
     }
@@ -72,6 +68,7 @@ async function findSSU(body) {
     try {
         const regex = /https:\/\/github\.com\/user-attachments\/files\/\d+\/[^)]+/;
         result = body.match(regex)[0];
+        console.log(result)
         return result;
     } catch (err) {
         console.log("[WARNING] SSU not found! ")
