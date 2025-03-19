@@ -52,8 +52,8 @@ async function getAccessToken(){
         const url = "https://apis-internal.intel.com/v1/auth/token";
         data = {
             "grant_type": "client_credentials",
-            "client_id": process.env.CLIENT_ID,
-            "client_secret": process.env.CLIENT_SECRET
+            "client_id": process.env.CLIENT_ID_AI,
+            "client_secret": process.env.CLIENT_SECRET_AI
         };
         headers = {
             "Content-Type": "application/x-www-form-urlencoded"
