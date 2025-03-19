@@ -4,16 +4,17 @@
  */
 
 var axios = require('axios');
-
-
-
+const { HttpsProxyAgent } = require('https-proxy-agent');
 
 /**
  * Attaches a given access token to a MS Graph API call
  * @param endpoint: REST API endpoint to call
  * @param accessToken: raw access token string
  */
+
+
 async function fetch(endpoint, accessToken) {
+
     const options = {
         headers: {
             Authorization: `Bearer ${accessToken}`
@@ -56,14 +57,15 @@ async function fetchPhoto(endpoint, accessToken) {
 
 // custom middleware to check auth state
 function isAuthenticated(req, res, next) {
-    console.log(">>>>>>>>>" + process.env.NODE_ENV)
     
-    if (!req.session.isAuthenticated) {
+    if (!req.session.isAuthenticated && process.env.NODE_ENV == "production") {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
 
     next();
 };
+
+
 
 module.exports = {
     fetch,

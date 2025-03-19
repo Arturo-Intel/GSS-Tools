@@ -1,15 +1,24 @@
 <h1>Case Analyzer</h1>
+{{#if caseNumber}}
+    <h3>Case: {{caseNumber}}</h3> 
+{{/if}}
 <div class="container">
-    <h1>Github case Number</h1>
-    <input type="number" id="numberInput" placeholder="Github case number">
-    <button onclick="showResult()">Submit</button>
-    <p id="result"></p>
-</div>
+    <input type="number" id="numberCaseInput" placeholder="Github case number">
+    <button id="apiCallButton" >Submit</button>
+    <div id="result"></div>
 
+</div>
 <script>
-    function showResult() {
-        const number = document.getElementById('numberInput').value;
-        const result = number * 2; // Example calculation: multiply the number by 2
-        document.getElementById('result').innerText = 'Result: ' + result;
-    }
+
+    document.getElementById('apiCallButton').addEventListener('click', async () => {
+        var num =  document.getElementById('numberCaseInput').value
+        try {
+            const response = await fetch('/caseanalyzer/case/'+num);
+            const data = await response.json();
+            document.getElementById('result').innerText = data["SSU-path"];
+        } catch (error) {
+            document.getElementById('result').innerText = 'Error fetching data';
+        }
+    });
+
 </script>
