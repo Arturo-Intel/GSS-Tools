@@ -20,10 +20,14 @@ router.get('/',
 router.get('/case/:id', 
     fetch.isAuthenticated,
     async (req, res) => {
+    proxy = { 
+        host: 'proxy-chain.intel.com',
+        port: 911,
+    };    
     try {
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         var analysis = ""
-        analysis = await brains(await axios.get(url+req.params.id));
+        analysis = await brains(await axios.get(url+req.params.id, { proxy: proxy}));
         token = await getAccessToken();
         res.json(token);
     } catch (error) {
