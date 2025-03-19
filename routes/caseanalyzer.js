@@ -1,23 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var custom_fetch = require('../fetch');
+var fetch = require('../fetch');
 var axios = require('axios');
 const path = require('path');
 const fs = require('fs').promises;
 
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
-const { response } = require('../app');
+
 
 
 /* GET case analyzer page. */
 router.get('/',
-    custom_fetch.isAuthenticated,
+    fetch.isAuthenticated,
     async (req, res, next) => {
         res.render('caseAnalyzer', {
         });
     });
 
-router.get('/case/:id', async (req, res) => {
+router.get('/case/:id', 
+    fetch.isAuthenticated,
+    async (req, res) => {
     try {
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         var analysis = ""
