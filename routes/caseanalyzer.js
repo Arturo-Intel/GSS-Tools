@@ -49,7 +49,7 @@ async function brain(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data);
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo);
         }
         caseAnalysis = await invokeModel(token, personaCase, caseInfo);
         console.log(caseAnalysis);
@@ -69,6 +69,7 @@ async function brain(caseInfo) {
 async function invokeModel(accessToken, systemPrompt, content){
     console.log('[INVOKEMODEL] ' + accessToken)
     console.log('[INVOKEMODEL] ' + systemPrompt)
+    console.log('[INVOKEMODEL] ' + content)
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1"
         headers = {
