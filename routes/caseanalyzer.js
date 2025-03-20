@@ -47,21 +47,20 @@ async function brains(caseInfo) {
             console.log("[SSUINFO] ")
             try {
                 SSUInfo = await axios.get(ssuPath, { responseType: 'text' });
-                console.log("[SSUINFO] " + SSUInfo.data);
                 console.log("[SSUINFO] -fin")
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            //SSUAnalysis = await invokeModel(token, persona, );
+            SSUAnalysis = await invokeModel(token, persona, SSUInfo.data);
         }
         caseAnalysis = await invokeModel(token, persona, caseInfo);
         console.log(caseAnalysis);
         
         console.log('[BRAIN] -fin')
         return {
-            "SSU-path" : "ssuPath",
-            "SSU-analysis" : "??", 
-            "case-analysis": "??"
+            "SSU-path" : ssuPath,
+            "SSU-analysis" : SSUAnalysis, 
+            "case-analysis": caseAnalysis
         }
         
     } catch (err) {
