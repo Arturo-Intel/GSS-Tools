@@ -23,7 +23,7 @@ router.post('/case',
         try {
             var analysis = ""
             analysis = await brains(req.body.body);
-            token =  await getAccessToken();
+            
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -35,6 +35,8 @@ async function brains(caseInfo) {
     try {
         persona = await fetchPersona(1);
         ssuPath = await findSSU(caseInfo);
+        token =  await getAccessToken();
+        caseAnalysis = await invokeModel(token, persona, caseInfo);
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : "??", 
@@ -42,6 +44,44 @@ async function brains(caseInfo) {
         }
     } catch (err) {
         console.log("[ERROR] brains - " + err)
+    }
+}
+
+async function invokeModel(accessToken, systemPrompt, caseInfo){
+    try {
+        const url = "https://apis-internal.intel.com/generativeaiinference/v1"
+        headers = {
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+        }
+        data = {
+            "correlationId": "string",
+            "options": {
+                "temperature": 0.2,
+                "top_P": 0.40,
+                "frequency_Penalty": 0,
+                "presence_Penalty": 0,
+                "max_Tokens": 4000,
+                "stop": None,
+                "model": "gpt-4-turbo",
+                "allowModelFallback": True
+            },
+            "conversation": [
+                {
+                    "role": "system",
+                    "content": systemPrompt
+                },
+                {
+                    "role": "user",
+                    "content": caseInfo
+                }
+            ]
+        }
+
+        response = await axios.post(url, data, { headers: headers});
+        console.log(response);
+    }catch {
+        console.log("[ERROR] invokeModel -  " + err);
     }
 }
 
