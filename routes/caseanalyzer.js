@@ -67,9 +67,9 @@ async function brain(caseInfo) {
 }
 
 async function invokeModel(accessToken, systemPrompt, content){
-    console.log('[INVOKEMODEL] ' + accessToken)
-    console.log('[INVOKEMODEL] ' + content)
-    console.log('[INVOKEMODEL] ' + systemPrompt)
+    // console.log('[INVOKEMODEL] ' + accessToken)
+    // console.log('[INVOKEMODEL] ' + content)
+    // console.log('[INVOKEMODEL] ' + systemPrompt)
     
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1"
