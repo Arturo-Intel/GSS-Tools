@@ -42,7 +42,7 @@ async function brain(caseInfo) {
         ]);
         // SSU path was found in case Info
         if(ssuPath != "null") {
-            console.log("[SSUINFO] ")
+            console.log("[SSUINFO] -"+ ssuPath)
             try {
                 SSUInfo = await axios.get(ssuPath, { responseType: 'text' });
                 console.log("[SSUINFO] -fin")
