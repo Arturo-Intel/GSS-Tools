@@ -77,7 +77,7 @@ async function invokeModel(accessToken, systemPrompt, content){
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"
         }
-        console.log('[INVOKEMODEL >] ' + headers)
+        console.log('[INVOKEMODEL >] ' + headers.Authorization)
         data = {
             "correlationId": "string",
             "options": {
