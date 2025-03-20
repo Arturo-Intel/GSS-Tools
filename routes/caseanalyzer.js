@@ -73,11 +73,11 @@ async function invokeModel(accessToken, systemPrompt, content){
     // console.log('[INVOKEMODEL] ' + systemPrompt)
     
     try {
-        const url = "https://apis-internal.intel.com/generativeaiinference/v1"
+        const url = "https://apis-internal.intel.com/generativeaiinference/v1";
         headers = {
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"
-        }
+        };
         data = {
             "correlationId": "string",
             "options": {
@@ -100,10 +100,11 @@ async function invokeModel(accessToken, systemPrompt, content){
                     "content": content
                 }
             ]
-        }
+        };
 
         //response = await axios.post(url, data, { headers: headers});
         //console.log(response);
+        console.log('[INVOKEMODEL] -fin');
     }catch {
         console.log("[ERROR] invokeModel -  " + err);
     }
