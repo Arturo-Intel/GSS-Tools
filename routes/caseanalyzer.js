@@ -127,7 +127,7 @@ async function fetchPersona(persona) {
         await fs.readFile(filePath, 'utf8')
         .then(response => {
           const data = response.data;
-          console.log('[PERSONA] -fin '+persona);
+          console.log('[PERSONA] -fin '+ data);
           return data;
         })
         .catch(error => {
