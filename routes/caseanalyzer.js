@@ -41,8 +41,8 @@ async function brain(caseInfo) {
             ssuPath = await findSSUpath(caseInfo)
         ]);
         console.log(">>>>>> [Token] " + token);
-        console.log(">>>>>> [TokpersonaSSUen] " + personaSSU.data);
-        console.log(">>>>>> [personaCase] " + personaCase.data);
+        console.log(">>>>>> [TokpersonaSSUen] " + personaSSU);
+        console.log(">>>>>> [personaCase] " + personaCase);
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] ")
@@ -157,7 +157,7 @@ async function fetchPersona(personaName) {
         
         persona = await fs.readFile(filePath, 'utf8');
         console.log('[PERSONA] '+ personaName + " -fin");
-        return persona.data;
+        return persona;
 
     } catch(err) {
         console.log("[ERROR] persona -  " + err)
