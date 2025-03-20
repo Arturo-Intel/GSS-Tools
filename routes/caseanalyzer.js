@@ -20,6 +20,7 @@ router.get('/',
 router.post('/case', 
     fetch.isAuthenticated,
     async (req, res) => {
+        console.log('\n[START]');
         try {
             var analysis = ""
             analysis = await brains(req.body.body);
@@ -32,22 +33,44 @@ router.post('/case',
     });
 
 async function brains(caseInfo) {
+    console.log('[BRAIN]')
     try {
-        persona = await fetchPersona(1);
-        ssuPath = await findSSU(caseInfo);
-        token =  await getAccessToken();
+        await Promise.all([
+            token = getAccessToken(),
+            personaSSU = fetchPersona("SSU"),
+            personaCase = fetchPersona("case"),
+            ssuPath = await findSSUpath(caseInfo)
+        ]);
+        
+        // SSU path was found in case Info
+        if(ssuPath != "null") {
+            console.log("[SSUINFO] ")
+            try {
+                SSUInfo = await axios.get(ssuPath, { responseType: 'text' });
+                console.log("[SSUINFO] " + SSUInfo.data);
+                console.log("[SSUINFO] -fin")
+            } catch (err) {
+                console.log("[ERROR] ssuinfo - " + err)
+            }
+            //SSUAnalysis = await invokeModel(token, persona, );
+        }
         caseAnalysis = await invokeModel(token, persona, caseInfo);
+        console.log(caseAnalysis);
+        
+        console.log('[BRAIN] -fin')
         return {
-            "SSU-path" : ssuPath,
+            "SSU-path" : "ssuPath",
             "SSU-analysis" : "??", 
             "case-analysis": "??"
         }
+        
     } catch (err) {
         console.log("[ERROR] brains - " + err)
     }
 }
 
 async function invokeModel(accessToken, systemPrompt, caseInfo){
+    console.log('[INVOKEMODEL]')
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1"
         headers = {
@@ -87,6 +110,7 @@ async function invokeModel(accessToken, systemPrompt, caseInfo){
 
 
 async function getAccessToken(){
+    console.log('[TOKEN]')
     try {
         const url = "https://apis-internal.intel.com/v1/auth/token";
         data = {
@@ -97,44 +121,42 @@ async function getAccessToken(){
         headers = {
             "Content-Type": "application/x-www-form-urlencoded"
         };
-        response = await axios.post(url, data, { headers: headers});
+        response = await axios.post(url, data, { headers: headers, timeout: 3000});
+        console.log('[TOKEN] -fin')
+        return response;
     }catch (err) {
         console.log("[ERROR] token -  " + err)
     }
 }
 
-async function findSSU(body) {
+async function findSSUpath(context) {
+    console.log('[FINDSSU]')
     try {
         const regex = /https:\/\/github\.com\/user-attachments\/files\/\d+\/[^)]+/;
-        result = body.match(regex)[0];
-        console.log(result)
+        result = context.match(regex)[0];
+        console.log('[FINDSSU] '+ result); 
+        console.log('[FINDSSU] -fin')
         return result;
     } catch (err) {
         console.log("[WARNING] SSU not found! ")
-        return "No SSU file provided"
+        return "null"
     }
 }
 
-async function fetchPersona(persona) {
+async function fetchPersona(personaName) {
+    console.log('[PERSONA] '+ personaName)
     try {
         var filePath = "";
 
-        switch (persona){
-            case 1: filePath = path.join(__dirname, '../public', 'persona', 'IntelGithubIssuesAnalyzer.md'); break;
-            case 2: filePath = path.join(__dirname, '../public', 'persona', 'IntelSSUAnalyzer.md'); break;
+        switch (personaName){
+            case "case": filePath = path.join(__dirname, '../public', 'persona', 'IntelGithubIssuesAnalyzer.md'); break;
+            case "SSU": filePath = path.join(__dirname, '../public', 'persona', 'IntelSSUAnalyzer.md'); break;
         }
         
-        await fs.readFile(filePath, 'utf8')
-        .then(response => {
-          const data = response.data;
-          console.log('[PERSONA] -fin '+ data);
-          return data;
-        })
-        .catch(error => {
-          console.error("[ERROR] FS -  ", error);
-        });
-      
-        
+        persona = await fs.readFile(filePath, 'utf8');
+        console.log('[PERSONA] '+ personaName + " -fin");
+        return persona;
+
     } catch(err) {
         console.log("[ERROR] persona -  " + err)
     }
