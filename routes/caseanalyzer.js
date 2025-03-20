@@ -23,8 +23,7 @@ router.post('/case',
         console.log('\n[START]');
         try {
             var analysis = ""
-            analysis = await brains(req.body.body);
-            
+            analysis = await brain(req.body.body);
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -32,7 +31,7 @@ router.post('/case',
         }
     });
 
-async function brains(caseInfo) {
+async function brain(caseInfo) {
     console.log('[BRAIN]')
     try {
         await Promise.all([
@@ -51,9 +50,9 @@ async function brains(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            SSUAnalysis = await invokeModel(token.data, personaSSU.data, SSUInfo.data);
+            SSUAnalysis = await invokeModel(token.data.access_token, personaSSU.data, SSUInfo.data);
         }
-        caseAnalysis = await invokeModel(token.data, personaCase.data, caseInfo);
+        caseAnalysis = await invokeModel(token.data.access_token, personaCase.data, caseInfo);
         console.log(caseAnalysis);
         
         console.log('[BRAIN] -fin')
@@ -123,7 +122,6 @@ async function getAccessToken(){
             "Content-Type": "application/x-www-form-urlencoded"
         };
         const response = await axios.post(url, data, { headers: headers, timeout: 3000});
-        console.log('[TOKEN] '+ response.data.access_token);
         console.log('[TOKEN] -fin');
         return response;
     }catch (err) {
