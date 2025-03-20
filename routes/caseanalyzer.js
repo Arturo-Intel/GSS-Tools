@@ -51,9 +51,9 @@ async function brains(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data);
+            SSUAnalysis = await invokeModel(token.data, personaSSU.data, SSUInfo.data);
         }
-        caseAnalysis = await invokeModel(token, personaCase, caseInfo);
+        caseAnalysis = await invokeModel(token.data, personaCase.data, caseInfo);
         console.log(caseAnalysis);
         
         console.log('[BRAIN] -fin')
