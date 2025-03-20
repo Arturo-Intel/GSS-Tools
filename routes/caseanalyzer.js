@@ -51,9 +51,9 @@ async function brains(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            SSUAnalysis = await invokeModel(token, persona, SSUInfo.data);
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data);
         }
-        caseAnalysis = await invokeModel(token, persona, caseInfo);
+        caseAnalysis = await invokeModel(token, personaCase, caseInfo);
         console.log(caseAnalysis);
         
         console.log('[BRAIN] -fin')
@@ -68,14 +68,17 @@ async function brains(caseInfo) {
     }
 }
 
-async function invokeModel(accessToken, systemPrompt, caseInfo){
-    console.log('[INVOKEMODEL]')
+async function invokeModel(accessToken, systemPrompt, content){
+    console.log('[INVOKEMODEL] ' + accessToken)
+    console.log('[INVOKEMODEL] ' + systemPrompt)
+    console.log('[INVOKEMODEL] ' + content)
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1"
         headers = {
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"
         }
+        console.log('[INVOKEMODEL] ' + headers)
         data = {
             "correlationId": "string",
             "options": {
@@ -95,7 +98,7 @@ async function invokeModel(accessToken, systemPrompt, caseInfo){
                 },
                 {
                     "role": "user",
-                    "content": caseInfo
+                    "content": content
                 }
             ]
         }
