@@ -41,8 +41,8 @@ async function brain(caseInfo) {
             ssuPath = await findSSUpath(caseInfo)
         ]);
         console.log(">>>>>> [Token] " + token);
-        console.log(">>>>>> [TokpersonaSSUen] " + personaSSU);
-        console.log(">>>>>> [personaCase] " + personaCase);
+        console.log(">>>>>> [TokpersonaSSUen] " + personaSSU.data);
+        console.log(">>>>>> [personaCase] " + personaCase.data);
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] ")
@@ -52,9 +52,9 @@ async function brain(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            SSUAnalysis = await invokeModel(token.data.access_token, personaSSU.data, SSUInfo.data);
+            SSUAnalysis = await invokeModel(token, personaSSU.data, SSUInfo.data);
         }
-        caseAnalysis = await invokeModel(token.data.access_token, personaCase.data, caseInfo);
+        caseAnalysis = await invokeModel(token, personaCase.data, caseInfo);
         console.log(caseAnalysis);
         
         console.log('[BRAIN] -fin')
