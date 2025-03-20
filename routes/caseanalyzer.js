@@ -77,7 +77,6 @@ async function invokeModel(accessToken, systemPrompt, content){
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"
         }
-        console.log('[INVOKEMODEL >] ' + typeof(headers.Authorization))
         data = {
             "correlationId": "string",
             "options": {
@@ -102,8 +101,8 @@ async function invokeModel(accessToken, systemPrompt, content){
             ]
         }
 
-        response = await axios.post(url, data, { headers: headers});
-        console.log(response);
+        //response = await axios.post(url, data, { headers: headers});
+        //console.log(response);
     }catch {
         console.log("[ERROR] invokeModel -  " + err);
     }
