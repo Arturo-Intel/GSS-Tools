@@ -41,6 +41,8 @@ async function brain(caseInfo) {
             ssuPath = await findSSUpath(caseInfo)
         ]);
         console.log(">>>>>> [Token] " + token);
+        console.log(">>>>>> [TokpersonaSSUen] " + personaSSU);
+        console.log(">>>>>> [personaCase] " + personaCase);
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] ")
@@ -123,7 +125,7 @@ async function getAccessToken(){
         };
         const response = await axios.post(url, data, { headers: headers, timeout: 3000});
         console.log('[TOKEN] -fin');
-        return response;
+        return response.data.access_token;
     }catch (err) {
         console.log("[ERROR] token -  " + err)
     }
@@ -155,7 +157,7 @@ async function fetchPersona(personaName) {
         
         persona = await fs.readFile(filePath, 'utf8');
         console.log('[PERSONA] '+ personaName + " -fin");
-        return persona;
+        return persona.data;
 
     } catch(err) {
         console.log("[ERROR] persona -  " + err)
