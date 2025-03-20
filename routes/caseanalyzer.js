@@ -40,7 +40,7 @@ async function brain(caseInfo) {
             personaCase = await fetchPersona("case"),
             ssuPath = await findSSUpath(caseInfo)
         ]);
-        
+        console.log(">>>>>> [Token] " + token);
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] ")
