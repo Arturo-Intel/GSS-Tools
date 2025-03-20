@@ -71,7 +71,6 @@ async function brains(caseInfo) {
 async function invokeModel(accessToken, systemPrompt, content){
     console.log('[INVOKEMODEL] ' + accessToken)
     console.log('[INVOKEMODEL] ' + systemPrompt)
-    console.log('[INVOKEMODEL] ' + content)
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1"
         headers = {
@@ -124,7 +123,7 @@ async function getAccessToken(){
             "Content-Type": "application/x-www-form-urlencoded"
         };
         const response = await axios.post(url, data, { headers: headers, timeout: 3000});
-        console.log('[TOKEN] '+ response);
+        console.log('[TOKEN] '+ response.data);
         console.log('[TOKEN] -fin');
         return response;
     }catch (err) {
