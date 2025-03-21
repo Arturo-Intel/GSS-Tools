@@ -23,7 +23,8 @@ router.post('/case',
         console.log('\n[START]');
         try {
             var analysis = ""
-            analysis = await brain(req.body.body);
+            const inputCase = "User: "+ req.body.user.login + "Title: "+ req.body.title + "\n" + req.body.body;
+            analysis = await brain(inputCase);
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -31,14 +32,14 @@ router.post('/case',
         }
     });
 
-async function brain(caseInfo) {
+async function brain(inputCase) {
     console.log('[BRAIN]')
     try {
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
             personaCase = await fetchPersona("case"),
-            ssuPath = await findSSUpath(caseInfo)
+            ssuPath = await findSSUpath(inputCase)
         ]);
         // SSU path was found in case Info
         if(ssuPath != "null") {
