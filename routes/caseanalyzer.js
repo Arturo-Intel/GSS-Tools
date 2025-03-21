@@ -56,7 +56,7 @@ async function brain(inputCase) {
             SSUAnalysis = "SSU not provided.";
         }
 
-        caseAnalysis = await invokeModel(token, personaCase, caseInfo, "caseAnalysis");
+        caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
         console.log("[BRAIN] - " + caseAnalysis);
         
         console.log('[BRAIN] -fin')
