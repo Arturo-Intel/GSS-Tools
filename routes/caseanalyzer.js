@@ -65,7 +65,7 @@ async function brain(inputCase) {
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysis, 
-            "case-analysis": caseAnalysis.Summary
+            "case-analysis": caseAnalysis.data
         }
         
     } catch (err) {
