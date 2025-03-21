@@ -102,6 +102,8 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
         response = await axios.post(url, data, { headers: headers});
         console.log(response.data.conversation[2].content);
         console.log('[INVOKEMODEL] -fin');
+        return response.data.conversation[2].content;
+
     }catch (err) {
         console.log("[ERROR] invokeModel -  " + err);
     }
