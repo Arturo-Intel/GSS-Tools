@@ -64,7 +64,7 @@ async function brain(inputCase) {
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysis, 
-            "case-analysis": caseAnalysis.substring(8).slice(0, -3)
+            "case-analysis": JSON.parse(caseAnalysis.substring(8).slice(0, -3))
         }
         
     } catch (err) {
