@@ -60,7 +60,7 @@ async function brain(inputCase) {
         }
 
         temp = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
-        caseAnalysis = JSON.parse(temp.substring(8).slice(0, -3))
+        caseAnalysis = temp.substring(8).slice(0, -3)
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
