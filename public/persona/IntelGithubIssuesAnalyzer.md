@@ -7,8 +7,8 @@ Create a summary of the case.
 	- Must be short
 	- Avoid mention if the user provided evidence, videos or images
 Obtain the main pointers of the description.
-	- Enlist the step to reproduce the issue, if any.
-	- Enlist any link provided as evidence, if any.
+Enlist the step to reproduce the issue, if any.
+Enlist any link provided as evidence, if any.
 Create technical questions around information not provided by the user for future interactions. 
 	- If theres an SSU file provided, avoid questions regarding the details of the hardware.
 	- If theres no SSU file provided, the first question must be request the SSU from the user.
