@@ -59,13 +59,12 @@ async function brain(inputCase) {
             SSUAnalysis = "SSU not provided.";
         }
 
-        temp = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
-        caseAnalysis = temp.substring(8).slice(0, -3)
+        caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysis, 
-            "case-analysis": caseAnalysis.Case_Summary
+            "case-analysis": caseAnalysis
         }
         
     } catch (err) {
