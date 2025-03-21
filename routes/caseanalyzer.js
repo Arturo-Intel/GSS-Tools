@@ -75,29 +75,29 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
             "Authorization": "Bearer " + accessToken,
             "Content-Type": "application/json"
         };
-        // data = {
-        //     "correlationId": "string",
-        //     "options": {
-        //         "temperature": 0.2,
-        //         "top_P": 0.40,
-        //         "frequency_Penalty": 0,
-        //         "presence_Penalty": 0,
-        //         "max_Tokens": 4000,
-        //         "stop": None,
-        //         "model": "gpt-4-turbo",
-        //         "allowModelFallback": True
-        //     },
-        //     "conversation": [
-        //         {
-        //             "role": "system",
-        //             "content": systemPrompt
-        //         },
-        //         {
-        //             "role": "user",
-        //             "content": content
-        //         }
-        //     ]
-        // };
+        data = {
+            "correlationId": "string",
+            "options": {
+                "temperature": 0.2,
+                "top_P": 0.40,
+                "frequency_Penalty": 0,
+                "presence_Penalty": 0,
+                "max_Tokens": 4000,
+                "stop": None,
+                "model": "gpt-4-turbo",
+                "allowModelFallback": True
+            },
+            "conversation": [
+                {
+                    "role": "system",
+                    "content": systemPrompt
+                },
+                {
+                    "role": "user",
+                    "content": content
+                }
+            ]
+        };
 
         //response = await axios.post(url, data, { headers: headers});
         //console.log(response);

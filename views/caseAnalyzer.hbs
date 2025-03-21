@@ -26,7 +26,7 @@
                 body: JSON.stringify(caseInfo),
             });
             const data = await response.json();
-            document.getElementById('result').innerText = data["ssuPath"];
+            document.getElementById('result').innerText = data["SSU-path"];
         } catch (error) {
             document.getElementById('result').innerText = error;
         }
