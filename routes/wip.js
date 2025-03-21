@@ -7,7 +7,13 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        res.render('wip', {});
+        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+        res.render('wip', {
+                isAuthenticated: req.session.isAuthenticated,
+                profile: graphResponse,
+                photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
+                sidebar: 'sidebarHome',
+            });
     });
 
 module.exports = router;
