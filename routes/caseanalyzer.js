@@ -49,7 +49,7 @@ async function brain(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            //SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
         }
         caseAnalysis = await invokeModel(token, personaCase, caseInfo, "caseAnalysis");
         console.log("[BRAIN] - " + caseAnalysis);
@@ -57,7 +57,7 @@ async function brain(caseInfo) {
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
-            "SSU-analysis" : "SSUAnalysis", 
+            "SSU-analysis" : SSUAnalysis, 
             "case-analysis": caseAnalysis
         }
         
@@ -100,7 +100,6 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
         };
 
         response = await axios.post(url, data, { headers: headers});
-        console.log(response.data.conversation[2].content);
         console.log('[INVOKEMODEL] -fin');
         return response.data.conversation[2].content;
 

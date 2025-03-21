@@ -5,7 +5,9 @@
 <div class="container">
     <input type="number" id="numberCaseInput" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
-    <div id="result"></div>
+    <div id="ssu-path"></div>
+    <div id="ssu-analysis"></div>
+    <div id="case-analysis"></div>
 
 </div>
 <script>
@@ -26,9 +28,11 @@
                 body: JSON.stringify(caseInfo),
             });
             const data = await response.json();
-            document.getElementById('result').innerText = data["SSU-path"];
+            document.getElementById('ssu-path').innerText = data["SSU-path"];
+            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
+            document.getElementById('case-analysis').innerText = data["case-analysis"];
         } catch (error) {
-            document.getElementById('result').innerText = error;
+            document.getElementById('ssu-path').innerText = error;
         }
     });
 
