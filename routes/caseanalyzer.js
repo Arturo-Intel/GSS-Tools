@@ -83,9 +83,9 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
                 "frequency_Penalty": 0,
                 "presence_Penalty": 0,
                 "max_Tokens": 4000,
-                "stop": "None",
+                "stop": null,
                 "model": "gpt-4-turbo",
-                "allowModelFallback": "True"
+                "allowModelFallback": true
             },
             "conversation": [
                 {
