@@ -63,7 +63,7 @@ async function brain(inputCase) {
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
-            "SSU-analysis" : SSUAnalysis, 
+            "SSU-analysis" : SSUAnalysis.Summary, 
             "case-analysis": caseAnalysis
         }
         
