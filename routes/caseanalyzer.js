@@ -4,8 +4,6 @@ var fetch = require('../fetch');
 var axios = require('axios');
 const path = require('path');
 const fs = require('fs').promises;
-const HttpsProxyAgent = require('https-proxy-agent');
-
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
 
@@ -13,7 +11,12 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
+        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
         res.render('caseAnalyzer', {
+            isAuthenticated: req.session.isAuthenticated,
+            profile: graphResponse,
+            photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
+            sidebar: 'sidebarHome',
         });
     });
 
@@ -57,8 +60,6 @@ async function brain(inputCase) {
         }
 
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
-        console.log("[BRAIN] - " + caseAnalysis);
-        
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
@@ -90,7 +91,7 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
                 "max_Tokens": 4000,
                 "stop": null,
                 "model": "gpt-4-turbo",
-                "allowModelFallback": true
+                "allowModelFallback": true 
             },
             "conversation": [
                 {
