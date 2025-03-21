@@ -49,13 +49,12 @@ async function brain(caseInfo) {
             } catch (err) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
-            
-            try {
-                SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
-            }catch {
-                console.log("ssu error");
-            }
+
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
+        } else {
+            SSUAnalysis = "SSU not provided.";
         }
+
         caseAnalysis = await invokeModel(token, personaCase, caseInfo, "caseAnalysis");
         console.log("[BRAIN] - " + caseAnalysis);
         
