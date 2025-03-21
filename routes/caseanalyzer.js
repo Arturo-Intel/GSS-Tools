@@ -64,7 +64,7 @@ async function brain(inputCase) {
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysis, 
-            "case-analysis": JSON.parse(caseAnalysis)
+            "case-analysis": caseAnalysis
         }
         
     } catch (err) {

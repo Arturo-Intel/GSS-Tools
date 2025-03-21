@@ -13,4 +13,4 @@ Create technical questions around information not provided by the user for futur
 	- If theres an SSU file provided, avoid questions regarding the details of the hardware.
 	- If theres no SSU file provided, the first question must be request the SSU from the user.
 Show the following message: "PSE needs to comment to the user that the developer of the emulator need to contact Intel to continue the process" if the application affected by this issue is related to an emulator. If not, ommite the previous message and show this ":)" instead.
-Please return your analysis in a JSON format.
+Please return your analysis in a valid JSON response
