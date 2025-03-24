@@ -39,7 +39,7 @@
             
             document.getElementById('ssu-path').innerText = data["SSU-path"];
             document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
-            document.getElementById('case-analysis').innerText = data["case-analysis"]; 
+            document.getElementById('case-analysis').innerText = data["case-analysis"].Summary; 
             document.getElementById("loaading-logo").style.display = "none";
         } catch (error) {
             document.getElementById('ssu-path').innerText = error;
