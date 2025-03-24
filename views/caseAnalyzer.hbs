@@ -17,6 +17,9 @@
 <script>
 
     document.getElementById('apiCallButton').addEventListener('click', async () => {
+        document.getElementById("case-analysis").innerHTML  = ""; 
+        document.getElementById("ssu-analysis").innerHTML  = ""; 
+        document.getElementById("ssu-path").innerHTML  = ""; 
         document.getElementById("loaading-logo").style.display = "block";
         var num =  document.getElementById('numberCaseInput').value
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
