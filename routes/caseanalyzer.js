@@ -60,8 +60,7 @@ async function brain(inputCase) {
         }
 
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
-        console.log('[BRAIN] RAW > ' + caseAnalysis)
-        console.log('[BRAIN] JSON > ' + caseAnalysis.match(/\{.*?\}/))
+        console.log('[BRAIN] JSON > ' + caseAnalysis.match(/\{([^}]*)\}/g));
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
