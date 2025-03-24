@@ -54,7 +54,7 @@ async function brain(inputCase) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
 
-            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
+            //SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
         } else {
             SSUAnalysis = "SSU not provided.";
         }
@@ -62,8 +62,8 @@ async function brain(inputCase) {
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
         console.log('[BRAIN] -fin')
         return {
-            "SSU-path" : ssuPath,
-            "SSU-analysis" : SSUAnalysis, 
+            "SSU-path" : "ssuPath",
+            "SSU-analysis" : "SSUAnalysis", 
             "case-analysis": JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
         }
         
