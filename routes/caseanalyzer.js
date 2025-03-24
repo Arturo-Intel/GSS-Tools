@@ -110,7 +110,7 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
         return response.data.conversation[2].content;
 
     }catch (err) {
-        console.log("[ERROR] invokeModel -  " + err);
+        console.log("[ERROR] invokeModel > " + fromWhere + " - "+err);
     }
 }
 
