@@ -5,7 +5,7 @@
 <div class="container">
     <input type="number" id="numberCaseInput" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
-    <div style=" display: none;" id="loaading-logo">Asking to AI to analyze this case... </div>
+    <div style=" display: none;" id="loading-logo">Asking to AI to analyze this case... </div>
     <p></p>Case:
     <div id="case-analysis" style="height: 300px; overflow: scroll;"></div>
     SSU:
@@ -20,7 +20,7 @@
         document.getElementById("case-analysis").innerHTML  = ""; 
         document.getElementById("ssu-analysis").innerHTML  = ""; 
         document.getElementById("ssu-path").innerHTML  = ""; 
-        document.getElementById("loaading-logo").style.display = "block";
+        document.getElementById("loading-logo").style.display = "block";
         var num =  document.getElementById('numberCaseInput').value
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         try {
@@ -36,11 +36,14 @@
                 body: JSON.stringify(caseInfo),
             });
             const data = await response.json();
-            
-            document.getElementById('ssu-path').innerText = data["SSU-path"];
-            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
-            document.getElementById('case-analysis').innerText = data["case-analysis"].Summary; 
-            document.getElementById("loaading-logo").style.display = "none";
+            if(data["case-analysis"]=="404"){
+                document.getElementById('case-analysis').innerText = "Case number does not exists";
+            } else {
+                document.getElementById('ssu-path').innerText = data["SSU-path"];
+                document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
+                document.getElementById('case-analysis').innerText = data["case-analysis"].Summary; 
+            }
+            document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
             document.getElementById('ssu-path').innerText = error;
         }
