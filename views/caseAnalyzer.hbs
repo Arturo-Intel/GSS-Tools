@@ -142,8 +142,11 @@
 
         	    if (data["case-analysis"].evidence.length > 0){
                     data["case-analysis"].evidence.forEach(element => {
+                        const a = document.createElement('a');
+                        a.href = element;
+                        a.text = element;
                         const li = document.createElement('li');
-                        li.textContent = "<a href=\""+element+"\">"+element+"</a>";
+                        li.textContent = a;
                         document.getElementById('case-evidence').appendChild(li);
                     });
                 }else {
