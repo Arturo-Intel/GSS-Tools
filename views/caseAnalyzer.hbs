@@ -8,7 +8,7 @@
     <div style=" display: none;" id="loading-logo">Asking to AI to analyze this case... </div>
 
     <div id="case" class="top-padding-div">
-        <div id="details" class="flex-container">
+        <div class="flex-container">
             <div class="title-div">
                 <dl>
                     <dt>Title</dt>
@@ -28,29 +28,29 @@
                 <dd id="case-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
             </dl>
         </div>
-        
-    </div>
-    <div id="details" class="flex-container">
-        <div id="app" class="flex-child">
-            <dl>
-                <dt>Game/Application Details</dt>
-                <dl class="description-list">
-                    <dt>Name</dt><dd id="details-AppName">Lorem ipsum</dd>
-                    <dt>Platform</dt><dd id="details-Platform">dolor sit</dd>
-                    <dt>API</dt><dd id="details-API">amet</dd>
+
+        <div id="details" class="flex-container">
+            <div id="app" class="flex-child">
+                <dl>
+                    <dt>Game/Application Details</dt>
+                    <dl class="description-list">
+                        <dt>Name</dt><dd id="details-AppName">Lorem ipsum</dd>
+                        <dt>Platform</dt><dd id="details-Platform">dolor sit</dd>
+                        <dt>API</dt><dd id="details-API">amet</dd>
+                    </dl>
                 </dl>
-            </dl>
-        </div>
-        <div id="pc" class="flex-child">
-            <dl>
-                <dt>System Details</dt>
-                 <dl class="description-list">
-                    <dt>GPU</dt><dd id="details-GPU">consectetur</dd>
-                    <dt>CPU</dt><dd id="details-CPU">adipiscing elit.</dd>
-                    <dt>Driver Version</dt><dd id="details-Driver">Lorem ipsum </dd>
-                    <dt>OS</dt><dd id="details-OS">dolor sit amet</dd>
-                 </dl>
-            </dl>
+            </div>
+            <div id="pc" class="flex-child">
+                <dl>
+                    <dt>System Details</dt>
+                    <dl class="description-list">
+                        <dt>GPU</dt><dd id="details-GPU">consectetur</dd>
+                        <dt>CPU</dt><dd id="details-CPU">adipiscing elit.</dd>
+                        <dt>Driver Version</dt><dd id="details-Driver">Lorem ipsum </dd>
+                        <dt>OS</dt><dd id="details-OS">dolor sit amet</dd>
+                    </dl>
+                </dl>
+            </div>
         </div>
     </div>
     SSU:
@@ -63,7 +63,6 @@
 
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("case").style.display = "none";
-        document.getElementById("details").style.display = "none";
         document.getElementById("ssu-path").innerHTML  = ""; 
         document.getElementById("loading-logo").style.display = "block";
         var num =  document.getElementById('numberCaseInput').value
@@ -87,14 +86,13 @@
                 const data = await response.json();
 
                 document.getElementById("case").style.display = "block";
-                document.getElementById("details").style.display = "block";
                 document.getElementById('ssu-path').innerText = data["SSU-path"];
 
                 document.getElementById('case-title').innerText = data["case-analysis"].Title; 
                 document.getElementById('case-username').innerText = data["case-analysis"].username; 
                 document.getElementById('case-summary').innerText = data["case-analysis"].Summary; 
 
-                document.getElementById('details-AppName').innerText = data["case-analysis"].App_Name; 
+                document.getElementById('details-AppName').innerText = data["case-analysis"].AppName; 
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
