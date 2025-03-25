@@ -5,7 +5,7 @@
 <div class="container">
     <input type="number" id="numberCaseInput" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
-    <div style=" display: none;" id="loading-logo">Asking to AI to analyze this case... </div>
+    <div style=" display: none;" id="loading-logo">Asking AI to analyze this case... </div>
 
     <div id="case" class="top-padding-div">
         <div class="flex-container">
@@ -52,6 +52,22 @@
                 </dl>
             </div>
         </div>
+
+        <div class="flex-container">
+            <div id="Main-Pointers" class="flex-child">
+                <dl>
+                    <dt>Main Pointers</dt>
+                    <ol></ol>
+                </dl>
+            </div>
+            <div class="flex-child">
+                <dl>
+                    <dt>Steps to reproduce</dt>
+                    <ol id="step-repro"></ol>
+                </dl>
+            </div>
+        </div>
+
     </div>
     SSU:
     <div id="ssu-path"></div>
@@ -100,6 +116,20 @@
                 document.getElementById('details-CPU').innerText = data["case-analysis"]["CPU"];
                 document.getElementById('details-Driver').innerText = data["case-analysis"]["Driver version"]
                 document.getElementById('details-OS').innerText = data["case-analysis"]["OS version"]
+
+                data["case-analysis"]["Main Pointers"].forEach(element => {
+                    const li = document.createElement('li');
+                    li.textContent = element;
+                    document.getElementById('Main-Pointers').appendChild(li);
+                });
+
+                
+                data["case-analysis"]["Steps to Reproduce"].forEach(element => {
+                    const li = document.createElement('li');
+                    li.textContent = element;
+                    document.getElementById('step-repro').appendChild(li);
+                });
+
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
