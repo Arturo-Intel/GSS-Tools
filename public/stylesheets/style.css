@@ -40,7 +40,15 @@ dt:after { content:":"; }
   margin: 0;
 }
 
+.title {
+  font-size: 1.25em; 
+}
+
 .state {
   margin-bottom: 0rem;
   font-style: italic;
+}
+
+dd {
+  margin-bottom: 0rem;
 }

@@ -10,7 +10,8 @@
             <div class="title-div">
                 <dl>
                     <dt>Title</dt>
-                    <dd id="case-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt</dd>
+                    <dd id="case-title" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt</dd>
+                    <dd>source: <a id="case-url" href="">https://github.com/Arturo-Intel/GSS-Tools</a></dd>
                     <dd id="case-state" class="state">elit</dd>
                 </dl>
             </div>
@@ -80,7 +81,7 @@
 
 </div>
 <script>
-    document.getElementById("case").style.display = "none";
+    //document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById('status').innerText = "";
         document.getElementById("case").style.display = "none";
@@ -110,6 +111,8 @@
                 document.getElementById('ssu-path').innerText = data["SSU-path"];
 
                 document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
+                document.getElementById("case-url").href = caseInfo.html_url
+                document.getElementById("case-url").textContent = caseInfo.html_url
                 document.getElementById('case-state').innerText = caseInfo.state; 
                 document.getElementById('case-username').innerText = data["case-analysis"].username; 
                 document.getElementById('case-summary').innerText = data["case-analysis"].case_summary; 
