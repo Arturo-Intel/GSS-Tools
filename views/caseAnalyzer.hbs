@@ -1,5 +1,5 @@
 <h1>Case Analyzer</h1>
-<div class="container">
+<div>
     <input  id="case-URL" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
     <div id="status"></div>
@@ -80,7 +80,7 @@
 
 </div>
 <script>
-    document.getElementById("case").style.display = "none";
+    //document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
         document.getElementById('status').innerText = "";
@@ -172,9 +172,13 @@
                             document.getElementById('case-evidence').appendChild(li);
                         }
 
-                        document.getElementById("ssu-path").textContent  = data["SSU-path"]; 
-                        document.getElementById("ssu-path").href  = data["SSU-path"];
-                        document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
+                        if(data["SSU-path"] == "null") {
+                            document.getElementById("ssu-path").textContent = "SSU file no provided."
+                        } else {
+                            document.getElementById("ssu-path").textContent = data["SSU-path"]; 
+                            document.getElementById("ssu-path").href  = data["SSU-path"];
+                            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
+                        }
                     }
                 }
             } else {
