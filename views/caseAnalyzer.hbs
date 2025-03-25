@@ -74,7 +74,7 @@
         </div>
     </div>
     SSU:
-    <div id="ssu-path"></div>
+    <div><a id="ssu-path" target="_blank" href=""></a></div>
     <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
     
 
@@ -85,7 +85,8 @@
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
         document.getElementById('status').innerText = "";
         document.getElementById("case").style.display = "none";
-        document.getElementById("ssu-path").innerHTML  = ""; 
+        document.getElementById("ssu-path").textContent  = ""; 
+        document.getElementById("ssu-path").href  = ""; 
         document.getElementById("loading-logo").style.display = "block";
         var githubCase = false;
         var communitiesCase = false;
@@ -171,7 +172,8 @@
                             document.getElementById('case-evidence').appendChild(li);
                         }
 
-                        document.getElementById('ssu-path').innerText = data["SSU-path"];
+                        document.getElementById("ssu-path").textContent  = data["SSU-path"]; 
+                        document.getElementById("ssu-path").href  = data["SSU-path"];
                         document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
                     }
                 }
