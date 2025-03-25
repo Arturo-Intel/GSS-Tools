@@ -92,7 +92,7 @@
                 document.getElementById('case-username').innerText = data["case-analysis"].username; 
                 document.getElementById('case-summary').innerText = data["case-analysis"].Summary; 
 
-                document.getElementById('details-AppName').innerText = data["case-analysis"].AppName; 
+                document.getElementById('details-AppName').innerText = data["case-analysis"]["App Name"]; 
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
