@@ -52,3 +52,14 @@ dt:after { content:":"; }
 dd {
   margin-bottom: 0rem;
 }
+
+.disclaimer {
+  background-color: #f2f2f2; /* Light grey background */
+  padding: 20px; /* Padding around the text */
+  text-align: center; /* Center the text */
+  font-size: 14px; /* Font size */
+  color: #333; /* Text color */
+  margin-top: 30px; /* Space above the disclaimer */
+  border-top: 1px solid #ccc; /* Optional border at the top */
+}
+

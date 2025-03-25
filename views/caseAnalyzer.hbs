@@ -1,7 +1,7 @@
 <h1>Case Analyzer</h1>
 <div>
-    <input  id="case-URL" placeholder="Github case number">
-    <button id="apiCallButton" >Submit</button>
+    <input  id="case-URL" style="width: 90%" placeholder="Type URL... ">
+    <button id="apiCallButton">Submit</button>
     <div id="status"></div>
     <div style=" display: none;" id="loading-logo">Asking AI to analyze this case... </div>
     <div id="case" class="top-padding-div">
@@ -72,15 +72,18 @@
                 <ul id="case-evidence"></ul>
             </dl>
         </div>
-    </div>
-    SSU:
-    <div><a id="ssu-path" target="_blank" href=""></a></div>
-    <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
     
-
+        SSU:
+        <div><a id="ssu-path" target="_blank" href=""></a></div>
+        <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
+    </div>
+    <div class="disclaimer">
+        <p>The purpose of this tool is to improve the issues analysis and data collection. Please use common sense when using this tool.
+        The information provided by gss-tools is for general informational purposes only. Your use of the site and reliance on any information is solely at your own risk.</p>
+    </div>
 </div>
 <script>
-    //document.getElementById("case").style.display = "none";
+    document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
         document.getElementById('status').innerText = "";
