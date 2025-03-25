@@ -146,7 +146,7 @@
                         a.href = element;
                         a.text = element;
                         const li = document.createElement('li');
-                        li.textContent = a;
+                        li.appendChild(a);
                         document.getElementById('case-evidence').appendChild(li);
                     });
                 }else {
