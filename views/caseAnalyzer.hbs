@@ -60,7 +60,7 @@
 
 </div>
 <script>
-
+    document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("case").style.display = "none";
         document.getElementById("ssu-path").innerHTML  = ""; 
@@ -93,6 +93,13 @@
                 document.getElementById('case-summary').innerText = data["case-analysis"].Summary; 
 
                 document.getElementById('details-AppName').innerText = data["case-analysis"]["App Name"]; 
+                document.getElementById('details-Platform').innerText = data["case-analysis"]["Game platform"]; 
+                document.getElementById('details-API').innerText = data["case-analysis"]["API used"];
+
+                document.getElementById('details-GPU').innerText = data["case-analysis"]["GPU"];
+                document.getElementById('details-CPU').innerText = data["case-analysis"]["CPU"];
+                document.getElementById('details-Driver').innerText = data["case-analysis"]["Driver Version"]
+                document.getElementById('details-OS').innerText = data["case-analysis"]["OS Version"]
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
