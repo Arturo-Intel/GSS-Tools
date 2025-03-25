@@ -122,8 +122,6 @@
                         document.getElementById('status').innerText = data["case-error"];
                     } else {
                         document.getElementById("case").style.display = "block";
-                        document.getElementById('ssu-path').innerText = data["SSU-path"];
-
                         document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
                         document.getElementById("case-url").href = caseInfo.html_url
                         document.getElementById("case-url").textContent = caseInfo.html_url
@@ -172,6 +170,9 @@
                             li.textContent = "No evidence links";
                             document.getElementById('case-evidence').appendChild(li);
                         }
+
+                        document.getElementById('ssu-path').innerText = data["SSU-path"];
+                        document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
                     }
                 }
             } else {
