@@ -26,19 +26,20 @@
         try {
 
             const caseRaw = await fetch(url+num);
-            const caseInfo = await caseRaw.json();
-
-            response = await fetch("/caseanalyzer/case", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(caseInfo),
-            });
-            const data = await response.json();
-            if(data["case-analysis"]=="404"){
+            if(!caseRaw.ok){
                 document.getElementById('case-analysis').innerText = "Case number does not exists";
             } else {
+                const caseInfo = await caseRaw.json();
+
+                response = await fetch("/caseanalyzer/case", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(caseInfo),
+                });
+                const data = await response.json();
+
                 document.getElementById('ssu-path').innerText = data["SSU-path"];
                 document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
                 document.getElementById('case-analysis').innerText = data["case-analysis"].Summary; 
