@@ -117,6 +117,9 @@
                 document.getElementById('details-Driver').innerText = data["case-analysis"]["Driver version"]
                 document.getElementById('details-OS').innerText = data["case-analysis"]["OS version"]
 
+                document.getElementById('Main-Pointers').innerHTML = '';
+                document.getElementById('step-repro').innerHTML = '';
+
                 data["case-analysis"]["Main Pointers"].forEach(element => {
                     const li = document.createElement('li');
                     li.textContent = element;
