@@ -43,7 +43,7 @@ async function brain(inputCase) {
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
-            personaCase = await fetchPersona("cases"),
+            personaCase = await fetchPersona("case"),
             ssuPath = await findSSUpath(inputCase)
         ]);
 
