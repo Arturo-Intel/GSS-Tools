@@ -105,31 +105,31 @@
                 document.getElementById("case").style.display = "block";
                 document.getElementById('ssu-path').innerText = data["SSU-path"];
 
-                document.getElementById('case-title').innerText = data["case-analysis"].Title; 
+                document.getElementById('case-title').innerText = data["case-analysis"].cas_title; 
                 document.getElementById('case-state').innerText = caseInfo.state; 
                 document.getElementById('case-username').innerText = data["case-analysis"].username; 
-                document.getElementById('case-summary').innerText = data["case-analysis"].Summary; 
+                document.getElementById('case-summary').innerText = data["case-analysis"].case_summary; 
 
-                document.getElementById('details-AppName').innerText = data["case-analysis"]["App Name"]; 
-                document.getElementById('details-Platform').innerText = data["case-analysis"]["Game platform"]; 
-                document.getElementById('details-API').innerText = data["case-analysis"]["API used"];
+                document.getElementById('details-AppName').innerText = data["case-analysis"].app_name; 
+                document.getElementById('details-Platform').innerText = data["case-analysis"].platform; 
+                document.getElementById('details-API').innerText = data["case-analysis"].api;
 
-                document.getElementById('details-GPU').innerText = data["case-analysis"]["GPU"];
-                document.getElementById('details-CPU').innerText = data["case-analysis"]["CPU"];
-                document.getElementById('details-Driver').innerText = data["case-analysis"]["Driver version"]
-                document.getElementById('details-OS').innerText = data["case-analysis"]["OS version"]
+                document.getElementById('details-GPU').innerText = data["case-analysis"].gpu;
+                document.getElementById('details-CPU').innerText = data["case-analysis"].cpu;
+                document.getElementById('details-Driver').innerText = data["case-analysis"].driver_version
+                document.getElementById('details-OS').innerText = data["case-analysis"].os_version
 
                 document.getElementById('Main-Pointers').innerHTML = '';
                 document.getElementById('step-repro').innerHTML = '';
 
-                data["case-analysis"]["Main Pointers"].forEach(element => {
+                data["case-analysis"].main_pointers.forEach(element => {
                     const li = document.createElement('li');
                     li.textContent = element;
                     document.getElementById('Main-Pointers').appendChild(li);
                 });
 
                 
-                data["case-analysis"]["Steps to Reproduce"].forEach(element => {
+                data["case-analysis"].steps_reproduce.forEach(element => {
                     const li = document.createElement('li');
                     li.textContent = element;
                     document.getElementById('step-repro').appendChild(li);
