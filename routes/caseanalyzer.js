@@ -50,14 +50,12 @@ async function brain(inputCase) {
         if (!token) {
             return {"case-error" : "[ERROR] Token timeout"}
         }
-
         if (!personaSSU) {
             return {"case-error" : "[ERROR] Persona SSU"}
         }
         if (!personaCase) {
             return {"case-error" : "[ERROR] Persona Case"}
         }
-
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] -"+ ssuPath)
@@ -68,13 +66,13 @@ async function brain(inputCase) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
 
-            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
-
         } else {
             SSUAnalysis = "SSU not provided.";
         }
-
-        caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis");
+        await Promise.all([
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis"),
+            caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis")
+        ]);
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
