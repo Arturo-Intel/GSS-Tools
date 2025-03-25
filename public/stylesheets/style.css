@@ -1,8 +1,41 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.flex-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+}  
+
+.title-div {
+  flex: 0 0 80%; /* Flex-grow: 0, Flex-shrink: 0, Flex-basis: 80% */
 }
 
-a {
-  color: #00B7FF;
+.username-div {
+  flex: 0 0 20%; /* Flex-grow: 0, Flex-shrink: 0, Flex-basis: 20% */
+
+}
+
+.top-padding-div {
+  padding-top: 10px;
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
+
+dt:after { content:":"; }
+
+.description-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.description-list dt {
+  font-style: italic; 
+  font-weight: normal;
+  flex: 0 0 30%;
+  margin: 0;
+}
+.description-list dd {
+  flex: 0 0 70%; 
+  margin: 0;
 }
