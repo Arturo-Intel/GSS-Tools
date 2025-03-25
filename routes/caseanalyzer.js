@@ -25,11 +25,6 @@ router.post('/case',
     async (req, res) => {
         console.log('\n[START]');
         try {
-            if(req.body.message = "Not Found"){
-                return {
-                    "case-analysis": "404"
-                }
-            }
             var analysis = ""
             const inputCase = "User: "+ req.body.user.login + "Title: "+ req.body.title + "\n" + req.body.body;
             analysis = await brain(inputCase);

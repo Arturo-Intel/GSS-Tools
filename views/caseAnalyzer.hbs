@@ -27,7 +27,7 @@
 
             const caseRaw = await fetch(url+num);
             if(!caseRaw.ok){
-                document.getElementById('case-analysis').innerText = "Case number does not exists";
+                document.getElementById('case-analysis').innerText = "Case number not found.";
             } else {
                 const caseInfo = await caseRaw.json();
 
