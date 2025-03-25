@@ -68,7 +68,7 @@
         </div>
         <div >
             <dl>
-                <dt>Evidences links:</dt>
+                <dt>Evidences links</dt>
                 <ul id="case-evidence"></ul>
             </dl>
         </div>
@@ -139,11 +139,17 @@
                     document.getElementById('step-repro').appendChild(li);
                 });
 
-                data["case-analysis"].evidence.forEach(element => {
+        	    if (data["case-analysis"].evidence.length > 0){
+                    data["case-analysis"].evidence.forEach(element => {
+                        const li = document.createElement('li');
+                        li.textContent = element;
+                        document.getElementById('case-evidence').appendChild(li);
+                    });
+                }else {
                     const li = document.createElement('li');
-                    li.textContent = element;
+                    li.textContent = "No evidence links";
                     document.getElementById('case-evidence').appendChild(li);
-                });
+                }
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
