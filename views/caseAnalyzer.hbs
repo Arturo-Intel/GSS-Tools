@@ -1,10 +1,8 @@
 <h1>Case Analyzer</h1>
-{{#if caseNumber}}
-    <h3>Case: {{caseNumber}}</h3> 
-{{/if}}
 <div class="container">
     <input type="number" id="numberCaseInput" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
+    <div id="status"></div>
     <div style=" display: none;" id="loading-logo">Asking AI to analyze this case... </div>
 
     <div id="case" class="top-padding-div">
@@ -78,6 +76,7 @@
 </div>
 <script>
     document.getElementById("case").style.display = "none";
+    document.getElementById('status').innerText = "";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("case").style.display = "none";
         document.getElementById("ssu-path").innerHTML  = ""; 
@@ -88,7 +87,7 @@
 
             const caseRaw = await fetch(url+num);
             if(!caseRaw.ok){
-                document.getElementById('case-summary').innerText = "Case number not found.";
+                document.getElementById('status').innerText = "Case number not found.";
                 document.getElementById('numberCaseInput').value = '';
             } else {
                 const caseInfo = await caseRaw.json();
@@ -138,7 +137,7 @@
             }
             document.getElementById("loading-logo").style.display = "none";
         } catch (error) {
-            document.getElementById('ssu-path').innerText = error;
+            document.getElementById('status').innerText = error;
         }
     });
 
