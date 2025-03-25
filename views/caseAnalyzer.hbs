@@ -13,6 +13,7 @@
                 <dl>
                     <dt>Title</dt>
                     <dd id="case-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt</dd>
+                    <dd id="case-state">elit</dd>
                 </dl>
             </div>
             <div  class="username-div">
@@ -105,6 +106,7 @@
                 document.getElementById('ssu-path').innerText = data["SSU-path"];
 
                 document.getElementById('case-title').innerText = data["case-analysis"].Title; 
+                document.getElementById('case-state').innerText = caseInfo.state; 
                 document.getElementById('case-username').innerText = data["case-analysis"].username; 
                 document.getElementById('case-summary').innerText = data["case-analysis"].Summary; 
 
