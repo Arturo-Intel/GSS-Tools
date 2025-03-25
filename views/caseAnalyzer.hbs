@@ -1,10 +1,9 @@
 <h1>Case Analyzer</h1>
 <div class="container">
-    <input type="number" id="numberCaseInput" placeholder="Github case number">
+    <input  id="case-URL" placeholder="Github case number">
     <button id="apiCallButton" >Submit</button>
     <div id="status"></div>
     <div style=" display: none;" id="loading-logo">Asking AI to analyze this case... </div>
-
     <div id="case" class="top-padding-div">
         <div class="flex-container">
             <div class="title-div">
@@ -83,85 +82,107 @@
 <script>
     document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
+        document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
         document.getElementById('status').innerText = "";
         document.getElementById("case").style.display = "none";
         document.getElementById("ssu-path").innerHTML  = ""; 
         document.getElementById("loading-logo").style.display = "block";
-        var num =  document.getElementById('numberCaseInput').value
-        const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
-        try {
+        var githubCase = false;
+        var communitiesCase = false;
 
-            const caseRaw = await fetch(url+num);
-            if(!caseRaw.ok){
-                document.getElementById('status').innerText = "Case number not found.";
-                document.getElementById('numberCaseInput').value = '';
-            } else {
-                const caseInfo = await caseRaw.json();
-
-                response = await fetch("/caseanalyzer/case", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(caseInfo),
-                });
-                const data = await response.json();
-
-                document.getElementById("case").style.display = "block";
-                document.getElementById('ssu-path').innerText = data["SSU-path"];
-
-                document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
-                document.getElementById("case-url").href = caseInfo.html_url
-                document.getElementById("case-url").textContent = caseInfo.html_url
-                document.getElementById('case-state').innerText = caseInfo.state; 
-                document.getElementById('case-username').innerText = data["case-analysis"].username; 
-                document.getElementById('case-summary').innerText = data["case-analysis"].case_summary; 
-
-                document.getElementById('details-AppName').innerText = data["case-analysis"].app_name; 
-                document.getElementById('details-Platform').innerText = data["case-analysis"].platform; 
-                document.getElementById('details-API').innerText = data["case-analysis"].api;
-
-                document.getElementById('details-GPU').innerText = data["case-analysis"].gpu;
-                document.getElementById('details-CPU').innerText = data["case-analysis"].cpu;
-                document.getElementById('details-Driver').innerText = data["case-analysis"].driver_version
-                document.getElementById('details-OS').innerText = data["case-analysis"].os_version
-
-                document.getElementById('Main-Pointers').innerHTML = '';
-                document.getElementById('step-repro').innerHTML = '';
-                document.getElementById('case-evidence').innerHTML = '';
-
-                data["case-analysis"].main_pointers.forEach(element => {
-                    const li = document.createElement('li');
-                    li.textContent = element;
-                    document.getElementById('Main-Pointers').appendChild(li);
-                });
-
+        const caseURL = document.getElementById('case-URL').value;
+        if(caseURL.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/)){
+            if(caseURL.match(/(\d+)$/)){
+                githubCase = true;
+                num = caseURL.match(/(\d+)$/)[0]
                 
-                data["case-analysis"].steps_reproduce.forEach(element => {
-                    const li = document.createElement('li');
-                    li.textContent = element;
-                    document.getElementById('step-repro').appendChild(li);
-                });
-
-        	    if (data["case-analysis"].evidence.length > 0){
-                    data["case-analysis"].evidence.forEach(element => {
-                        const a = document.createElement('a');
-                        a.href = element;
-                        a.text = element;
-                        a.target = "_blank";
-                        const li = document.createElement('li');
-                        li.appendChild(a);
-                        document.getElementById('case-evidence').appendChild(li);
+            } else {
+                document.getElementById('status').innerText = "Incomplete Github URL\n"
+            }
+        }
+        
+        try {
+            if(githubCase) {
+                const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
+                const caseRaw = await fetch(url+num);
+                if(!caseRaw.ok){
+                    document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
+                } else {
+                    const caseInfo = await caseRaw.json();
+                    response = await fetch("/caseanalyzer/case", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(caseInfo),
                     });
-                }else {
-                    const li = document.createElement('li');
-                    li.textContent = "No evidence links";
-                    document.getElementById('case-evidence').appendChild(li);
+                    const data = await response.json();
+
+                    if(data["case-error"]) {
+                        document.getElementById('status').innerText = data["case-error"];
+                    } else {
+                        document.getElementById("case").style.display = "block";
+                        document.getElementById('ssu-path').innerText = data["SSU-path"];
+
+                        document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
+                        document.getElementById("case-url").href = caseInfo.html_url
+                        document.getElementById("case-url").textContent = caseInfo.html_url
+                        document.getElementById('case-state').innerText = caseInfo.state; 
+                        document.getElementById('case-username').innerText = data["case-analysis"].username; 
+                        document.getElementById('case-summary').innerText = data["case-analysis"].case_summary; 
+
+                        document.getElementById('details-AppName').innerText = data["case-analysis"].app_name; 
+                        document.getElementById('details-Platform').innerText = data["case-analysis"].platform; 
+                        document.getElementById('details-API').innerText = data["case-analysis"].api;
+
+                        document.getElementById('details-GPU').innerText = data["case-analysis"].gpu;
+                        document.getElementById('details-CPU').innerText = data["case-analysis"].cpu;
+                        document.getElementById('details-Driver').innerText = data["case-analysis"].driver_version
+                        document.getElementById('details-OS').innerText = data["case-analysis"].os_version
+
+                        document.getElementById('Main-Pointers').innerHTML = '';
+                        document.getElementById('step-repro').innerHTML = '';
+                        document.getElementById('case-evidence').innerHTML = '';
+
+                        data["case-analysis"].main_pointers.forEach(element => {
+                            const li = document.createElement('li');
+                            li.textContent = element;
+                            document.getElementById('Main-Pointers').appendChild(li);
+                        });
+
+                        
+                        data["case-analysis"].steps_reproduce.forEach(element => {
+                            const li = document.createElement('li');
+                            li.textContent = element;
+                            document.getElementById('step-repro').appendChild(li);
+                        });
+
+                        if (data["case-analysis"].evidence.length > 0){
+                            data["case-analysis"].evidence.forEach(element => {
+                                const a = document.createElement('a');
+                                a.href = element;
+                                a.text = element;
+                                a.target = "_blank";
+                                const li = document.createElement('li');
+                                li.appendChild(a);
+                                document.getElementById('case-evidence').appendChild(li);
+                            });
+                        } else {
+                            const li = document.createElement('li');
+                            li.textContent = "No evidence links";
+                            document.getElementById('case-evidence').appendChild(li);
+                        }
+                    }
                 }
+            } else {
+                document.getElementById('status').innerText += "Not a valid or supported URL"
             }
             document.getElementById("loading-logo").style.display = "none";
+            document.getElementById("apiCallButton").removeAttribute("disabled");
         } catch (error) {
+            document.getElementById("loading-logo").style.display = "none";
             document.getElementById('status').innerText = error;
+            document.getElementById("apiCallButton").removeAttribute("disabled");
         }
     });
 

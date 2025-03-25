@@ -38,12 +38,26 @@ router.post('/case',
 async function brain(inputCase) {
     console.log('[BRAIN]')
     try {
+
+
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
-            personaCase = await fetchPersona("case"),
+            personaCase = await fetchPersona("cases"),
             ssuPath = await findSSUpath(inputCase)
         ]);
+
+        if (!token) {
+            return {"case-error" : "[ERROR] Token timeout"}
+        }
+
+        if (!personaSSU) {
+            return {"case-error" : "[ERROR] Persona SSU"}
+        }
+        if (!personaCase) {
+            return {"case-error" : "[ERROR] Persona Case"}
+        }
+
         // SSU path was found in case Info
         if(ssuPath != "null") {
             console.log("[SSUINFO] -"+ ssuPath)
@@ -54,7 +68,7 @@ async function brain(inputCase) {
                 console.log("[ERROR] ssuinfo - " + err)
             }
 
-            //SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
         } else {
             SSUAnalysis = "SSU not provided.";
         }
@@ -68,7 +82,9 @@ async function brain(inputCase) {
         }
         
     } catch (err) {
-        console.log("[ERROR] brains - " + err)
+        return {
+            "case-error" : "[ERROR] brains - " + err
+        }
     }
 }
 
