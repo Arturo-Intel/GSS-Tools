@@ -101,19 +101,27 @@ function draw() {
 }
 
 function animate() {
-  if (!pauseFlag) {
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
+  
+    function step(timestamp) {
+      if (!pauseFlag) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        
+        context.clearRect ( 0 , 0 , 200 , 200 );
+        draw();
 
+        if (elapsed >= delay) {
+          document.getElementById('loading-message').innerText = loadingMesages[Math.floor(Math.random() *5)];
+        } 
 
-    if (elapsed >= delay) {
-      document.getElementById('loading-message').innerText = loadingMesages[Math.floor(Math.random() *5)];
-    } 
-
-    context.clearRect ( 0 , 0 , 200 , 200 );
-    draw();
-    requestAnimationFrame(animate);
-  }
+        if (elapsed < delay + 5000) { // Continue animation for 5 more seconds after message change
+          requestAnimationFrame(step);
+        }
+      }
+    }  
+    
+    requestAnimationFrame(step);
+  
 }
 
 function pause() {
