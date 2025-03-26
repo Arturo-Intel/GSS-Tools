@@ -158,6 +158,7 @@
                         document.getElementById('Main-Pointers').innerHTML = '';
                         document.getElementById('step-repro').innerHTML = '';
                         document.getElementById('case-evidence').innerHTML = '';
+                        ocument.getElementById('ssu-analysis').innerText = '';
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
@@ -191,7 +192,7 @@
                         data["case-analysis"].questions.forEach(element => {
                             const li = document.createElement('li');
                             li.textContent = element;
-                            document.getElementById('step-questions').appendChild(li);
+                            document.getElementById('case-questions').appendChild(li);
                         });
 
                         if(data["SSU-path"] == "null") {
