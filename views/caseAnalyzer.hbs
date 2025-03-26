@@ -1,7 +1,7 @@
 <div  class="loading"  >
     <canvas id="loading-container" width="200" height="200"></canvas>
     <div id="loading-text"> 
-        <p>Asking AI to analyze this case...</p> 
+        <p id="loading-message">Asking AI to analyze this case...</p> 
     </div>
 </div>
 <div class="p-5">
@@ -10,7 +10,7 @@
     <button id="apiCallButton">Submit</button>
     <div id="status"></div>
 
-    <div id="case" class="top-padding-div">
+    <div id="case" class="analysis-report">
         <div class="flex-container">
             <div class="title-div">
                 <dl>
@@ -80,7 +80,7 @@
         </div>
         <div >
             <dl>
-                <dt>Questions</dt>
+                <dt>Possible questions to the submitter</dt>
                 <ul id="case-questions"></ul>
             </dl>
         </div>
@@ -93,6 +93,13 @@
 
 <script src="/javascripts/loading-animation.js"></script>
 <script>
+    let loadingMesages = ["Fetching data...", 
+                        "It may take some time, please be patient :)",
+                        "Still here, still working on it...",
+                        "Bending the spoon..",
+                        "Swapping time and space...",
+                        "Don't think of purple hippos..."];
+
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter" && !document.getElementById('apiCallButton').disabled) {
             event.preventDefault();

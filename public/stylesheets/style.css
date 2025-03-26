@@ -14,10 +14,6 @@
 
 }
 
-.top-padding-div {
-  padding-top: 10px;
-}
-
 .flex-child:first-child {
   margin-right: 20px;
 } 
@@ -57,7 +53,7 @@ dd {
   background-color: #f2f2f2;
   padding: 10px; 
   text-align: center; 
-  font-size: 12px;
+  font-size: 14px;
   color: #333;
   border-top: 1px solid #ccc;
   position: fixed;
@@ -66,7 +62,6 @@ dd {
 
 }
 
-
 .loading {
   position:fixed;
   z-index: -1; 
@@ -74,4 +69,10 @@ dd {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ }
+
+ .analysis-report{
+  background: white;
+  padding-top: 20px;
+  padding-left: 5px;
  }
