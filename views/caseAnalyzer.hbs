@@ -68,21 +68,34 @@
         </div>
         <div >
             <dl>
-                <dt>Evidences links</dt>
+                <dt>Evidences</dt>
                 <ul id="case-evidence"></ul>
             </dl>
         </div>
-    
+        <div >
+            <dl>
+                <dt>Questions</dt>
+                <ul id="case-questions"></ul>
+            </dl>
+        </div>
         SSU:
         <div><a id="ssu-path" target="_blank" href=""></a></div>
         <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
     </div>
     <div class="disclaimer">
+        <div>Disclaimer:</div>
         <p>The purpose of this tool is to improve the issues analysis and data collection. Please use common sense when using this tool.
         The information provided by gss-tools is for general informational purposes only. Your use of the site and reliance on any information is solely at your own risk.</p>
     </div>
 </div>
 <script>
+    document.getElementById('apiCallButton').addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("apiCallButton").click();
+        }
+    });
+
     document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
@@ -174,6 +187,12 @@
                             li.textContent = "No evidence links";
                             document.getElementById('case-evidence').appendChild(li);
                         }
+
+                        data["case-analysis"].questions.forEach(element => {
+                            const li = document.createElement('li');
+                            li.textContent = element;
+                            document.getElementById('step-questions').appendChild(li);
+                        });
 
                         if(data["SSU-path"] == "null") {
                             document.getElementById("ssu-path").textContent = "SSU file no provided."
