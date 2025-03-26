@@ -1,9 +1,15 @@
-<h1>Case Analyzer</h1>
+<div  class="loading"  >
+    <canvas id="loading-container" width="200" height="200"></canvas>
+    <div id="loading-text"> 
+        <p>Asking AI to analyze this case...</p> 
+    </div>
+</div>
 <div>
+    <h1>Case Analyzer</h1>
     <input  id="case-URL-input" style="width: 90%" placeholder="Type URL... ">
     <button id="apiCallButton">Submit</button>
     <div id="status"></div>
-    <div style=" display: none;" id="loading-logo">Asking AI to analyze this case... </div>
+
     <div id="case" class="top-padding-div">
         <div class="flex-container">
             <div class="title-div">
@@ -82,12 +88,10 @@
         <div><a id="ssu-path" target="_blank" href=""></a></div>
         <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
     </div>
-    <div class="disclaimer">
-        <div>Disclaimer:</div>
-        <p>The purpose of this tool is to improve the issues analysis and data collection. Please use common sense when using this tool.
-        The information provided by gss-tools is for general informational purposes only. Your use of the site and reliance on any information is solely at your own risk.</p>
-    </div>
 </div>
+
+
+<script src="/javascripts/loading-animation.js"></script>
 <script>
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter" && !document.getElementById('apiCallButton').disabled) {
@@ -95,7 +99,8 @@
             document.getElementById("apiCallButton").click();
         }
     });
-
+    document.getElementById("loading-text").style.display = "none";
+    pause(); //animation
     document.getElementById("case").style.display = "none";
     document.getElementById('apiCallButton').addEventListener('click', async () => {
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
@@ -103,7 +108,8 @@
         document.getElementById("case").style.display = "none";
         document.getElementById("ssu-path").textContent  = ""; 
         document.getElementById("ssu-path").href  = ""; 
-        document.getElementById("loading-logo").style.display = "block";
+        document.getElementById("loading-text").style.display = "block";
+        play(); //animation
         var githubCase = false;
         var communitiesCase = false;
 
@@ -207,10 +213,12 @@
             } else {
                 document.getElementById('status').innerText += "Not a valid or supported URL"
             }
-            document.getElementById("loading-logo").style.display = "none";
+            document.getElementById("loading-text").style.display = "none";
+            pause(); //animation
             document.getElementById("apiCallButton").removeAttribute("disabled");
         } catch (error) {
-            document.getElementById("loading-logo").style.display = "none";
+            document.getElementById("loading-text").style.display = "none";
+            pause(); //animation
             document.getElementById('status').innerText = error;
             document.getElementById("apiCallButton").removeAttribute("disabled");
         }
