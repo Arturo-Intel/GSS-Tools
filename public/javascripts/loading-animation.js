@@ -133,5 +133,5 @@ function pause() {
 
 function play() {
   pauseFlag = false;
-  //animate();
+  animate();
 }
