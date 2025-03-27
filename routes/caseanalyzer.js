@@ -16,7 +16,7 @@ router.get('/',
             isAuthenticated: req.session.isAuthenticated,
             profile: graphResponse,
             photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
-            sidebar: 'sidebarHome',
+            sidebar: 'sidebarCaseAnalyzer',
         });
     });
 

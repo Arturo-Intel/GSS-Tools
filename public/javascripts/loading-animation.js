@@ -10,7 +10,7 @@ document.getElementById('loading-container'),
 
 let pauseFlag = false;
 let startTime = null;
-let delay = 5000;
+let delay = 7000;
 let last_rnd = 0;
 
 let loadingMesages = ["Fetching data...", 

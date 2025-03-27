@@ -58,8 +58,20 @@ dd {
   border-top: 1px solid #ccc;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  width: 50%;
+  left: 50%;
+  transform: translateX(-30%);
 
+
+}
+
+.made {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  text-align: center; 
+  font-size: 0.75em; 
 }
 
 .loading {
