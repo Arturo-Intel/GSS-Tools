@@ -11,6 +11,14 @@ document.getElementById('loading-container'),
 let pauseFlag = false;
 let startTime = null;
 let delay = 5000;
+let last_rnd = 0;
+
+let loadingMesages = ["Fetching data...", 
+  "It may take some time...",
+  "Still here, still working on it...",
+  "Bending the spoon...",
+  "Swapping time and space...",
+  "Don't think of purple hippos..."];
 
 init();
 
@@ -100,28 +108,20 @@ function draw() {
   }
 }
 
-function animate() {
-  
-    function step(timestamp) {
-      if (!pauseFlag) {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        
-        context.clearRect ( 0 , 0 , 200 , 200 );
-        draw();
+function animate(timestamp) {
+  context.clearRect ( 0 , 0 , 200 , 200 );
+  draw();
 
-        if (elapsed >= delay) {
-          document.getElementById('loading-message').innerText = loadingMesages[Math.floor(Math.random() *5)];
-        } 
+  if (!startTime) startTime = timestamp;
+  const elapsed = timestamp - startTime;
 
-        if (elapsed < delay + 5000) { // Continue animation for 5 more seconds after message change
-          requestAnimationFrame(step);
-        }
-      }
-    }  
-    
-    requestAnimationFrame(step);
-  
+
+  if(Math.ceil(elapsed%delay) >= (delay-50)) {
+      rnd = Math.floor(Math.random() *5);
+      document.getElementById('loading-message').innerText = loadingMesages[rnd];
+      startTime = timestamp;
+  }
+  requestAnimationFrame(animate);
 }
 
 function pause() {
