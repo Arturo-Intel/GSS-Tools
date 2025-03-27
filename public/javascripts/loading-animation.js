@@ -109,7 +109,7 @@ function draw() {
 }
 
 function animate(timestamp) {
-  if(!pause) {
+  if(!pauseFlag) {
     context.clearRect ( 0 , 0 , 200 , 200 );
     draw();
 
