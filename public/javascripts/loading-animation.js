@@ -116,11 +116,12 @@ function animate(timestamp) {
     if (!startTime) startTime = timestamp;
     const elapsed = timestamp - startTime;
 
-
-    if(Math.ceil(elapsed%delay) >= (delay-50)) {
-        rnd = Math.floor(Math.random() *5);
-        document.getElementById('loading-message').innerText = loadingMesages[rnd];
-        startTime = timestamp;
+    if(elapsed > delay){
+      if(Math.ceil(elapsed%delay) >= (delay-50)) {
+          rnd = Math.floor(Math.random() *5);
+          document.getElementById('loading-message').innerText = loadingMesages[rnd];
+          startTime = timestamp;
+      }
     }
     requestAnimationFrame(animate);
   }
