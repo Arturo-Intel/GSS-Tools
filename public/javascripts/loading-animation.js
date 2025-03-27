@@ -109,27 +109,29 @@ function draw() {
 }
 
 function animate(timestamp) {
-  context.clearRect ( 0 , 0 , 200 , 200 );
-  draw();
+  if(!pause) {
+    context.clearRect ( 0 , 0 , 200 , 200 );
+    draw();
 
-  if (!startTime) startTime = timestamp;
-  const elapsed = timestamp - startTime;
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
 
 
-  if(Math.ceil(elapsed%delay) >= (delay-50)) {
-      rnd = Math.floor(Math.random() *5);
-      document.getElementById('loading-message').innerText = loadingMesages[rnd];
-      startTime = timestamp;
+    if(Math.ceil(elapsed%delay) >= (delay-50)) {
+        rnd = Math.floor(Math.random() *5);
+        document.getElementById('loading-message').innerText = loadingMesages[rnd];
+        startTime = timestamp;
+    }
+    requestAnimationFrame(animate);
   }
-  requestAnimationFrame(animate);
 }
 
 function pause() {
   pauseFlag = true;
-  animate();
+  //animate();
 }
 
 function play() {
   pauseFlag = false;
-  animate();
+  //animate();
 }
