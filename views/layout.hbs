@@ -112,11 +112,13 @@
                         Home
                     </a>
                 </li>
+                {{#if isAuthenticated }}
                 <li>
                     <a id="sidebarCaseAnalyzer" href="/caseanalyzer" class="nav-link text-white" aria-current="page">
                         Case Analyzer
                     </a>
                 </li>
+                    {{#if isAdmin}}
                 <li> 
                     <a id="sidebarGI" href="/wip" class="nav-link text-white">
                         Game Inventory
@@ -127,26 +129,37 @@
                         Remote Lab
                     </a>
                 </li>
+                    
+                <li>
+                    <a id="sidebarAdmin" href="/admin" class="nav-link text-white">
+                        admin
+                    </a>
+                </li>
+                    {{/if}}
+                {{/if}}
             </ul>
             <hr>
             <div class="dropdown">
+                {{#if isAuthenticated }}
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-
-                    {{#if isAuthenticated }}
                     <img src="{{photo.url}}" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong>{{profile.displayName}}</strong>
-                    {{/if}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/auth/signout">Sign out</a></li>
                 </ul>
+                {{else}}
+                    <a href="/auth/signin" class="d-flex align-items-center text-white text-decoration-none" >
+                        <img src="/res/default.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>Click here to sign in</strong>
+                    </a>
+                {{/if}}
             </div>
         </div>
         <div class="p-5 w-100" style="overflow-y: auto">
             {{{body}}}
-
         </div>
         <div class="made">
             made with ♥ by<br>[kgutier, r2]

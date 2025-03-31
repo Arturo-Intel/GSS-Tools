@@ -1,5 +1,14 @@
+<script>
+//    let username = "{{username}}";
+//    console.log(">> "+username);
+//   if(username == ""){
+//        window.location.replace('/auth/signin');
+//    }
+</script>
+
 {{#if isAuthenticated }}
 <h1>Welcome {{profile.givenName}}!</h1>
+
 <ul>
     {{#each profile}}
 
@@ -9,4 +18,5 @@
 </ul>
 {{else}}
 <h1>One moment please...</h1>
+
 {{/if}}

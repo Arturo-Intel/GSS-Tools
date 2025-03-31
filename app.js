@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-    require("dotenv").config();
+    require('dotenv').config({ path: '.env.dev' });
 }
 
 var path = require('path');
@@ -9,6 +9,7 @@ const MemoryStore = require('memorystore')(session)
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -70,9 +71,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
-app.use('/auth', authRouter);
 app.use('/wip', wipRouter);
 app.use('/caseanalyzer', caseAnalyzerRouter);
 
