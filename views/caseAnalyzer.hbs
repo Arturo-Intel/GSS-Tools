@@ -5,11 +5,35 @@
     </div>
 </div>
 <div class="p-5">
-    <h1>Case Analyzer</h1>
-    <input  id="case-URL-input" style="width: 90%" placeholder="Type URL... ">
-    <button id="apiCallButton">Submit</button>
-    <div id="status"></div>
+    <h1>Graphics Support Case Analyzer</h1>
+    <div class="inputboxcontainer">
+        <input  id="case-URL-input" placeholder="https://github.com/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/XXXX" 
+        value="https://github.com/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/">
+        <button id="apiCallButton">Submit</button>
+    </div>
+    <div id="status" style="height: 30px;" ></div>
 
+    <div id="help" style="padding-top: 50px;">
+        <p class="justified-text" style="font-size: 1.25em; ">
+        Welcome to the AI-Powered Graphics Support Case Analyzer, a cutting-edge tool designed to streamline the workflow of Product Support Engineers (PSEs) in handling customer support cases related to graphics products. This tool leverages advanced artificial intelligence to accelerate case analysis, ensuring standardized documentation and optimizing PSE time for critical tasks such as evidence gathering, case reproduction, escalations, and customer engagement. By automating the analysis process, the tool guarantees consistency and precision, enabling PSEs to focus on strategic activities that enhance customer satisfaction and expedite resolution.
+        </p>
+        <h4>How to use this tool:</h4>
+        <dl>
+            <ol class="justified-text">
+                <li>Input a valid GitHub URL into the designated field. Currently, the tool supports only GitHub URLs, with future support for Intel Communities forum URLs in development.</li>           
+                <li>Click on the "Submit" button or press the enter key to initiate the AI-driven analysis process.</li>
+                <li>Wait for the AI to process the case and generate a comprehensive analysis report, highlighting key insights and actionable recommendations.</li>
+                <li>Click on the "SSU" button or scroll down to access the SSU analysis section, where you can delve deeper into specific aspects of the case for further examination and understanding.</li>
+            </ol>
+        </dl>    
+        <h4>Contact:</h4>
+        
+        For support, feedback, or inquiries, please reach out to us via email:
+        <p style="text-align: center"><br>Email: <b><a href="mailto:arturo.medina.mendoza@intel.com">arturo.medina.mendoza@intel.com</a>
+|| <a href="mailto:karen.f.gutierrez.cruz@intel.com">karen.f.gutierrez.cruz@intel.com</a></b></p>
+        <p style="text-align: center">We are dedicated to empowering you with innovative tools that enhance your efficiency and effectiveness in resolving customer issues. We are here to support you in achieving greater customer satisfaction and operational excellence. At the end, we also are PSEs :)
+        </p>
+    </div>
     <div id="case" class="analysis-report">
         <div class="flex-container">
             <div class="title-div">
@@ -93,31 +117,6 @@
 
 <script src="/javascripts/loading-animation.js"></script>
 <script>
-    function getDateTime() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    } 
-
-    function millisecondsToHHMMSS(ms) {
-        const seconds = Math.floor(ms / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-
-        const formattedHours = String(hours).padStart(2, '0');
-        const formattedMinutes = String(minutes % 60).padStart(2, '0');
-        const formattedSeconds = String(seconds % 60).padStart(2, '0');
-
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    }
-
-
 
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter" && !document.getElementById('apiCallButton').disabled) {
@@ -268,8 +267,7 @@
         document.getElementById("apiCallButton").removeAttribute("disabled");
         pause(); //animation
         endTime = performance.now();
-        totaltime = endTime - startTime;
-        console.log(">>>>" + millisecondsToHHMMSS(endTime - startTime));
+        
         const saveHit = await fetch("/caseanalyzer/hit", {
                 method: "POST",
                 headers: {

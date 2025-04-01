@@ -88,3 +88,27 @@ dd {
   padding-top: 20px;
   padding-left: 5px;
  }
+
+ .justified-text {
+  text-align: justify;
+}
+
+.inputboxcontainer {
+
+  display: flex;
+  width: 100%;
+
+}
+
+
+.inputboxcontainer input,
+.inputboxcontainer button {
+  flex: 1;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.inputboxcontainer button {
+    flex: 0 0 auto; /* Prevents button from stretching */
+}
+

@@ -4,6 +4,25 @@
 //   if(username == ""){
 //        window.location.replace('/auth/signin');
 //    }
+{{#unless home}}
+(async () => {
+    
+    const saveHit = await fetch("/hit", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json' // Set the content type to JSON
+            },
+            body: JSON.stringify({
+                "datetime": getDateTime(),
+                "action": "Landing page",
+                "result": "OK"
+            }),
+        });
+    if (!saveHit.ok) {
+        console.error("Could not save hit data", saveHit.status);
+    } 
+})();
+{{/unless}}
 </script>
 
 {{#if isAuthenticated }}

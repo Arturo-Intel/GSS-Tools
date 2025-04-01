@@ -86,6 +86,8 @@
     <link href="/stylesheets/sidebars.css" rel="stylesheet">
     <link href="/stylesheets/style.css" rel="stylesheet">
 
+    <script src="/javascripts/tools.js"></script>
+
 </head>
 <body>
     {{#if success }}
@@ -101,14 +103,14 @@
     <main class="d-flex flex-nowrap">
 
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
                 <span class="fs-4">GSS Tools</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li>
-                    <a id="sidebarHome" href="/" class="nav-link text-white" aria-current="page">
+                    <a id="sidebarHome" href="/home" class="nav-link text-white" aria-current="page">
                         Home
                     </a>
                 </li>
@@ -171,6 +173,7 @@
         </div>
     </main>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    
 
     <script>
         document.getElementById("isAdmin").style.display= "{{isAdmin}}";
