@@ -105,6 +105,19 @@
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     } 
 
+    function millisecondsToHHMMSS(ms) {
+        const seconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes % 60).padStart(2, '0');
+        const formattedSeconds = String(seconds % 60).padStart(2, '0');
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+
+
 
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter" && !document.getElementById('apiCallButton').disabled) {
@@ -256,7 +269,7 @@
         pause(); //animation
         endTime = performance.now();
         totaltime = endTime - startTime;
-        console.log(">>>>" + totaltime);
+        console.log(">>>>" + millisecondsToHHMMSS(endTime - startTime));
         const saveHit = await fetch("/caseanalyzer/hit", {
                 method: "POST",
                 headers: {
@@ -266,7 +279,7 @@
                     "datetime": getDateTime(),
                     "action": "Case Analyzer: URL [" + caseURL + "]",
                     "result": hitResult,
-                    "time": totaltime
+                    "time": millisecondsToHHMMSS(endTime - startTime)
                 }),
             });
         if (!saveHit.ok) {
