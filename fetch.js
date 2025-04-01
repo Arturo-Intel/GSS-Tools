@@ -5,7 +5,7 @@
 
 var axios = require('axios');
 const { HttpsProxyAgent } = require('https-proxy-agent');
-
+var dbConn = require('./lib/db.js');
 /**
  * Attaches a given access token to a MS Graph API call
  * @param endpoint: REST API endpoint to call
@@ -64,10 +64,14 @@ function isAuthenticated(req, res, next) {
     next();
 };
 
-
+async function isAdmin(username) {
+    const isAdmin = await dbConn.query(`SELECT IF(username = '`+username+`', 'block', 'none') as isAdmin FROM vip_list;`) 
+    return isAdmin[0]['isAdmin'];
+};
 
 module.exports = {
     fetch,
     fetchPhoto,
-    isAuthenticated
+    isAuthenticated,
+    isAdmin
 };

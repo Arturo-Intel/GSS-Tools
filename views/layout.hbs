@@ -118,7 +118,7 @@
                         Case Analyzer
                     </a>
                 </li>
-                    {{#if isAdmin}}
+                    <div id="isAdmin" style="display: none">
                 <li> 
                     <a id="sidebarGI" href="/wip" class="nav-link text-white">
                         Game Inventory
@@ -135,7 +135,7 @@
                         admin
                     </a>
                 </li>
-                    {{/if}}
+                    </div>
                 {{/if}}
             </ul>
             <hr>
@@ -173,8 +173,10 @@
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
 
     <script>
+        document.getElementById("isAdmin").style.display= "{{isAdmin}}";
         let sidebarButton = document.getElementById("{{ sidebar }}");
         if (sidebarButton) { sidebarButton.classList.add('active'); };
+        
     </script>
 </body>
 </html>

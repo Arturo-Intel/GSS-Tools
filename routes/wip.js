@@ -8,7 +8,9 @@ router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
         const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+        const admin =  await fetch.isAdmin(req.session.account?.username);
         res.render('wip', {
+                isAdmin: admin, 
                 isAuthenticated: req.session.isAuthenticated,
                 profile: graphResponse,
                 photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 

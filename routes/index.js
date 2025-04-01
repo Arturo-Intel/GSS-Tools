@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var dbConn = require('../lib/db');
+
 var fetch = require('../fetch');
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
@@ -10,9 +10,9 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        const isadmin = await dbConn.query(`SELECT IF(username = '`+req.session.account?.username+`', TRUE, FALSE) as isAdmin FROM vip_list;`) 
+        const admin = await fetch.isAdmin(req.session.account?.username);
         res.render('index', {
-            isAdmin: isadmin[0]['isAdmin'], 
+            isAdmin: admin, 
             token: req.session.accessToken, 
             isAuthenticated: req.session.isAuthenticated,
             username: req.session.account?.username,

@@ -93,6 +93,17 @@
 
 <script src="/javascripts/loading-animation.js"></script>
 <script>
+    function getDateTime() {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    } 
 
 
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
@@ -104,7 +115,11 @@
     document.getElementById("loading-text").style.display = "none";
     pause(); //animation
     document.getElementById("case").style.display = "none";
+
     document.getElementById('apiCallButton').addEventListener('click', async () => {
+        var hitResult = "OK";
+        const startTime = performance.now();
+        var endTime = startTime;
         document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
         document.getElementById('status').innerText = "";
         document.getElementById("case").style.display = "none";
@@ -116,15 +131,22 @@
         var communitiesCase = false;
 
         const caseURL = document.getElementById('case-URL-input').value;
-        if(caseURL.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/)){
-            if(caseURL.match(/(\d+)$/)){
+
+
+       
+        if(caseURL.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
+        {
+            if(caseURL.match(/(\d+)$/))
+            {
                 githubCase = true;
-                num = caseURL.match(/(\d+)$/)[0]
+                num = caseURL.match(/(\d+)$/)[0];
                 
             } else {
-                document.getElementById('status').innerText = "Incomplete Github URL\n"
+                document.getElementById('status').innerText = "Incomplete Github URL\n";
+                hitResult = "Incomplete Github URL";
+                endTime = performance.now();
             }
-        }
+        } 
         
         try {
             if(githubCase) {
@@ -132,6 +154,8 @@
                 const caseRaw = await fetch(url+num);
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
+                    hitResult="Github case ["+ num + "] doesn\'t exist.";
+                    endTime = performance.now();
                 } else {
                     const caseInfo = await caseRaw.json();
                     response = await fetch("/caseanalyzer/case", {
@@ -145,6 +169,8 @@
 
                     if(data["case-error"]) {
                         document.getElementById('status').innerText = data["case-error"];
+                        hitResult = data["case-error"];
+                        endTime = performance.now();
                     } else {
                         document.getElementById("case").style.display = "block";
                         document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
@@ -215,16 +241,35 @@
                 }
             } else {
                 document.getElementById('status').innerText += "Not a valid or supported URL"
+                hitResult = "Not a valid or supported URL";
+                endTime = performance.now();
             }
-            document.getElementById("loading-text").style.display = "none";
-            pause(); //animation
-            document.getElementById("apiCallButton").removeAttribute("disabled");
+
         } catch (error) {
-            document.getElementById("loading-text").style.display = "none";
-            pause(); //animation
             document.getElementById('status').innerText = error;
-            document.getElementById("apiCallButton").removeAttribute("disabled");
-        }
+            hitResult=error; 
+            endTime = performance.now();
+        } 
+
+        document.getElementById("loading-text").style.display = "none";
+        document.getElementById("apiCallButton").removeAttribute("disabled");
+        pause(); //animation
+        endTime = performance.now();
+        const saveHit = await fetch("/caseanalyzer/hit", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json' // Set the content type to JSON
+                },
+                body: JSON.stringify({
+                    "datetime": getDateTime(),
+                    "action": "Case Analyzer: URL [" + caseURL + "]",
+                    "result": hitResult,
+                    "time": endTime - startTime
+                }),
+            });
+        if (!saveHit.ok) {
+            console.error("Could not save hit data", saveHit.status);
+        } 
     });
 
 

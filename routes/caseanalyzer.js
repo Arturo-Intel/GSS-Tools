@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fetch = require('../fetch');
+var dbConn = require('../lib/db');
 var axios = require('axios');
 const path = require('path');
 const fs = require('fs').promises;
@@ -12,13 +13,16 @@ router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
         const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+        const admin =  await fetch.isAdmin(req.session.account?.username);
         res.render('caseAnalyzer', {
+            isAdmin: admin,
             isAuthenticated: req.session.isAuthenticated,
             profile: graphResponse,
             photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
             sidebar: 'sidebarCaseAnalyzer',
         });
-    });
+    }
+);
 
 router.post('/case', 
     fetch.isAuthenticated,
@@ -33,7 +37,28 @@ router.post('/case',
             console.error('Error calling API:', error);
             res.status(500).send('Error calling API');
         }
-    });
+    }
+);
+
+router.post('/hit',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
+        var form_data = {
+            datetime: req.body.datetime,
+            action: req.body.action,
+            username: req.session.account?.username,
+            result: req.body.result,
+            response_time: req.body.time
+        }
+        try {
+            const rows = await dbConn.query('INSERT INTO activity_log SET ?', form_data)
+        } catch (err) {
+            console.error("Error save hit", err)
+            res.status(500).send('Error save hit');
+        }
+        
+    }
+);
 
 async function brain(inputCase) {
     console.log('[BRAIN]')
