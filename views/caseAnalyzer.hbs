@@ -255,6 +255,8 @@
         document.getElementById("apiCallButton").removeAttribute("disabled");
         pause(); //animation
         endTime = performance.now();
+        totaltime = endTime - startTime;
+        console.log(">>>>" + totaltime);
         const saveHit = await fetch("/caseanalyzer/hit", {
                 method: "POST",
                 headers: {
@@ -264,7 +266,7 @@
                     "datetime": getDateTime(),
                     "action": "Case Analyzer: URL [" + caseURL + "]",
                     "result": hitResult,
-                    "time": endTime - startTime
+                    "time": totaltime
                 }),
             });
         if (!saveHit.ok) {
