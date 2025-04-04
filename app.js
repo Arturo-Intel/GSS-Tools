@@ -32,7 +32,6 @@ var app = express();
 app.use(cors());
 
 
-
 Handlebars.registerHelper("formatDate", function (datetime) {
     if (moment) {
         return moment(datetime).format('YYYY-MM-DD');
@@ -42,9 +41,7 @@ Handlebars.registerHelper("formatDate", function (datetime) {
     }
 });
 
-Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
+
 
 /**
  * Using express-session middleware for persistent user session. Be sure to

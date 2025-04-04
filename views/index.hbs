@@ -26,16 +26,29 @@
 </script>
 
 {{#if isAuthenticated }}
-<h1>Welcome {{profile.givenName}}!</h1>
+<h1>Hi, {{profile.givenName}}!</h1>
+    <div class="justified-text">
+        <p>Welcome to the GSS Toolkit Hub, your centralized resource for optimizing product support operations. Our platform is designed to streamline the workflow of Product Support Engineers by providing access to cutting-edge tools and resources tailored to enhance efficiency and precision in case analysis and resolution.</p>
+        <p>At the forefront of our offerings is the Graphics Github Case Analyzer, an innovative tool engineered to expedite the analysis of graphics product cases hosted on GitHub. Leveraging advanced AI algorithms, this tool empowers PSEs to swiftly identify, assess, and address issues, thereby reducing turnaround times and improving customer satisfaction.</p>
+        <p>The GSS Toolkit Hub is committed to expanding its suite of tools, ensuring that Product Support Engineers have access to the most comprehensive and effective resources available. Our mission is to support PSEs in delivering exceptional product support through technology-driven solutions.</p>
+        <p>Explore the GSS Toolkit Hub and discover how our tools can transform your product support processes, enabling you to achieve unparalleled levels of efficiency and effectiveness.</p>
+    </div>
+    <p></p>
+    <div id="isAdmindata">
+        <ul>
+            {{#each profile}}
 
-<ul>
-    {{#each profile}}
+            <li>{{@key}}: {{this}}</li>
 
-    <li>{{@key}}: {{this}}</li>
+            {{/each}}
+        </ul>
 
-    {{/each}}
-</ul>
+    </div>
+
 {{else}}
 <h1>One moment please...</h1>
 
 {{/if}}
+<script>
+    
+</script>

@@ -104,8 +104,8 @@
 
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
             <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
-                <span class="fs-4">GSS Tools</span>
+                
+                <span class="fs-4">GSS Toolkit Hub</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -120,23 +120,23 @@
                         Case Analyzer
                     </a>
                 </li>
-                    <div id="isAdmin" style="display: none">
-                <li> 
-                    <a id="sidebarGI" href="/wip" class="nav-link text-white">
-                        Game Inventory
-                    </a>
-                </li>
-                <li>
-                    <a id="sidebarRL" href="/wip" class="nav-link text-white">
-                        Remote Lab
-                    </a>
-                </li>
-                    
-                <li>
-                    <a id="sidebarAdmin" href="/admin" class="nav-link text-white">
-                        admin
-                    </a>
-                </li>
+                    <div id="isAdminSideBar" style="display: none">
+                        <li> 
+                            <a id="sidebarGI" href="/wip" class="nav-link text-white">
+                                Game Inventory
+                            </a>
+                        </li>
+                        <li>
+                            <a id="sidebarRL" href="/wip" class="nav-link text-white">
+                                Remote Lab
+                            </a>
+                        </li>
+                            
+                        <li>
+                            <a id="sidebarAdmin" href="/admin" class="nav-link text-white">
+                                admin
+                            </a>
+                        </li>
                     </div>
                 {{/if}}
             </ul>
@@ -168,7 +168,7 @@
         </div>
         <div class="disclaimer">
             <b>Disclaimer</b><br>
-            The purpose of this tool is to improve the issues analysis and data collection. Please use common sense when using this tool.
+            The purpose of this tools is to improve the issues analysis and data collection. Please use common sense when using this tool.
             The information provided by gss-tools is for general informational purposes only. Your use of the site and reliance on any information is solely at your own risk.
         </div>
     </main>
@@ -176,7 +176,8 @@
     
 
     <script>
-        document.getElementById("isAdmin").style.display= "{{isAdmin}}";
+        document.getElementById("isAdminSideBar").style.display= "{{isAdmin}}";
+        document.getElementById("isAdmindata").style.display="{{isAdmin}}";
         let sidebarButton = document.getElementById("{{ sidebar }}");
         if (sidebarButton) { sidebarButton.classList.add('active'); };
         
