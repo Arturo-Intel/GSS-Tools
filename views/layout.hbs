@@ -177,7 +177,10 @@
 
     <script>
         document.getElementById("isAdminSideBar").style.display= "{{isAdmin}}";
-        document.getElementById("isAdmindata").style.display="{{isAdmin}}";
+        let isadmindata = document.getElementById("isAdmindata");
+        if(isadmindata) {
+            isadmindata.style.display="{{isAdmin}}";
+        }
         let sidebarButton = document.getElementById("{{ sidebar }}");
         if (sidebarButton) { sidebarButton.classList.add('active'); };
         
