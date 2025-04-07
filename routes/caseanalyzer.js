@@ -30,7 +30,7 @@ router.post('/case',
         console.log('\n[START]');
         try {
             var analysis = ""
-            const inputCase = "User: "+ req.body.user.login + "Title: "+ req.body.title + "\n" + req.body.body;
+            const inputCase = "User: "+ req.body.user.login + " Title: "+ req.body.title + "\n" + req.body.body;
             analysis = await brain(inputCase);
             res.json(analysis);
         } catch (error) {
