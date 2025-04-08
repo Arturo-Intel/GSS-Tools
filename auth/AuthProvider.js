@@ -125,7 +125,7 @@ class AuthProvider {
             if (!req.body || !req.body.state) {
                 return next(new Error('Error: response not found'));
             }
-            
+
             try {
                 const authCodeRequest = {
                     ...req.session.authCodeRequest,
