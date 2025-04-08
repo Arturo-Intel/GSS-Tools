@@ -10,6 +10,7 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
+        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
         const admin = await fetch.isAdmin(req.session.account?.username);
         res.render('index', {
             home: false,
@@ -17,7 +18,7 @@ router.get('/',
             token: req.session.accessToken, 
             isAuthenticated: req.session.isAuthenticated,
             username: req.session.account?.username,
-            profile: await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken),
+            profile: graphResponse,
             photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
             sidebar: 'sidebarHome',
         });
@@ -26,6 +27,7 @@ router.get('/',
 router.get('/home',
     fetch.isAuthenticated,
     async (req, res, next) => {
+        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
         const admin = await fetch.isAdmin(req.session.account?.username);
         res.render('index', {
             home: true,
@@ -33,7 +35,7 @@ router.get('/home',
             token: req.session.accessToken, 
             isAuthenticated: req.session.isAuthenticated,
             username: req.session.account?.username,
-            profile: await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken),
+            profile: graphResponse,
             photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
             sidebar: 'sidebarHome',
         });
