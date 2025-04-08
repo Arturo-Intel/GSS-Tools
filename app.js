@@ -52,12 +52,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true,
-        secure: true, // set this to true on production
+        secure: "auto" 
     },
-    store: new MemoryStore({
-        checkPeriod: 86400000 // prune expired entries every 24h
-    }),
+    // store: new MemoryStore({
+    //     checkPeriod: 86400000 // prune expired entries every 24h
+    // }),
 }));
 
 // view engine setup
