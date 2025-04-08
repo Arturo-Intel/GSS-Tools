@@ -57,6 +57,7 @@ async function fetchPhoto(endpoint, accessToken) {
 
 // custom middleware to check auth state
 function isAuthenticated(req, res, next) {
+    console.log(">>>> "+ req.session.isAuthenticated );
     if (!req.session.isAuthenticated ) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
