@@ -125,14 +125,14 @@ class AuthProvider {
             if (!req.body || !req.body.state) {
                 return next(new Error('Error: response not found'));
             }
-
-            try {
+            
                 const authCodeRequest = {
                     ...req.session.authCodeRequest,
                     code: req.body.code,
                     codeVerifier: req.session.pkceCodes.verifier,
                 };
-            
+
+            try {
                 const msalInstance = this.getMsalInstance(this.msalConfig);
 
                 if (req.session.tokenCache) {
