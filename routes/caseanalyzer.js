@@ -46,7 +46,7 @@ router.get('/github/:id',
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
 
         headers = {
-            "Authorization": process.env.GITHUB_TOKEN,
+            "Authorization": "Bearer " + process.env.GITHUB_TOKEN,
             "Content-Type": "application/json",
         }
         console.log(">>>> " + req.params.id)
