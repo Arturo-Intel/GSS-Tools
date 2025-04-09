@@ -15,6 +15,7 @@ router.get('/',
         const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
         const admin =  await fetch.isAdmin(req.session.account?.username);
         res.render('caseAnalyzer', {
+            gt: process.env.GITHUB_TOKEN,
             isAdmin: admin,
             isAuthenticated: req.session.isAuthenticated,
             profile: graphResponse,
@@ -37,20 +38,6 @@ router.post('/case',
             console.error('Error calling API:', error);
             res.status(500).send('Error calling API');
         }
-    }
-);
-
-router.get('/github/:id',
-    fetch.isAuthenticated,
-    async (req, res, next) => {
-        const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
-
-        headers = {
-            "Authorization": "Bearer " + process.env.GITHUB_TOKEN,
-            "Content-Type": "application/json",
-        }
-        console.log(">>>> " + req.params.id)
-        return await axios.get(url+req.params.id, {headers: headers})
     }
 );
 
