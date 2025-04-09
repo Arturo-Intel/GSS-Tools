@@ -49,7 +49,7 @@ router.get('/github/:id',
             "Authorization": process.env.GITHUB_TOKEN,
             "Content-Type": "application/json",
         }
-        console.log(">>>> " + headers)
+        console.log(">>>> " + req.params.id)
         return await axios.get(url+req.params.id, {headers: headers})
     }
 );
