@@ -48,7 +48,7 @@ router.get('/github/:id',
             'Authorization':  process.env.GITHUB_TOKEN,
             'X-GitHub-Api-Version': '2022-11-28'
         }
-        return axion.get(url+req.params.id, {headers: headers})
+        return axios.get(url+req.params.id, {headers: headers})
     }
 );
 
