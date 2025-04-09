@@ -44,11 +44,12 @@ router.get('/github/:id',
     fetch.isAuthenticated,
     async (req, res, next) => {
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
-        console.log(">>>>"+process.env.GITHUB_TOKEN)
+
         headers = {
             "Authorization": process.env.GITHUB_TOKEN,
             "Content-Type": "application/json",
         }
+        console.log(">>>> " + headers)
         return await axios.get(url+req.params.id, {headers: headers})
     }
 );
