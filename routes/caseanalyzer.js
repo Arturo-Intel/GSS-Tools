@@ -46,10 +46,10 @@ router.get('/github/:id',
         const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
         console.log(">>>>"+process.env.GITHUB_TOKEN)
         headers = {
-            'Authorization': process.env.GITHUB_TOKEN,
-            'X-GitHub-Api-Version': '2022-11-28'
+            "Authorization": process.env.GITHUB_TOKEN,
+            "Content-Type": "application/json",
         }
-        return axios.get(url+req.params.id, {headers: headers})
+        return await axios.get(url+req.params.id, {headers: headers})
     }
 );
 
