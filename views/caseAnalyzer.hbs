@@ -162,8 +162,9 @@
         
         try {
             if(githubCase) {
-                const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
-                const caseRaw = await fetch(url+num);
+                
+                
+                const caseRaw = await fetch("/caseanalyzer/github/"+num);
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
                     hitResult="Github case ["+ num + "] doesn\'t exist.";

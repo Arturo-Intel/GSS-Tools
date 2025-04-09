@@ -40,6 +40,18 @@ router.post('/case',
     }
 );
 
+router.get('/github/:id',
+    fetch.isAuthenticated,
+    async (req, res, next) => {
+        const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
+        headers = {
+            'Authorization':  process.env.GITHUB_TOKEN,
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+        return axion.get(url+req.params.id, {headers: headers})
+    }
+);
+
 router.post('/hit',
     fetch.isAuthenticated,
     async (req, res, next) => {
