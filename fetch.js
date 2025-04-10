@@ -49,7 +49,12 @@ async function fetchPhoto(endpoint, accessToken) {
             url: 'data:image/jpeg;base64,' + Buffer.from(response.data, 'binary').toString('base64')
         }
     } catch (error) {
-        throw new Error(error);
+        //throw new Error(error);
+        console.log("Photo not found")
+        return await {
+            url: "/res/default.jpg" 
+        }
+        
     }
 }
 
