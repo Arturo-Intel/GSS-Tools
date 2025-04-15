@@ -12,16 +12,21 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
-        const admin =  await fetch.isAdmin(req.session.account?.username);
-        res.render('caseAnalyzer', {
-            gt: process.env.GITHUB_TOKEN,
-            isAdmin: admin,
-            isAuthenticated: req.session.isAuthenticated,
-            profile: graphResponse,
-            photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
-            sidebar: 'sidebarCaseAnalyzer',
-        });
+        try{
+            const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+            const admin =  await fetch.isAdmin(req.session.account?.username);
+            res.render('caseAnalyzer', {
+                gt: process.env.GITHUB_TOKEN,
+                isAdmin: admin,
+                isAuthenticated: req.session.isAuthenticated,
+                profile: graphResponse,
+                photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken), 
+                sidebar: 'sidebarCaseAnalyzer',
+            });
+        } catch (err) {
+            console.error('Error calling GRAPH API:', error);
+            res.redirect('/auth/signin');
+        }
     }
 );
 
@@ -69,6 +74,8 @@ async function brain(inputCase) {
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
+            personaLogEvents = await fetchPersona("LogEvents"),
+            personaDXdiag = await fetchPersona("DXDiag"),
             personaCase = await fetchPersona("case"),
             ssuPath = await findSSUpath(inputCase)
         ]);
@@ -76,22 +83,25 @@ async function brain(inputCase) {
         if (!token) {
             return {"case-error" : "[ERROR] Token timeout"}
         }
-        if (!personaSSU) {
-            return {"case-error" : "[ERROR] Persona SSU"}
+        if (!personaSSU || !personaLogEvents || !personaDXdiag) {
+            return {"case-error" : "[ERROR] Persona"}
         }
         if (!personaCase) {
             return {"case-error" : "[ERROR] Persona Case"}
         }
         // SSU path was found in case Info
         if(ssuPath != "null") {
-            console.log("[SSUINFO] -"+ ssuPath)
+            console.log("[SSUraw] -"+ ssuPath)
             try {
-                SSUInfo = await axios.get(ssuPath, { responseType: 'text' });
-                console.log("[SSUINFO] -fin")
+                SSUraw = await axios.get(ssuPath, { responseType: 'text' });
+                console.log(SSUraw)
+                console.log("[SSUraw] -fin")
             } catch (err) {
-                console.log("[ERROR] ssuinfo - " + err)
+                console.log("[ERROR] SSUraw - " + err)
             }
             SSUAnalysis = await invokeModel(token, personaSSU, SSUInfo.data, "SSUAnalysis");
+            LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUInfo.data, "SSUAnalysis");
+            DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUInfo.data, "SSUAnalysis");
         } else {
             SSUAnalysis = "SSU not provided.";
         }
@@ -196,7 +206,10 @@ async function fetchPersona(personaName) {
 
         switch (personaName){
             case "case": filePath = path.join(__dirname, '../public', 'persona', 'IntelGithubIssuesAnalyzer.md'); break;
-            case "SSU": filePath = path.join(__dirname, '../public', 'persona', 'IntelSSUAnalyzer.md'); break;
+            case "SSU": filePath = path.join(__dirname, '../public', 'persona', 'SSU.md'); break;
+            case "LogEvents": filePath = path.join(__dirname, '../public', 'persona', 'LogEvents.md'); break;
+            case "DXDiag": filePath = path.join(__dirname, '../public', 'persona', 'Dxdiag.md'); break;
+
         }
         
         persona = await fs.readFile(filePath, 'utf8');
