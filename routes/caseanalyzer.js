@@ -95,6 +95,7 @@ async function brain(inputCase) {
             try {
                 SSUraw = await axios.get(ssuPath, { responseType: 'text' });
                 console.log(SSUraw.data.length + " [SSUraw] -fin")
+                console.log(typeof(SSUraw.data));
                 for(i=0; i< SSUraw.data.length; i++){
                     console.log(SSUraw.data[i]);
                 }
