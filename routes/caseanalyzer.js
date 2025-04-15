@@ -126,7 +126,9 @@ async function brain(inputCase) {
 
 async function invokeModel(accessToken, systemPrompt, content, fromWhere){
     console.log('[INVOKEMODEL] ' + fromWhere);
-   
+    if(systemPrompt.length <= 0){
+        console.log(">>>> error");
+    }
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1";
         headers = {
