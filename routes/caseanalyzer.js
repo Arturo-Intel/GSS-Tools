@@ -95,13 +95,12 @@ async function brain(inputCase) {
             try {
                 const response = await axios.get(ssuPath, { responseType: 'text' });
                 const SSUraw = response.data;
-                const SSUsections = text.split('...#SSU#...');
+                const SSUsections = SSUraw.split('...#SSU#...');
                 console.log("[SSUraw] -fin")
                 
             } catch (err) {
                 console.log("[ERROR] SSUraw - " + err)
             }
-            console.log(">>> "+ SSUsections.length);
             SSUAnalysis = await invokeModel(token, personaSSU, SSUraw.data, "SSUAnalysis");
             LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUraw.data, "SSUAnalysis");
             DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUraw.data, "SSUAnalysis");
