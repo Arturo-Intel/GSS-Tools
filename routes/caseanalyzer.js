@@ -94,7 +94,7 @@ async function brain(inputCase) {
             console.log("[SSUraw] -"+ ssuPath)
             try {
                 SSUraw = await axios.get(ssuPath, { responseType: 'text' });
-                const SSUSections = SSUraw.split('...#SSU#...');
+                const SSUSections = SSUraw.data.split('...#SSU#...');
                 console.log(">>>"+ SSUsections[0]);
                 console.log("[SSUraw] -fin")
                 
