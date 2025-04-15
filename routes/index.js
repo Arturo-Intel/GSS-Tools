@@ -10,35 +10,45 @@ var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 router.get('/',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
-        const admin = await fetch.isAdmin(req.session.account?.username);
-        res.render('index', {
-            home: false,
-            isAdmin: admin, 
-            token: req.session.accessToken, 
-            isAuthenticated: req.session.isAuthenticated,
-            username: req.session.account?.username,
-            profile: graphResponse,
-            photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
-            sidebar: 'sidebarHome',
-        });
+        try{
+            const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+            const admin = await fetch.isAdmin(req.session.account?.username);
+            res.render('index', {
+                home: false,
+                isAdmin: admin, 
+                token: req.session.accessToken, 
+                isAuthenticated: req.session.isAuthenticated,
+                username: req.session.account?.username,
+                profile: graphResponse,
+                photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
+                sidebar: 'sidebarHome',
+            }); 
+        } catch (err) {
+            console.error('Error calling GRAPH API:', err);
+            res.redirect('/auth/signin');
+        }
     });
 
 router.get('/home',
     fetch.isAuthenticated,
     async (req, res, next) => {
-        const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
-        const admin = await fetch.isAdmin(req.session.account?.username);
-        res.render('index', {
-            home: true,
-            isAdmin: admin, 
-            token: req.session.accessToken, 
-            isAuthenticated: req.session.isAuthenticated,
-            username: req.session.account?.username,
-            profile: graphResponse,
-            photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
-            sidebar: 'sidebarHome',
-        });
+        try {
+            const graphResponse = await fetch.fetch(GRAPH_ME_ENDPOINT, req.session.accessToken);
+            const admin = await fetch.isAdmin(req.session.account?.username);
+            res.render('index', {
+                home: true,
+                isAdmin: admin, 
+                token: req.session.accessToken, 
+                isAuthenticated: req.session.isAuthenticated,
+                username: req.session.account?.username,
+                profile: graphResponse,
+                photo: await fetch.fetchPhoto(PHOTO, req.session.accessToken),
+                sidebar: 'sidebarHome',
+            });
+        } catch (err) {
+            console.error('Error calling GRAPH API:', err);
+            res.redirect('/auth/signin');
+        }
     });
 
 router.post('/hit',
