@@ -69,8 +69,8 @@ router.post('/hit',
 async function brain(inputCase) {
     console.log('[BRAIN]')
     try {
-
-
+        let SSUraw=null;
+        let SSUsections = [];
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
