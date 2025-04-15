@@ -102,11 +102,11 @@ async function brain(inputCase) {
             } catch (err) {
                 console.log("[ERROR] SSUraw - " + err)
             }
-            if (SSUsections.length > 1){
+            if (SSUsections.length >= 1){
                 SSUAnalysis = await invokeModel(token, personaSSU, SSUsections[0], "SSUAnalysis");
-                if (SSUsections.length > 2) {
+                if (SSUsections.length >= 2) {
                     LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUsections[1], "LogEventAnalysis");
-                    if (SSUsections.length > 3){
+                    if (SSUsections.length >= 3){
                         DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUsections[2], "DXDiagAnalysis");
                     }
                 }
