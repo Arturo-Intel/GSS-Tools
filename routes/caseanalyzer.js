@@ -93,14 +93,15 @@ async function brain(inputCase) {
         if(ssuPath != "null") {
             console.log("[SSUraw] -"+ ssuPath)
             try {
-                SSUraw = await axios.get(ssuPath, { responseType: 'text' });
+                const response = await axios.get(ssuPath, { responseType: 'text' });
+                const SSUraw = response.data;
+                const SSUsections = text.split('...#SSU#...');
                 console.log("[SSUraw] -fin")
                 
             } catch (err) {
                 console.log("[ERROR] SSUraw - " + err)
             }
-            const SSUSections = SSUraw.data.split('...#SSU#...');
-            console.log(">>> "+ SSUsections);
+            console.log(">>> "+ SSUsections.length);
             SSUAnalysis = await invokeModel(token, personaSSU, SSUraw.data, "SSUAnalysis");
             LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUraw.data, "SSUAnalysis");
             DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUraw.data, "SSUAnalysis");
