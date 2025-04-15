@@ -101,9 +101,9 @@ async function brain(inputCase) {
             } catch (err) {
                 console.log("[ERROR] SSUraw - " + err)
             }
-            SSUAnalysis = await invokeModel(token, personaSSU, SSUraw.data, "SSUAnalysis");
-            LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUraw.data, "SSUAnalysis");
-            DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUraw.data, "SSUAnalysis");
+            SSUAnalysis = await invokeModel(token, personaSSU, SSUsections[0], "SSUAnalysis");
+            LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUsections[1], "LogEventAnalysis");
+            DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUsections[2], "DXDiagAnalysis");
         } else {
             SSUAnalysis = "SSU not provided.";
         }
