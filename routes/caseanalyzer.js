@@ -122,7 +122,8 @@ async function brain(inputCase) {
             
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis")
         try {
-            SSUAnalysisJSON = JSON.parse(SSUAnalysis.match(/\{([^}]*)\}/g))
+
+            SSUAnalysisJSON = JSON.parse(SSUAnalysis)
             //LogEventsAnalysisJSON = JSON.parse(LogEventsAnalysis.match(/\{([^}]*)\}/g))
             //DXDiagAnalysisJSON = JSON.parse(DXDiagAnalysis.match(/\{([^}]*)\}/g))
             caseJSON = JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
