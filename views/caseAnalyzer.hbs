@@ -256,7 +256,9 @@
                         } else {
                             document.getElementById("ssu-path").textContent = data["SSU-path"]; 
                             document.getElementById("ssu-path").href  = data["SSU-path"];
-                            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"];
+                            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
+                            "Log Events:\n" + data["LogEvents-analysis"] +
+                            "DXDiag:\n" + data["DXDiag-analysis"];
                         }
                     }
                 }

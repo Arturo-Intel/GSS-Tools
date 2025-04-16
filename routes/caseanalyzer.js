@@ -71,6 +71,9 @@ async function brain(inputCase) {
     try {
         let SSUraw=null;
         let SSUsections = [];
+        LogEventsAnalysis = "LogEvents section not found."
+        DXDiagAnalysis = " DXDiag section not found."
+        
         await Promise.all([
             token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
@@ -122,6 +125,8 @@ async function brain(inputCase) {
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysis, 
+            "LogEvents-analysis" : LogEventsAnalysis, 
+            "DXDiag-analysis" : DXDiagAnalysis, 
             "case-analysis": JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
         }
         
