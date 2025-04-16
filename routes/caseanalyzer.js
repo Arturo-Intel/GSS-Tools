@@ -124,9 +124,9 @@ async function brain(inputCase) {
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
-            "SSU-analysis" : SSUAnalysis, 
-            "LogEvents-analysis" : LogEventsAnalysis, 
-            "DXDiag-analysis" : DXDiagAnalysis, 
+            "SSU-analysis" : JSON.parse(SSUAnalysis.match(/\{([^}]*)\}/g)), 
+            "LogEvents-analysis" : JSON.parse(LogEventsAnalysis.match(/\{([^}]*)\}/g)), 
+            "DXDiag-analysis" : JSON.parse(DXDiagAnalysis.match(/\{([^}]*)\}/g)),   
             "case-analysis": JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
         }
         
