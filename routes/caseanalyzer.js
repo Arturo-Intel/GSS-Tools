@@ -107,7 +107,8 @@ async function brain(inputCase) {
             if (SSUsections.length > 1){
                 SSUAnalysis = await invokeModel(token, personaSSU, SSUsections[0], "SSUAnalysis");
                 if (SSUsections.length > 2) {
-                    LogEventsAnalysis = await invokeModel(token, personaLogEvents, SSUsections[1], "LogEventAnalysis");
+                    let logsEventsLimited = SSUsections[1].split('\n').slice(0, 3200); 
+                    LogEventsAnalysis = await invokeModel(token, personaLogEvents, logsEventsLimited, "LogEventAnalysis");
                     if (SSUsections.length > 3){
                         DXDiagAnalysis = await invokeModel(token, personaDXdiag, SSUsections[2], "DXDiagAnalysis");
                     }
