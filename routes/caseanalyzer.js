@@ -99,7 +99,6 @@ async function brain(inputCase) {
                 const response = await axios.get(ssuPath, { responseType: 'text' });
                 SSUraw = response.data;
                 SSUsections = SSUraw.split('...#SSU#...');
-                console.log(">>> "+SSUsections.length)
                 console.log("[SSUraw] -fin")
                 
             } catch (err) {
@@ -139,9 +138,6 @@ async function brain(inputCase) {
 
 async function invokeModel(accessToken, systemPrompt, content, fromWhere){
     console.log('[INVOKEMODEL] ' + fromWhere);
-    if(systemPrompt.length <= 0){
-        console.log(">>>> error");
-    }
     try {
         const url = "https://apis-internal.intel.com/generativeaiinference/v1";
         headers = {
