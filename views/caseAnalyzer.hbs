@@ -98,6 +98,20 @@
 
         <div id="ssu" class="analysis-report">
             <div><a id="ssu-path" target="_blank" href=""></a></div>
+            <div class="flex-container">
+                 <div class="flex-child">
+                    <dl>
+                        <dt>SSU System Properties</dt>
+                        <ul id="SSU-system"></ul>
+                    </dl>
+                 </div>
+                  <div class="flex-child">
+                    <dl>
+                        <dt>SSU Display Adapters</dt>
+                        <ul id="SSU-Displays"></ul>
+                    </dl>
+                  </div>
+            </div>
             <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
         </div>
     </div>
@@ -269,6 +283,12 @@
                             document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
+
+                            data["SSU-analysis"].displays.forEach(element => {
+                                const li = document.createElement('li');
+                                li.textContent = element;
+                                document.getElementById('SSU-Displays').appendChild(li);
+                             });
                         }
                     }
                 }
