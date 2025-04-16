@@ -122,7 +122,7 @@ dd {
   width: 0;
   height: 100%;
   background-color: #4caf50;
-  animation: fillBar 90s linear forwards;
+  animation: fillBar 100s linear forwards;
 }
 
 @keyframes fillBar {
