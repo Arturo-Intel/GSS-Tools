@@ -123,7 +123,7 @@ async function brain(inputCase) {
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis")
         try {
             console.log(caseAnalysis.match(/\{([^}]*)\}/g))
-            SSUAnalysisJSON = JSON.parse(SSUAnalysis.match(/\{([^}]*)\}/g))
+            //SSUAnalysisJSON = JSON.parse(SSUAnalysis.match(/\{([^}]*)\}/g))
             //LogEventsAnalysisJSON = JSON.parse(LogEventsAnalysis.match(/\{([^}]*)\}/g))
             //DXDiagAnalysisJSON = JSON.parse(DXDiagAnalysis.match(/\{([^}]*)\}/g))
             caseJSON = JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
@@ -135,10 +135,10 @@ async function brain(inputCase) {
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
-            "SSU-analysis" : SSUAnalysisJSON, 
-            "LogEvents-analysis" : LogEventsAnalysisJSON, 
-            "DXDiag-analysis" : DXDiagAnalysisJSON,   
-            "case-analysis": caseJSON
+            "SSU-analysis" : SSUAnalysis, 
+            "LogEvents-analysis" : LogEventsAnalysis, 
+            "DXDiag-analysis" : DXDiagAnalysis,   
+            "case-analysis": JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
         }
         
     } catch (err) {
