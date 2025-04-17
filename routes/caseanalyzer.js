@@ -124,11 +124,9 @@ async function brain(inputCase) {
         try {
             
             SSUAnalysisJSON = JSON.parse(SSUAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
-            //LogEventsAnalysisJSON = JSON.parse(LogEventsAnalysis.match(/\{([^}]*)\}/g))
-            //DXDiagAnalysisJSON = JSON.parse(DXDiagAnalysis.match(/\{([^}]*)\}/g))
-            //caseJSON = JSON.parse(caseAnalysis.match(/\{([^}]*)\}/g))
-            console.log(SSUAnalysisJSON)
-
+            LogEventsAnalysisJSON = JSON.parse(LogEventsAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
+            DXDiagAnalysisJSON = JSON.parse(DXDiagAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
+            caseJSON = JSON.parse(caseAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
         }catch (err) {
             console.error("JSON error", err)
         }
@@ -136,10 +134,10 @@ async function brain(inputCase) {
         console.log('[BRAIN] -fin')
         return {
             "SSU-path" : ssuPath,
-            "SSU-analysis" : SSUAnalysis, 
-            "LogEvents-analysis" : LogEventsAnalysis, 
-            "DXDiag-analysis" : DXDiagAnalysis,   
-            "case-analysis": JSON.parse(caseAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
+            "SSU-analysis" : SSUAnalysisJSON, 
+            "LogEvents-analysis" : LogEventsAnalysisJSON, 
+            "DXDiag-analysis" : DXDiagAnalysisJSON,   
+            "case-analysis": caseJSON
         }
         
     } catch (err) {
