@@ -285,7 +285,10 @@
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
 
                             
-                            data["SSU-analysis"].displays[0].forEach(element => {
+                            data["SSU-analysis"].displays.forEach(element => {
+                                element.forEach(e => {
+                                    console.log(e)
+                                })
                                 const li = document.createElement('li');
                                 li.textContent = element;
                                 document.getElementById('SSU-Displays').appendChild(li);
