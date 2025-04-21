@@ -291,12 +291,13 @@
                                 document.getElementById('SSU-Displays').appendChild(dt);
                                 document.getElementById('SSU-Displays').appendChild(ul);
                                 Object.keys(element).forEach(key => {
-                                    if(key="gpu"){
+                                    if(key=="gpu"){
                                         dt.textContent=`${element[key]}`;
+                                    }else {
+                                        const li = document.createElement("li");
+                                        li.textContent = `${key}: ${element[key]}`;
+                                        ul.appendChild(li)
                                     }
-                                    const li = document.createElement("li");
-                                    li.textContent = `${key}: ${element[key]}`;
-                                    ul.appendChild(li)
                                 });
                             });
                              
