@@ -283,12 +283,12 @@
                             document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
-                                                        
+                            console.log(data["SSU-analysis"]);
                             
-                            Object.keys(data["SSU-analysis"]).forEach(key => {
-                                console.log(`${key}: ${element[key]}`);
-                            });
-                            
+                            data["SSU-analysis"].forEach(ele => {
+                                console.log(ele)
+                            }
+
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
                                 const ul = document.createElement("ul");
