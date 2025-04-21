@@ -290,11 +290,11 @@
                             Object.keys(data["SSU-analysis"]).forEach(key => {
                                 
                                 
-                                if(key!="displays"){
+
                                     const li = document.createElement("li");
                                     li.textContent = `${key}: ${element[key]}`;
                                     ul.appendChild(li)
-                                }
+
                             });
                             
                             data["SSU-analysis"].displays.forEach(element => {
