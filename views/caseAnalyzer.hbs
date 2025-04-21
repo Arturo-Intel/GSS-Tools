@@ -292,7 +292,7 @@
                                 document.getElementById('SSU-Displays').appendChild(ul);
                                 Object.keys(element).forEach(key => {
                                     if(key="gpu"){
-                                        dt.textContent=${element[key]};
+                                        dt.textContent=`${element[key]}`;
                                     }
                                     const li = document.createElement("li");
                                     li.textContent = `${key}: ${element[key]}`;
