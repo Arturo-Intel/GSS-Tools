@@ -284,19 +284,19 @@
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
                             console.log(data["SSU-analysis"]);
-                            /*
-                            data["SSU-analysis"].forEach(element => {
-                                const ul = document.createElement("ul");
-                                document.getElementById('SSU-system').appendChild(ul);
-                                Object.keys(element).forEach(key => {
-                                    if(key!="displays"){
-                                        const li = document.createElement("li");
-                                        li.textContent = `${key}: ${element[key]}`;
-                                        ul.appendChild(li)
-                                    }
-                                });
-                            });
-                            */
+                            
+                            const ul = document.createElement("ul");
+                            document.getElementById('SSU-system').appendChild(ul);
+                            Object.keys(data["SSU-analysis"]).forEach(key => {
+                                
+                                
+                                if(key!="displays"){
+                                    const li = document.createElement("li");
+                                    li.textContent = `${key}: ${element[key]}`;
+                                    ul.appendChild(li)
+                                }
+                            }
+                            
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
                                 const ul = document.createElement("ul");
