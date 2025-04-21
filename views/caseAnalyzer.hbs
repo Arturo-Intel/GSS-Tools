@@ -141,6 +141,21 @@
 <script src="/javascripts/loading-animation.js"></script>
 <script>
 
+    function printElements(obj, indent = 0) {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                const value = obj[key];
+                const indentation = ' '.repeat(indent);
+                if (typeof value === 'object' && value !== null) {
+                    console.log(`${indentation}${key}:`);
+                    printElements(value, indent + 2);
+                } else {
+                    console.log(`${indentation}${key}: ${value}`);
+                }
+            }
+        }
+    }
+
     document.getElementById('case-URL-input').addEventListener("keypress", function(event) {
         if (event.key === "Enter" && !document.getElementById('apiCallButton').disabled) {
             event.preventDefault();
@@ -285,9 +300,7 @@
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
                             console.log(data["SSU-analysis"]);
                             
-                            data["SSU-analysis"].forEach(ele => {
-                                console.log(ele)
-                            });
+                            printElements(data["SSU-analysis"])
 
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
