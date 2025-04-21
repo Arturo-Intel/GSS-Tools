@@ -106,9 +106,9 @@
                     </dl>
                  </div>
                   <div class="flex-child">
-                    <dl id="SSU-Displays">
+                    <dl>
                         <dt>SSU Display Adapters</dt>
-                        
+                        <dl id="SSU-Displays"></dl>
                     </dl>
                   </div>
             </div>
@@ -286,9 +286,14 @@
 
                             
                             data["SSU-analysis"].displays.forEach(element => {
+                                const dt = document.createElement("dt");
                                 const ul = document.createElement("ul");
+                                document.getElementById('SSU-Displays').appendChild(dt);
                                 document.getElementById('SSU-Displays').appendChild(ul);
                                 Object.keys(element).forEach(key => {
+                                    if(key="gpu"){
+                                        dt.textContent=${element[key]};
+                                    }
                                     const li = document.createElement("li");
                                     li.textContent = `${key}: ${element[key]}`;
                                     ul.appendChild(li)
