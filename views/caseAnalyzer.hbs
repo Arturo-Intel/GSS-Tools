@@ -283,7 +283,8 @@
                             document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
-
+                            console.log(data["SSU-analysis"]);
+                            /*
                             data["SSU-analysis"].forEach(element => {
                                 const ul = document.createElement("ul");
                                 document.getElementById('SSU-system').appendChild(ul);
@@ -295,7 +296,7 @@
                                     }
                                 });
                             });
-                            
+                            */
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
                                 const ul = document.createElement("ul");
