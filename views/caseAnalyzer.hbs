@@ -241,6 +241,8 @@
                         document.getElementById('case-evidence').innerHTML = '';
                         document.getElementById('ssu-analysis').innerText = '';
                         document.getElementById('case-questions').innerText = '';
+                        document.getElementById('SSU-system').innerText = '';
+                        document.getElementById('SSU-Displays').innerText = '';
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
@@ -285,7 +287,6 @@
                             document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
-                            console.log(data["SSU-analysis"]);
 
                             obj = data["SSU-analysis"];
                             
