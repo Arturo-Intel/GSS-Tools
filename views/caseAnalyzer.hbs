@@ -293,9 +293,12 @@
                                 if (obj.hasOwnProperty(key)) {
                                     const value = obj[key];
                                     if(key != "notes" && key != "recommendations") {
-                                        const li = document.createElement("li");
-                                        li.textContent = `<dt>${key}</dt><dd>${value}</dd>`;
-                                        document.getElementById('SSU-system').appendChild(li)
+                                        const dt = document.createElement("dt");
+                                        const dd = document.createElement("dd");
+                                        dt.textContent = `${key}`;
+                                        dd.textContent = `${value}`;
+                                        document.getElementById('SSU-system').appendChild(dt)
+                                        document.getElementById('SSU-system').appendChild(dd)
                                     }
                                 }
                             }
