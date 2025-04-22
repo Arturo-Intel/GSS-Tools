@@ -118,7 +118,18 @@
                     </dl>
                   </div>
             </div>
-            <div id="ssu-analysis" style="height: 300px; overflow: scroll;"></div>
+            <div>
+                <dl>
+                    <dt>Recommendations</dt>
+                    <dd id="ssu-recommendations">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                </dl>
+            </div>
+            <div>
+                <dl>
+                    <dt>Additional Notes</dt>
+                    <dd id="ssu-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                </dl>
+            </div>
         </div>
     </div>
     <div id="help" style="padding-top: 75px;">
@@ -245,10 +256,10 @@
                         document.getElementById('Main-Pointers').innerHTML = '';
                         document.getElementById('step-repro').innerHTML = '';
                         document.getElementById('case-evidence').innerHTML = '';
-                        document.getElementById('ssu-analysis').innerText = '';
                         document.getElementById('case-questions').innerText = '';
                         document.getElementById('SSU-system').innerText = '';
                         document.getElementById('SSU-Displays').innerText = '';
+                        document.getElementById('ssu-summary').innerText = '';
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
@@ -290,9 +301,6 @@
                         } else {
                             document.getElementById("ssu-path").textContent = data["SSU-path"]; 
                             document.getElementById("ssu-path").href  = data["SSU-path"];
-                            document.getElementById('ssu-analysis').innerText = data["SSU-analysis"] + 
-                            "\nLog Events:\n" + data["LogEvents-analysis"] +
-                            "\nDXDiag:\n" + data["DXDiag-analysis"];
 
                             ssuAnalysis = data["SSU-analysis"];
                             
@@ -311,6 +319,8 @@
                             }
 
                             document.getElementById('ssu-summary').innerText = ssuAnalysis.summary;
+                            document.getElementById('ssu-recommendations').innerText = ssuAnalysis.recommendations;
+                            document.getElementById('ssu-notes').innerText = ssuAnalysis.notes;
 
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
