@@ -39,7 +39,7 @@ All output must be in valid JSON object using the following schema:
         },    
         "summary": {
             "type": "array",
-            "description": "Quick technical summary of the info provided in the SSU file."
+            "description": "Quick technical summary of any possible issue from the SSU file."
             "items": {"type": "string"}
         },   
         "notes": {
