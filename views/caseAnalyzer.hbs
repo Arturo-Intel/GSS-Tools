@@ -102,7 +102,7 @@
                  <div class="flex-child">
                     <dl>
                         <dt>SSU System Properties</dt>
-                        <ul id="SSU-system"></ul>
+                        <dl id="SSU-system"></dl>
                     </dl>
                  </div>
                   <div class="flex-child">
@@ -294,12 +294,11 @@
                                     const value = obj[key];
                                     if(key != "notes" && key != "recommendations") {
                                         const li = document.createElement("li");
-                                        li.textContent = `${key}: ${value}`;
+                                        li.textContent = `<dt>${key}</dt><dd>${value}</dd>`;
                                         document.getElementById('SSU-system').appendChild(li)
                                     }
                                 }
                             }
-                            
 
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
