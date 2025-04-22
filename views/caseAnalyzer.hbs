@@ -350,8 +350,11 @@
                                     }
                                 });
                             });
-                            console.log(data["LogEvents-analysis"]);
-                            document.getElementById('ssu-logevents').innerText = data["LogEvents-analysis"].logEvents
+                            if(data["LogEvents-analysis"]){
+                                document.getElementById('ssu-logevents').innerText = data["LogEvents-analysis"].logEvents
+                            }else {
+                                document.getElementById('ssu-logevents').innerText = "no logs found"
+                            }
                              
                         }
                     }
