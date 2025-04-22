@@ -307,7 +307,7 @@
                             for (const key in ssuAnalysis) {
                                 if (ssuAnalysis.hasOwnProperty(key)) {
                                     const value = ssuAnalysis[key];
-                                    if(key != "notes" && key != "recommendations" && key != "displays") {
+                                    if(key != "notes" && key != "recommendations" && key != "displays" && key != "summary") {
                                         const dt = document.createElement("dt");
                                         const dd = document.createElement("dd");
                                         dt.textContent = `${key}`;
