@@ -288,13 +288,13 @@
                             console.log(data["SSU-analysis"]);
 
                             obj = data["SSU-analysis"];
-                            const ul = document.createElement("ul");
+                            
                             for (const key in obj) {
                                 if (obj.hasOwnProperty(key)) {
                                     const value = obj[key];
                                     const li = document.createElement("li");
                                     li.textContent = `${key}: ${value}`;
-                                    ul.appendChild(li)
+                                     document.getElementById('SSU-system')..appendChild(li)
                                 }
                             }
                             document.getElementById('SSU-system').appendChild(ul);
