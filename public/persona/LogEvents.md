@@ -10,7 +10,7 @@ All output must be in valid JSON object using the following schema:
             "description": "Language used in the log eveny log"
         },
 
-        "log-events" : {
+        "logevents" : {
             "type": "string",
             "description": "write a short analysis. Use a clear and technical tone when writing the analysis. "
         }
