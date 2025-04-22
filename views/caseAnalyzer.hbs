@@ -98,6 +98,12 @@
 
         <div id="ssu" class="analysis-report">
             <div><a id="ssu-path" target="_blank" href=""></a></div>
+             <div>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd id="ssu-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                </dl>
+            </div>
             <div class="flex-container">
                  <div class="flex-child">
                     <dl>
@@ -288,11 +294,11 @@
                             "\nLog Events:\n" + data["LogEvents-analysis"] +
                             "\nDXDiag:\n" + data["DXDiag-analysis"];
 
-                            obj = data["SSU-analysis"];
+                            ssuAnalysis = data["SSU-analysis"];
                             
-                            for (const key in obj) {
-                                if (obj.hasOwnProperty(key)) {
-                                    const value = obj[key];
+                            for (const key in ssuAnalysis) {
+                                if (ssuAnalysis.hasOwnProperty(key)) {
+                                    const value = ssuAnalysis[key];
                                     if(key != "notes" && key != "recommendations" && key != "displays") {
                                         const dt = document.createElement("dt");
                                         const dd = document.createElement("dd");
@@ -303,6 +309,8 @@
                                     }
                                 }
                             }
+
+                            document.getElementById('ssu-summary').innerText = ssuAnalysis.notes;
 
                             data["SSU-analysis"].displays.forEach(element => {
                                 const dt = document.createElement("dt");
