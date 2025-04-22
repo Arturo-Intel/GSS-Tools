@@ -36,15 +36,20 @@ All output must be in valid JSON object using the following schema:
         "os": {
             "type": "string",
             "description": "OS Build."
-        },     
+        },    
+        "summary": {
+            "type": "array",
+            "description": "Quick technical summary of the info provided in the SSU file."
+            "items": {"type": "string"}
+        },   
         "notes": {
             "type": "array",
-            "description": "Additional Notes."
+            "description": "Additional Notes"
             "items": {"type": "string"}
         }, 
         "recommendations": {
             "type": "array",
-            "description": "Recommendations."
+            "description": "Recommendations to the PSE to share to the customer"
             "items": {"type": "string"}
         }, 
     }
