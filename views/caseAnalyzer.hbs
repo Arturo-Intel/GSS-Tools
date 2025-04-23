@@ -354,20 +354,16 @@
                             document.getElementById('ssu-notes').innerText = ssuAnalysis.notes;
 
                             data["SSU-analysis"].displays.forEach(element => {
-                                const dt = document.createElement("dt");
-                                const ul = document.createElement("ul");
-                                document.getElementById('SSU-Displays').appendChild(dt);
-                                document.getElementById('SSU-Displays').appendChild(ul);
                                 Object.keys(element).forEach(key => {
-                                    if(key=="gpu"){
-                                        dt.textContent=`${element[key]}`;
-                                    }else {
-                                        const li = document.createElement("li");
-                                        li.textContent = `${key}: ${element[key]}`;
-                                        ul.appendChild(li)
-                                    }
+                                    const dt = document.createElement("dt");
+                                    const ul = document.createElement("dd");
+                                    dt.textContent = `${key}`;
+                                    dd.textContent = `${value}`;
+                                    document.getElementById('SSU-Displays').appendChild(dt);
+                                    document.getElementById('SSU-Displays').appendChild(ul);
                                 });
                             });
+
                             if(data["LogEvents-analysis"]){
                                 document.getElementById('ssu-logevents').innerText = data["LogEvents-analysis"].logEvents
                             }else {
