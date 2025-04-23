@@ -116,7 +116,7 @@
                   <div class="flex-child">
                     <dl>
                         <dt>SSU Display Adapters</dt>
-                        <dl id="SSU-Displays"></dl>
+                        <div id="SSU-Displays"></div>
                     </dl>
                   </div>
             </div>
@@ -353,19 +353,22 @@
                             document.getElementById('ssu-recommendations').innerText = ssuAnalysis.recommendations;
                             document.getElementById('ssu-notes').innerText = ssuAnalysis.notes;
 
-                            ssuDisplays = data["SSU-analysis"].displays[0];
-                            
-                            for (const key in ssuDisplays) {
-                                if (ssuDisplays.hasOwnProperty(key)) {
-                                    const value = ssuDisplays[key];
-                                    const dt = document.createElement("dt");
-                                    const dd = document.createElement("dd");
-                                    dt.textContent = `${key}`;
-                                    dd.textContent = `${value}`;
-                                    document.getElementById('SSU-Displays').appendChild(dt)
-                                    document.getElementById('SSU-Displays').appendChild(dd)
+                            ssuBulkDisplays = data["SSU-analysis"].displays;
+                            for (const key in ssuBulkDisplays) {
+                                ssuDisplays = ssuBulkDisplays[key];
+                                const dl = document.createElement("dl");
+                                for (const key in ssuDisplays) {
+                                    if (ssuDisplays.hasOwnProperty(key)) {
+                                        const value = ssuDisplays[key];
+                                        const dt = document.createElement("dt");
+                                        const dd = document.createElement("dd");
+                                        dt.textContent = `${key}`;
+                                        dd.textContent = `${value}`;
+                                        dl.appendChild(dt)
+                                        dl.appendChild(dd)
+                                    }
                                 }
-                            
+                                document.getElementById('ssu-Displays').appendChild(dt)
                             }
 
                             if(data["LogEvents-analysis"]){
