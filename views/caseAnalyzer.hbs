@@ -353,16 +353,20 @@
                             document.getElementById('ssu-recommendations').innerText = ssuAnalysis.recommendations;
                             document.getElementById('ssu-notes').innerText = ssuAnalysis.notes;
 
-                            data["SSU-analysis"].displays.forEach(element => {
-                                Object.keys(element).forEach(key => {
+                            ssuDisplays = data["SSU-analysis"].displays;
+                            
+                            for (const key in ssuDisplays) {
+                                if (ssuDisplays.hasOwnProperty(key)) {
+                                    const value = ssuDisplays[key];
                                     const dt = document.createElement("dt");
-                                    const ul = document.createElement("dd");
+                                    const dd = document.createElement("dd");
                                     dt.textContent = `${key}`;
                                     dd.textContent = `${value}`;
-                                    document.getElementById('SSU-Displays').appendChild(dt);
-                                    document.getElementById('SSU-Displays').appendChild(ul);
-                                });
-                            });
+                                    document.getElementById('SSU-Displays').appendChild(dt)
+                                    document.getElementById('SSU-Displays').appendChild(dd)
+                                }
+                            
+                           
 
                             if(data["LogEvents-analysis"]){
                                 document.getElementById('ssu-logevents').innerText = data["LogEvents-analysis"].logEvents
