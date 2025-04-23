@@ -353,7 +353,7 @@
                             document.getElementById('ssu-recommendations').innerText = ssuAnalysis.recommendations;
                             document.getElementById('ssu-notes').innerText = ssuAnalysis.notes;
 
-                            ssuDisplays = data["SSU-analysis"].displays;
+                            ssuDisplays = data["SSU-analysis"].displays[0];
                             
                             for (const key in ssuDisplays) {
                                 if (ssuDisplays.hasOwnProperty(key)) {
