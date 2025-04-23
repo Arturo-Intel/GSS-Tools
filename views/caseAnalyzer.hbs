@@ -356,7 +356,6 @@
                             ssuBulkDisplays = data["SSU-analysis"].displays;
                             for (const key in ssuBulkDisplays) {
                                 ssuDisplays = ssuBulkDisplays[key];
-                                const dl = document.createElement("dl");
                                 for (const key in ssuDisplays) {
                                     if (ssuDisplays.hasOwnProperty(key)) {
                                         const value = ssuDisplays[key];
@@ -364,11 +363,10 @@
                                         const dd = document.createElement("dd");
                                         dt.textContent = `${key}`;
                                         dd.textContent = `${value}`;
-                                        dl.appendChild(dt)
-                                        dl.appendChild(dd)
+                                        document.getElementById('SSU-Displays').appendChild(dt)
+                                        document.getElementById('SSU-Displays').appendChild(dd)
                                     }
                                 }
-                                document.getElementById('SSU-Displays').appendChild(dl)
                             }
 
                             if(data["LogEvents-analysis"]){
