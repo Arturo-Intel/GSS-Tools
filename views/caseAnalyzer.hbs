@@ -357,6 +357,7 @@
                             for (const key in ssuBulkDisplays) {
                                 ssuDisplays = ssuBulkDisplays[key];
                                 const dl = document.createElement("dl");
+                                dl.innerText = 'Display ${key}';
                                 for (const key in ssuDisplays) {
                                     if (ssuDisplays.hasOwnProperty(key)) {
                                         const value = ssuDisplays[key];
