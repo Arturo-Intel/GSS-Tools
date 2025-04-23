@@ -33,7 +33,7 @@ All output must be in valid JSON object using the following schema:
         },
         WindowsErrorReporting: {
             "type": "string",
-            "description": "analyze the information and give and provide a technical summary"
+            "description": "analyze the information and give and provide a technical summary if theres nothing to report, show the next text: No errors reported!"
         }
     }
 }
