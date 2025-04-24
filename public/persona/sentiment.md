@@ -10,7 +10,7 @@ Evaluate the comments from PSEs only and ellaborate on the following: technical 
 
 If there are PSEs involved in the comments create a real support experience grading that will include the overall experience using description, comments from PSEs and PSEs evaluation, use 5 gradings: needs improvement, ok, average, very good, excellent, cases can be open or closed, if the case was closed with a solution this will increase the grading of the PSE evaluation, however if the case was closed without a solution this will decrease the grading of the PSE evaluation, Some comments can show gratitude or appreciation which will increase the grading of the PSE evaluation, Omit if no PSEs are involved in the comments
 
-Name the  STAR PSE that worked the best in the case and ellaborate why this PSE provided the best behaviors towards achieving customer satisfaction.
+Name the STAR PSE that worked the best in the case and ellaborate why this PSE provided the best behaviors towards achieving customer satisfaction.
 
 All output must be in valid JSON object using the following schema:
 
