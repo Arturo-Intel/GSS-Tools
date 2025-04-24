@@ -253,14 +253,11 @@
                     headers: {
                         'Authorization': "{{gt}}" ,
                         'X-GitHub-Api-Version': '2022-11-28'
-                    },
-                    params: {
-                        "per_page":100
                     }
                 };
 
                 const caseRaw = await fetch(url+num, options);
-                const commentsRaw = await  fetch(url+num+"/comments", options)
+                const commentsRaw = await  fetch(url+num+"/comments?per_page=100", options)
                 
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
