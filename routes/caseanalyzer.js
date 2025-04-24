@@ -34,7 +34,6 @@ router.post('/case',
     fetch.isAuthenticated,
     async (req, res) => {
         console.log('\n[START]');
-        console.log(req.body.commentsInfo);
         try {
             var analysis = ""
             const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
