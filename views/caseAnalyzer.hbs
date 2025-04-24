@@ -294,7 +294,7 @@
                         document.getElementById('details-Driver').innerText = data["case-analysis"].driver_version
                         document.getElementById('details-OS').innerText = data["case-analysis"].os_version
 
-                        document.getElementById('case-temperature').innetText = data["sentiment-analysis"].case_sentiment
+                        
                         document.getElementById('Main-Pointers').innerHTML = '';
                         document.getElementById('step-repro').innerHTML = '';
                         document.getElementById('case-evidence').innerHTML = '';
@@ -306,8 +306,9 @@
                         document.getElementById('ssu-logevents').innerText = '';
                         document.getElementById('ssu-dxdiag').innerText = '';
                         document.getElementById('case-sentiment').innerText = '';
-                        console.log(data["sentiment-analysis"]);
-                        document.getElementById('case-sentiment').innerText = data["sentiment-analysis"].sentiment_analysis;
+
+                        document.getElementById('case-sentiment').innerText   = data["sentiment-analysis"].sentiment_analysis;
+                        document.getElementById('case-temperature').innetText = data["sentiment-analysis"].case_sentiment;
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
