@@ -43,7 +43,7 @@
                     <dd id="case-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
                 </dl>
             </div>
-            <div id="Sentiment" class="analysis-report">
+            <div id="Sentiment">
                 <div>
                     <dl>
                         <dt>Sentiment analysis</dt>
@@ -242,18 +242,23 @@
                 };
 
                 const caseRaw = await fetch(url+num, options);
+                const commentsRaw = await  fetch(url+num+"/comments", options)
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
                     hitResult="Github case ["+ num + "] doesn\'t exist.";
                     endTime = performance.now();
                 } else {
                     const caseInfo = await caseRaw.json();
+                    const commentsInfo = await commentsRaw.json();
                     response = await fetch("/caseanalyzer/case", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(caseInfo),
+                        body: {
+                                "caseInfo": JSON.stringify(caseInfo), 
+                                "commentsInfo": JSON.stringify(commentsInfo) 
+                              }
                     });
                     const data = await response.json();
 

@@ -36,7 +36,7 @@ router.post('/case',
         console.log('\n[START]');
         try {
             var analysis = ""
-            const inputCase = "User: "+ req.body.user.login + " Title: "+ req.body.title + "\n" + req.body.body;
+            const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
             analysis = await brain(inputCase);
             res.json(analysis);
         } catch (error) {
@@ -79,6 +79,7 @@ async function brain(inputCase) {
             personaSSU = await fetchPersona("SSU"),
             personaLogEvents = await fetchPersona("LogEvents"),
             personaDXdiag = await fetchPersona("DXDiag"),
+            personaSentiment = await fetchPersona("Sentiment"),
             personaCase = await fetchPersona("case"),
             ssuPath = await findSSUpath(inputCase)
         ]);
@@ -119,13 +120,14 @@ async function brain(inputCase) {
         } else {
             SSUAnalysis = "SSU not provided.";
         }
-            
+        sentimentAnalysis = await invokeModel(token, personaSentiment, inputCase, "sentimentAnalysis")    
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis")
         try {
             
             SSUAnalysisJSON = JSON.parse(SSUAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
             LogEventsAnalysisJSON = JSON.parse(LogEventsAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
             DXDiagAnalysisJSON = JSON.parse(DXDiagAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
+            sentimentJSON = JSON.parse(sentimentAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
             caseJSON = JSON.parse(caseAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
         }catch (err) {
             console.error("JSON error", err)
@@ -234,7 +236,7 @@ async function fetchPersona(personaName) {
             case "SSU": filePath = path.join(__dirname, '../public', 'persona', 'SSU.md'); break;
             case "LogEvents": filePath = path.join(__dirname, '../public', 'persona', 'LogEvents.md'); break;
             case "DXDiag": filePath = path.join(__dirname, '../public', 'persona', 'Dxdiag.md'); break;
-
+            case "Sentiment": filePath = path.join(__dirname, '../public', 'persona', 'sentiment.md'); break;
         }
         
         persona = await fs.readFile(filePath, 'utf8');
