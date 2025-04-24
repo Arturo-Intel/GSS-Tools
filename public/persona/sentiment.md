@@ -23,7 +23,7 @@ All output must be in valid JSON object using the following schema:
         },
         "sentiment_analysis": {
             "type": "string",
-            "description": "Analyze the sentiment result, be professional and technical, based on comments, classify the case as hazardous or not hazardous for Intel's reputation"
+            "description": "Analyze the sentiment result, include the number of comments, be professional and technical, based on comments, classify the case as hazardous or not hazardous for Intel's reputation"
         },
         "pses":{
             "type": "array",
