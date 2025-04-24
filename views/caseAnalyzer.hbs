@@ -243,7 +243,7 @@
 
                 const caseRaw = await fetch(url+num, options);
                 const commentsRaw = await  fetch(url+num+"/comments", options)
-                console.log(url+num+"/comments")
+                
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
                     hitResult="Github case ["+ num + "] doesn\'t exist.";
@@ -251,6 +251,7 @@
                 } else {
                     const caseInfo = await caseRaw.json();
                     const commentsInfo = await commentsRaw.json();
+                    console.log(commentsInfo)
                     response = await fetch("/caseanalyzer/case", {
                         method: "POST",
                         headers: {
