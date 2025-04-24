@@ -38,7 +38,8 @@ router.post('/case',
         try {
             var analysis = ""
             const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
-            analysis = await brain(inputCase);
+            const inputComments = req.body.commentsInfo
+            analysis = await brain(inputCase, inputComments);
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -67,7 +68,7 @@ router.post('/hit',
     }
 );
 
-async function brain(inputCase) {
+async function brain(inputCase, inputComments) {
     console.log('[BRAIN]')
     try {
         let SSUraw=null;
@@ -121,7 +122,7 @@ async function brain(inputCase) {
         } else {
             SSUAnalysis = "SSU not provided.";
         }
-        sentimentAnalysis = await invokeModel(token, personaSentiment, inputCase, "sentimentAnalysis")    
+        sentimentAnalysis = await invokeModel(token, personaSentiment, inputComments, "sentimentAnalysis")    
         caseAnalysis = await invokeModel(token, personaCase, inputCase, "caseAnalysis")
         try {
             
