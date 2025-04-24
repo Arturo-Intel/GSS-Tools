@@ -257,7 +257,7 @@
                 };
 
                 const caseRaw = await fetch(url+num, options);
-                const commentsRaw = await  fetch(url+num+"/comments?per_page=20", options)
+                const commentsRaw = await  fetch(url+num+"/comments?per_page=40", options)
                 
                 if(!caseRaw.ok){
                     document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
