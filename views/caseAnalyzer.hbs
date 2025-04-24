@@ -297,6 +297,8 @@
                         document.getElementById('ssu-dxdiag').innerText = '';
                         document.getElementById('ssu-sentiment').innerText = '';
 
+                        document.getElementById('ssu-sentiment').innerText = data["sentiment-analysis"].sentiment_analysis;
+
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
                             li.textContent = element;

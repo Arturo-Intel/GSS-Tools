@@ -140,7 +140,8 @@ async function brain(inputCase, inputComments) {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysisJSON, 
             "LogEvents-analysis" : LogEventsAnalysisJSON, 
-            "DXDiag-analysis" : DXDiagAnalysisJSON,   
+            "DXDiag-analysis" : DXDiagAnalysisJSON,  
+            "sentiment-analysis" : sentimentJSON,   
             "case-analysis": caseJSON
         }
         
