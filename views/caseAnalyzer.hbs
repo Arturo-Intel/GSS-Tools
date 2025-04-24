@@ -309,6 +309,8 @@
 
                         document.getElementById('case-sentiment').innerText   = data["sentiment-analysis"].sentiment_analysis;
                         document.getElementById('case-temperature').innetText = data["sentiment-analysis"].case_sentiment;
+                        
+                        console.log(data["sentiment-analysis"])
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
