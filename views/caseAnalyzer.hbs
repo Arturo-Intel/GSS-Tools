@@ -258,10 +258,10 @@
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: {
+                        body: JSON.stringify ({
                                 "caseInfo": JSON.stringify(caseInfo), 
                                 "commentsInfo": JSON.stringify(commentsInfo) 
-                              }
+                              });
                     });
                     const data = await response.json();
 
