@@ -43,13 +43,21 @@
                     <dd id="case-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
                 </dl>
             </div>
-            <div id="Sentiment">
-                <div>
+            <div class="flex-container">
+                <div id="Sentiment">
+                    <div>
+                        <dl>
+                            <dt>Sentiment analysis</dt>
+                            <dd id="case-sentiment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                        </dl>
+                    </div>            
+                </div>
+                <div  class="username-div">
                     <dl>
-                        <dt>Sentiment analysis</dt>
-                        <dd id="ssu-sentiment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                        <dt>Temperature</dt>
+                        <dd id="case-temperture">Lorem ipsum</dd>
                     </dl>
-                </div>            
+                </div>
             </div>
             <div id="details" class="flex-container">
                 <div id="app" class="flex-child">
@@ -286,6 +294,7 @@
                         document.getElementById('details-Driver').innerText = data["case-analysis"].driver_version
                         document.getElementById('details-OS').innerText = data["case-analysis"].os_version
 
+                        document.getElementById('case-temperture').innetText = dataa["sentiment-analysis"].case_sentiment
                         document.getElementById('Main-Pointers').innerHTML = '';
                         document.getElementById('step-repro').innerHTML = '';
                         document.getElementById('case-evidence').innerHTML = '';
@@ -296,9 +305,9 @@
                         
                         document.getElementById('ssu-logevents').innerText = '';
                         document.getElementById('ssu-dxdiag').innerText = '';
-                        document.getElementById('ssu-sentiment').innerText = '';
+                        document.getElementById('case-sentiment').innerText = '';
                         console.log(data["sentiment-analysis"]);
-                        document.getElementById('ssu-sentiment').innerText = data["sentiment-analysis"].sentiment_analysis;
+                        document.getElementById('case-sentiment').innerText = data["sentiment-analysis"].sentiment_analysis;
 
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
@@ -385,7 +394,6 @@
                                 document.getElementById('SSU-Displays').appendChild(document.createElement("dt"));
                                 document.getElementById('SSU-Displays').appendChild(document.createElement("dd"));
                             }
-                            console.log(data)
                             if(data["LogEvents-analysis"]){
                                 document.getElementById('ssu-logevents').innerText = data["LogEvents-analysis"].logEvents
                             }else {
