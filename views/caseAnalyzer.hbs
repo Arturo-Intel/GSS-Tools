@@ -43,6 +43,12 @@
                     <dd class="justified-text"  id="case-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
                 </dl>
             </div>
+            <div>
+                <dl>
+                    <dt>Is case fixed?</dt>
+                    <dd class="justified-text"  id="case-fixed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                </dl>
+            </div>
             <div class="flex-container">
                 <div  class="username-div">
                     <dl>
@@ -263,9 +269,7 @@
                 } else {
                     const caseInfo = await caseRaw.json();
                     const commentsInfo = await commentsRaw.json();
-                    console.log(caseInfo);
-                    console.log(commentsInfo);
-                    
+                   
                     response = await fetch("/caseanalyzer/case", {
                         method: "POST",
                         headers: {
@@ -318,6 +322,7 @@
 
                         document.getElementById('case-sentiment').innerText   = data["sentiment-analysis"].sentiment_analysis;
                         document.getElementById('case-temperature').innerText = data["sentiment-analysis"].case_sentiment;
+                        document.getElementById('case-fixed').innerText = data["sentiment-analysis"].case_fixed;
                         
                         data["case-analysis"].main_pointers.forEach(element => {
                             const li = document.createElement('li');
