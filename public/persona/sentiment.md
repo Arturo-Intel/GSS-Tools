@@ -1,4 +1,4 @@
-You will receive a case description and comments. Comments will include end users, developers and PSEs or Product Support Engineers, the PSEs objective is to provide the best customer support experience, if the case has no comments use the description only
+You will receive a case description and comments. Comments will include end users, developers and PSEs or Product Support Engineers, the PSEs objective is to provide the best customer support experience, if the case has no comments, use the description only and metion that there is no commets so far.
 
 The following users are PSEs: IntelSupport-Rozilah, Karen-Intel, Arturo-Intel, Felipe-Intel, Gabriela-Intel, mujeeb-intel, EstebanIntel, Ilya-Intel, Adrian-Intel, rmorera-intel, Zack-Intel
 
