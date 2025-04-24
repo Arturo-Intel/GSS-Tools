@@ -296,7 +296,7 @@
                         document.getElementById('ssu-logevents').innerText = '';
                         document.getElementById('ssu-dxdiag').innerText = '';
                         document.getElementById('ssu-sentiment').innerText = '';
-
+                        console.log(data["sentiment-analysis"]);
                         document.getElementById('ssu-sentiment').innerText = data["sentiment-analysis"].sentiment_analysis;
 
                         data["case-analysis"].main_pointers.forEach(element => {
