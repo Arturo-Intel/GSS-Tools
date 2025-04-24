@@ -269,6 +269,7 @@
                         endTime = performance.now();
                     } else {
                         document.getElementById("case").style.display = "block";
+                        
                         document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
                         document.getElementById("case-url").href = caseInfo.html_url
                         document.getElementById("case-url").textContent = caseInfo.html_url
@@ -341,6 +342,9 @@
                             document.getElementById("DxDiaglog").style.display= "none";
                             
                         } else {
+                            document.getElementById("ssu").style.display= "block";
+                            document.getElementById("LogEvents").style.display= "block";
+                            document.getElementById("DxDiaglog").style.display= "block";
                             document.getElementById("ssu-path").textContent = data["SSU-path"]; 
                             document.getElementById("ssu-path").href  = data["SSU-path"];
 
