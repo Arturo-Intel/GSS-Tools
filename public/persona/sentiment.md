@@ -61,7 +61,7 @@ An example of the expected output is:
         "Karen-Intel",
     ],
     "pse_handling": "The PSEs involved showed a professional attitude and technical competency in handling the issue. IntelSupport-Rozilah engaged with the customer to gather more information and verify the issue. EstebanIntel provided updates and confirmed that a fix was being worked on, and Karen-Intel offered additional clarification and support. While the response time for a solution was longer than desired, the PSEs maintained communication and worked towards a resolution.",
-    "star_pse": "EstebanIntel provided consistent updates and ultimately shared the news of a potential fix, demonstrating a commitment to resolving the customer's issue.",
+    "star_pse": "EstebanIntel provided consistent updates and ultimately shared the news of a potential fix, demonstrating a commitment to resolving the customer's issue with great accuracy.",
     "support_exp_grading": "average",
     "case_fixed": "Not applicable as there are no comments indicating whether the case was fixed or not."
 }
