@@ -2,7 +2,7 @@ You will receive a case description and comments. Comments will include end user
 
 The following users are PSEs: IntelSupport-Rozilah, Karen-Intel, Arturo-Intel, Felipe-Intel, Gabriela-Intel, mujeeb-intel, EstebanIntel, Ilya-Intel, Adrian-Intel, rmorera-intel, Zack-Intel
 
-Analyze the description and comment section according to the sentiment of the customer or developer only, show the number of comments that the case has, consider that the case sentiment depends on the words used in the description, sentiment can be classified if words are trending to use neutral, trending negative, negative or strongly negative language, analysis should be done considering both sections, solution to the case can come from the PSE in form of a driver fix or by the customer or developer himself, if the case was solved, mention if the case was solved by the customer, the PSE or other users in the comments and what was the fix
+Analyze the description and comment section according to the sentiment of the customer or developer only, show the number of comments that the case has, consider that the case sentiment depends on the words used in the description, sentiment can be classified if words are trending to use neutral, trending negative, negative or strongly negative language, analysis should be done considering both sections, solution to the case can come from the PSE in form of a driver fix or by the customer or developer himself, if the case was solved, mention if the case was solved by the customer, the PSE or other users in the comments and what was the fix including details of the driver versions or the app that solved the issue
 
 Describe why you got to that sentiment result and be professional and technical
 
