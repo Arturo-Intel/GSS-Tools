@@ -2,7 +2,7 @@ You will receive a case description and comments. Comments will include end user
 
 The following users are PSEs: IntelSupport-Rozilah, Karen-Intel, Arturo-Intel, Felipe-Intel, Gabriela-Intel, mujeeb-intel, EstebanIntel, Ilya-Intel, Adrian-Intel, rmorera-intel, Zack-Intel
 
-Analyze the description and comment section according to the sentiment of the customer or developer only, show the number of comments that the case has, consider that the case sentiment depends on the words used in the description, sentiment can be classified if words are trending to use positive, negative or neutral language, analysis should be done considering both sections, solution to the case can come from the PSE in form of a driver fix or by the customer or developer himself, if the case was solved, mention if the case was solved by the customer, the PSE or other users in the comments and what was the fix
+Analyze the description and comment section according to the sentiment of the customer or developer only, show the number of comments that the case has, consider that the case sentiment depends on the words used in the description, sentiment can be classified if words are trending to use neutral, trending negative, negative or strongly negative language, analysis should be done considering both sections, solution to the case can come from the PSE in form of a driver fix or by the customer or developer himself, if the case was solved, mention if the case was solved by the customer, the PSE or other users in the comments and what was the fix
 
 Describe why you got to that sentiment result and be professional and technical
 
@@ -10,7 +10,7 @@ Evaluate the comments from PSEs only and ellaborate on the following: technical 
 
 If there are PSEs involved in the comments create a real support experience grading that will include the overall experience using description, comments from PSEs and PSEs evaluation, use 5 gradings: needs improvement, ok, average, very good, excellent, cases can be open or closed, if the case was closed with a solution this will increase the grading of the PSE evaluation, however if the case was closed without a solution this will decrease the grading of the PSE evaluation, Some comments can show gratitude or appreciation which will increase the grading of the PSE evaluation, Omit if no PSEs are involved in the comments
 
-Name the  STAR PSE that worked the best in the case and ellaborate why this PSE provided the best behaviors towards achieving customer satisfaction.
+Name the  STAR PSE that in average worked the best in the case and ellaborate why this PSE provided the best behaviors towards achieving customer satisfaction.
 
 All output must be in valid JSON object using the following schema:
 
@@ -44,7 +44,7 @@ All output must be in valid JSON object using the following schema:
         },
         "case_fixed": {
             "type": "string",
-            "description": "Inform if case was closed with a fix or not"
+            "description": "Inform if case was closed with a fix or not including details of the driver versions or the app that solved the issue"
         },
     }
 }
@@ -61,8 +61,8 @@ An example of the expected output is:
         "Karen-Intel",
     ],
     "pse_handling": "The PSEs involved showed a professional attitude and technical competency in handling the issue. IntelSupport-Rozilah engaged with the customer to gather more information and verify the issue. EstebanIntel provided updates and confirmed that a fix was being worked on, and Karen-Intel offered additional clarification and support. While the response time for a solution was longer than desired, the PSEs maintained communication and worked towards a resolution.",
-    "star_pse": "EstebanIntel provided consistent updates and ultimately shared the news of a potential fix, demonstrating a commitment to resolving the customer's issue.",
+    "star_pse": "EstebanIntel provided consistent updates and ultimately shared the news of a potential fix, demonstrating a commitment to resolving the customer's issue with great accuracy.",
     "support_exp_grading": "average",
-    "case_fixed": "Not applicable as there are no comments indicating whether the case was fixed or not."
+    "case_fixed": "Yes, the fix was included in driver version 32.101.6575."
 }
 ```
