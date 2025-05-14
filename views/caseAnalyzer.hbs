@@ -430,14 +430,15 @@
                         pseHandeling = data["sentiment-analysis"]
                         for (const key in pseHandeling) {
                             if (pseHandeling.hasOwnProperty(key)) {
-                                const value = pseHandeling[key];
-                                const dt = document.createElement("dt");
-                                const dd = document.createElement("dd");
-                                dt.textContent = `${key}`;
-                                dd.textContent = `${value}`;
-                                document.getElementById('pse-analysis').appendChild(dt)
-                                document.getElementById('pse-analysis').appendChild(dd)
-                             
+                                if(key != "case_sentiment" && key != "sentiment_analysis" && key != "case_fixed") {
+                                    const value = pseHandeling[key];
+                                    const dt = document.createElement("dt");
+                                    const dd = document.createElement("dd");
+                                    dt.textContent = `${key}`;
+                                    dd.textContent = `${value}`;
+                                    document.getElementById('pse-analysis').appendChild(dt)
+                                    document.getElementById('pse-analysis').appendChild(dd)
+                                    }
                             }
                         }
                     }
