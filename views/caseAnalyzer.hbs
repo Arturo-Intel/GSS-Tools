@@ -323,8 +323,6 @@
                         document.getElementById('case-sentiment').innerText = '';
                         document.getElementById('pse-analysis').innerText = '';
 
-                        console.log(data["sentiment-analysis"])
-
                         document.getElementById('case-sentiment').innerText   = data["sentiment-analysis"].sentiment_analysis;
                         document.getElementById('case-temperature').innerText = data["sentiment-analysis"].case_sentiment;
                         document.getElementById('case-fixed').innerText = data["sentiment-analysis"].case_fixed;
