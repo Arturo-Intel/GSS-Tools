@@ -376,13 +376,13 @@
                             document.getElementById('case-questions').appendChild(li);
                         });
 
-                      /*  if(data["SSU-path"] == "null") {
+                        if(data["SSU-path"] == "null") {
                             document.getElementById("ssu-path").textContent = "SSU file not provided."
                             document.getElementById("ssu").style.display= "none";
                             document.getElementById("LogEvents").style.display= "none";
                             document.getElementById("DxDiaglog").style.display= "none";
                             
-                        } else { */
+                        } else { 
                             document.getElementById("ssu").style.display= "block";
                             document.getElementById("LogEvents").style.display= "block";
                             document.getElementById("DxDiaglog").style.display= "block";
@@ -437,7 +437,7 @@
                             }else {
                                 document.getElementById('ssu-dxdiag').innerText = "no logs found"
                             }
-                        // }
+                        }
 
                         pseHandeling = data["sentiment-analysis"]
                         for (const key in pseHandeling) {
