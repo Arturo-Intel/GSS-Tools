@@ -19,8 +19,16 @@
     </div>
     <div id="status" style="height: 30px;" ></div>
 
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')">Summary</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">Logs</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">Feedback</button>
+    </div>
+
+
     <div id="case" >
-        <div id="summary-tab">
+        <div id="summary-tab" class="tabcontent">
             <div class="analysis-report">
                 <div class="flex-container">
                     <div class="title-div">
@@ -121,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div id="logs-tab">
+        <div id="logs-tab" class="tabcontent">
             <div id="ssu" class="analysis-report">
                 <div><a id="ssu-path" target="_blank" href=""></a></div>
                 <div>
@@ -174,7 +182,7 @@
                 </div>            
             </div>
         </div>
-        <div id="feedback-tab">
+        <div id="feedback-tab" class="tabcontent">
             <div id="UserFeedback" class="analysis-report">
                 <div>
                     <dl>
@@ -481,5 +489,25 @@
         } 
     });
 
+    function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+    }
 
 </script>
