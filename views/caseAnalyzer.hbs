@@ -167,11 +167,18 @@
             <div>
                 <dl>
                     <dt>DXDiag log</dt>
-                    <dd  class="justified-text"  id="ssu-dxdiag">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+                    <dd class="justified-text"  id="ssu-dxdiag">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
                 </dl>
             </div>            
         </div>
-
+        <div id="UserFeedback" class="analysis-report">
+            <div>
+                <dl>
+                    <dt>PSE handling analysis</dt>
+                    <dl id="pse-analysis" class="description-list"></dl>
+                </dl>
+            </div>            
+        </div>
     </div>
     <div id="help" style="padding-top: 75px;">
         <p class="justified-text" style="font-size: 1.25em; ">
@@ -314,6 +321,7 @@
                         document.getElementById('ssu-logevents').innerText = '';
                         document.getElementById('ssu-dxdiag').innerText = '';
                         document.getElementById('case-sentiment').innerText = '';
+                        document.getElementById('pse-analysis').innerText = '';
 
                         console.log(data["sentiment-analysis"])
 
@@ -416,6 +424,20 @@
                                 document.getElementById('ssu-dxdiag').innerText = data["DXDiag-analysis"].WindowsErrorReporting
                             }else {
                                 document.getElementById('ssu-dxdiag').innerText = "no logs found"
+                            }
+                        }
+
+                        pseHandeling = data["sentiment-analysis"]
+                        for (const key in pseHandeling) {
+                            if (pseHandeling.hasOwnProperty(key)) {
+                                const value = pseHandeling[key];
+                                const dt = document.createElement("dt");
+                                const dd = document.createElement("dd");
+                                dt.textContent = `${key}`;
+                                dd.textContent = `${value}`;
+                                document.getElementById('pse-analysis').appendChild(dt)
+                                document.getElementById('pse-analysis').appendChild(dd)
+                             
                             }
                         }
                     }
