@@ -25,7 +25,7 @@
 
     <div id="case" >
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'summary-tab')">Summary</button>
+            <button id="summary-button" class="tablinks" onclick="openTab(event, 'summary-tab')">Summary</button>
             <button class="tablinks" onclick="openTab(event, 'logs-tab')">Logs</button>
             <button class="tablinks" onclick="openTab(event, 'feedback-tab')">Feedback</button>
         </div>
@@ -513,6 +513,6 @@
     }
 
     
-    openTab(event, 'summary-tab');
+    document.getElementById("summary-button").click();
 
 </script>
