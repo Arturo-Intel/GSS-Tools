@@ -376,7 +376,7 @@
                             li.textContent = element;
                             document.getElementById('case-questions').appendChild(li);
                         });
-                        console.log(">>> "+data["SSU-path"]);
+
                         if(data["SSU-path"] == "null") {
                             document.getElementById("ssu-path").textContent = "SSU file not provided."
                             document.getElementById("ssu").style.display= "none";
@@ -467,7 +467,8 @@
             hitResult=error; 
             endTime = performance.now();
         } 
-
+        document.getElementById("summary-button").click();
+        
         document.getElementById("loading-text").style.display = "none";
         document.getElementById("loadingBar").style.display = "none";
         document.getElementById("apiCallButton").removeAttribute("disabled");
@@ -513,6 +514,6 @@
     }
 
     
-    document.getElementById("summary-button").click();
+    
 
 </script>
