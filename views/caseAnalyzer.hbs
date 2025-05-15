@@ -201,19 +201,21 @@
             </div>
         </div>
     </div>
-    <div id="help" style="padding-top: 75px;">
+    <div id="introduction-text" style="padding-top: 75px;">
         <p class="justified-text" style="font-size: 1.25em; ">
         Welcome to the AI-Powered Graphics Support Case Analyzer, a cutting-edge tool designed to streamline the workflow of Product Support Engineers (PSEs) in handling customer support cases related to graphics products. This tool leverages advanced artificial intelligence to accelerate case analysis, ensuring standardized documentation and optimizing PSE time for critical tasks such as evidence gathering, case reproduction, escalations, and customer engagement. By automating the analysis process, the tool guarantees consistency and precision, enabling PSEs to focus on strategic activities that enhance customer satisfaction and expedite resolution.
         </p>
-        <h4>How to use this tool:</h4>
-        <dl>
-            <ol class="justified-text">
-                <li>Input a valid GitHub URL into the designated field. Currently, this tool supports GitHub URLs ONLY. Support for Intel Communities forum URLs will be supported in the future.</li>           
-                <li>Click on the "Submit" button or press the enter key to START the AI-driven analysis process.</li>
-                <li>Wait for the AI to process the case and generate a comprehensive analysis report, highlighting key insights and actionable recommendations.</li>
-                <li>Once output is shown, you will see details about the case. Click on the "SSU" button or scroll down to access the SSU analysis section for specific hardware and software details available for further examination and understanding.</li>
-            </ol>
-        </dl>    
+        <div id="help">
+            <h4>How to use this tool:</h4>
+            <dl>
+                <ol class="justified-text">
+                    <li>Input a valid GitHub URL into the designated field. Currently, this tool supports GitHub URLs ONLY. Support for Intel Communities forum URLs will be supported in the future.</li>           
+                    <li>Click on the "Submit" button or press the enter key to START the AI-driven analysis process.</li>
+                    <li>Wait for the AI to process the case and generate a comprehensive analysis report, highlighting key insights and actionable recommendations.</li>
+                    <li>Once output is shown, you will see details about the case. Click on the "SSU" button or scroll down to access the SSU analysis section for specific hardware and software details available for further examination and understanding.</li>
+                </ol>
+            </dl>   
+        </div> 
         <h4>Contact:</h4>
         
         For support, feedback, or inquiries, please reach out to us via email:
@@ -312,6 +314,7 @@
                         hitResult = data["case-error"];
                         endTime = performance.now();
                     } else {
+                        document.getElementById("introduction-text").style.display = "none";
                         document.getElementById("case").style.display = "block";
                         
                         document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
