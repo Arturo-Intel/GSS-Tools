@@ -81,6 +81,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
     
     try {
         const caseURL = document.getElementById('case-URL-input').value;
+        console.log(">>>> "+caseURL);
         const caseNUM = validate_url(caseURL);
         console.log(">>>> "+caseNUM);
     } catch (error) {
