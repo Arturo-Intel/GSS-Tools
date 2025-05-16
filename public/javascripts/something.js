@@ -74,7 +74,7 @@ function clean() {
 document.getElementById('apiCallButton').addEventListener('click', async () => {
     const startTime = performance.now();
     endTime = startTime;
-    
+    clean();
     start_fx();
     
     try {
