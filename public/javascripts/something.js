@@ -66,17 +66,17 @@ async function api_github_call(sufix){
         }
     };
     const url = api_url + sufix;
-        
-    res = await fetch(url, options);
+    try {    
+        res = await fetch(url, options);
     
-    if (res.status === 403) {
-        throw new Error('403 Forbidden');
+        if(!res.ok){
+            throw new Error(`HTTP error! status: ${res.status}`);
+        } 
+        return res;
+    } catch (error) {
+        console.log("catch")
+        show_error(error);
     }
-    
-    if(!res.ok){
-        throw new Error(`HTTP error! status: ${res.status}`);
-    } 
-    return res;
 }
 
 document.getElementById('apiCallButton').addEventListener('click', async () => {
@@ -89,7 +89,6 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseURL = document.getElementById('case-URL-input').value;
         const caseNUM = validate_url(caseURL);
 
-        
         const caseRaw = api_github_call(caseNUM);
 
     } catch (error) {
