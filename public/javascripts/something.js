@@ -68,14 +68,15 @@ async function api_github_call(sufix){
     const url = api_url + sufix;
     try {    
         res = await fetch(url, options);
-    
+        if(res.status === 404){
+            throw new Error(`Github ${sufix} does not exists!`);
+        }
         if(!res.ok){
             throw new Error(`HTTP error! status: ${res.status}`);
         } 
         return res;
     } catch (error) {
-        console.log("catch")
-        show_error(error);
+        show_error("[API call error] " + error);
     }
 }
 
