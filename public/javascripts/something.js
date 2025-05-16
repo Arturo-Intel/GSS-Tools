@@ -16,7 +16,6 @@ function validate_url(url) {
 }
 
 async function github_call(url){
-    
     const options = {
         method: 'GET', 
         headers: {
@@ -27,11 +26,8 @@ async function github_call(url){
     
     res = await fetch(url, options);
     
-    if(!call.ok){
-        document.getElementById('status').innerText = "Github case ["+ num + "] doesn\'t exist.";
-        hitResult = "Github case ["+ num + "] doesn\'t exist.";
-        endTime = performance.now();
-        return false;
+    if(!res.ok){
+        throw new Error(`HTTP error! status: ${res.status}`);
     } 
     return res;
 }
@@ -80,7 +76,10 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
     try {
         const caseURL = document.getElementById('case-URL-input').value;
         const caseNUM = validate_url(caseURL);
-        console.log(">>>> "+caseNUM);
+
+        
+        const caseRaw = github_call(api_url + caseNUM);
+
     } catch (error) {
         document.getElementById('status').innerText = error;
         hitResult = error; 
