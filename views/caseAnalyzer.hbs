@@ -234,6 +234,20 @@
             document.getElementById("apiCallButton").click();
         }
     });
+
+    document.addEventListener("keypress", function(event) {
+        if (event.key === "Escape") {
+            console.log("ESC logs");
+            const logDiv = document.getElementById("consoleLog");
+
+            if (logDiv.style.display === 'none') {
+                logDiv.style.display = 'block';
+            } else {
+                logDiv.style.display = 'none';
+            }
+
+        }
+    });
     
     document.getElementById("loading-text").style.display = "none";
     pause(); //animation
