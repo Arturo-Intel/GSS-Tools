@@ -184,7 +184,17 @@
         let sidebarButton = document.getElementById("{{ sidebar }}");
         if (sidebarButton) { sidebarButton.classList.add('active'); };
        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const logDiv = document.getElementById("consoleLog");
 
+                if (logDiv.style.display === 'none') {
+                    logDiv.style.display = 'block';
+                } else {
+                    logDiv.style.display = 'none';
+                }
+            }
+        });
     </script>
 </body>
 </html>
