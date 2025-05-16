@@ -37,6 +37,12 @@ function clean() {
     document.getElementById('pse-analysis').innerText = '';
 }
 
+function show_error(error) {
+    document.getElementById('status').innerText = error;
+    hitResult = error; 
+    endTime = performance.now();
+}
+
 function validate_url(url) {
     if(!url.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
     {
@@ -60,8 +66,13 @@ async function api_github_call(sufix){
         }
     };
     const url = api_url + sufix;
-    res = await fetch(url, options);
     
+    try {
+        res = await fetch(url, options);
+    }catch (error){
+        show_error(error);
+    }
+
     if(!res.ok){
         throw new Error(`HTTP error! status: ${res.status}`);
     } 
@@ -82,9 +93,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseRaw = api_github_call(caseNUM);
 
     } catch (error) {
-        document.getElementById('status').innerText = error;
-        hitResult = error; 
-        endTime = performance.now();
+        show_error(error);
     } 
     // try {
     //     const url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
