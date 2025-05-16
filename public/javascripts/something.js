@@ -67,12 +67,9 @@ async function api_github_call(sufix){
     };
     const url = api_url + sufix;
     
-    try {
-        res = await fetch(url, options);
-    }catch (error){
-        show_error(error);
-    }
-
+    
+    res = await fetch(url, options);
+    
     if(!res.ok){
         throw new Error(`HTTP error! status: ${res.status}`);
     } 
