@@ -66,9 +66,12 @@ async function api_github_call(sufix){
         }
     };
     const url = api_url + sufix;
-    
-    
+        
     res = await fetch(url, options);
+    
+    if (res.status === 403) {
+        throw new Error('403 Forbidden');
+    }
     
     if(!res.ok){
         throw new Error(`HTTP error! status: ${res.status}`);
