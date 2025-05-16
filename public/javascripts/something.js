@@ -3,18 +3,16 @@ var githubCase = false;
 var endTime;
 
 function validate_url(url) {
-    if(url.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
+    if(!url.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
     {
-        if(url.match(/(\d+)$/))
-        {
-            githubCase = true;
-            num = url.match(/(\d+)$/)[0];
-            
-        } else {
-            throw new Error("Incomplete Github URL\n");
-        }
+        throw new Error("Not a Github URL\n");
     }
-    return num;
+    if(!url.match(/(\d+)$/))
+    {
+        throw new Error("Incomplete Github URL\n");
+    }
+    githubCase = true; //?
+    return url.match(/(\d+)$/)[0];
 }
 
 async function github_call(url){
@@ -81,7 +79,6 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
     
     try {
         const caseURL = document.getElementById('case-URL-input').value;
-        console.log(">>>> "+caseURL);
         const caseNUM = validate_url(caseURL);
         console.log(">>>> "+caseNUM);
     } catch (error) {
