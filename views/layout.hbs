@@ -170,7 +170,7 @@
             The purpose of this tools is to improve the issues analysis and data collection. Please use common sense when using this tool.
             The information provided by gss-tools is for general informational purposes only. Your use of the site and reliance on any information is solely at your own risk.
         </div>
-         <div id="consoleLog"></div>
+         <div id="consoleLog" style="display: none"></div>
     </main>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
     
@@ -184,6 +184,20 @@
         let sidebarButton = document.getElementById("{{ sidebar }}");
         if (sidebarButton) { sidebarButton.classList.add('active'); };
         
+        document.getElementById('consoleLog').addEventListener("keypress", function(event) {
+            if (event.key === "`") {
+                event.preventDefault();
+                const logDiv = document.getElementById("consoleLog");
+
+                if (logDiv.style.display === 'none') {
+                    logDiv.style.display = 'block';
+                } else {
+                    logDiv.style.display = 'none';
+                }
+
+            }
+        });
+
     </script>
 </body>
 </html>
