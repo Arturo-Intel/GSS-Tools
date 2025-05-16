@@ -23,3 +23,17 @@ function millisecondsToHHMMSS(ms) {
 
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
+
+document.addEventListener("keypress", function(event) {
+    if (event.key === "Escape") {
+        console.log("ESC logs");
+        const logDiv = document.getElementById("consoleLog");
+
+        if (logDiv.style.display === 'none') {
+            logDiv.style.display = 'block';
+        } else {
+            logDiv.style.display = 'none';
+        }
+
+    }
+});
