@@ -2,36 +2,6 @@ var hitResult = "OK";
 var githubCase = false;
 var endTime;
 
-function validate_url(url) {
-    if(!url.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
-    {
-        throw new Error("Not a Github URL\n");
-    }
-    if(!url.match(/(\d+)$/))
-    {
-        throw new Error("Incomplete Github URL\n");
-    }
-    githubCase = true; //?
-    return url.match(/(\d+)$/)[0];
-}
-
-async function github_call(url){
-    const options = {
-        method: 'GET', 
-        headers: {
-            'Authorization': "{{gt}}" ,
-            'X-GitHub-Api-Version': '2022-11-28'
-        }
-    };
-    
-    res = await fetch(url, options);
-    
-    if(!res.ok){
-        throw new Error(`HTTP error! status: ${res.status}`);
-    } 
-    return res;
-}
-
 function start_fx(){
     document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
     document.getElementById("case").style.display = "none";
@@ -67,6 +37,36 @@ function clean() {
     document.getElementById('pse-analysis').innerText = '';
 }
 
+function validate_url(url) {
+    if(!url.match(/^(https?:\/\/)?(www\.)?github\.com\/.+$/))
+    {
+        throw new Error("Not a Github URL\n");
+    }
+    if(!url.match(/(\d+)$/))
+    {
+        throw new Error("Incomplete Github URL\n");
+    }
+    githubCase = true; //?
+    return url.match(/(\d+)$/)[0];
+}
+
+async function github_call(url){
+    const options = {
+        method: 'GET', 
+        headers: {
+            'Authorization': "{{gt}}" ,
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    };
+    
+    res = await fetch(url, options);
+    
+    if(!res.ok){
+        throw new Error(`HTTP error! status: ${res.status}`);
+    } 
+    return res;
+}
+
 document.getElementById('apiCallButton').addEventListener('click', async () => {
     const startTime = performance.now();
     endTime = startTime;
@@ -78,7 +78,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseNUM = validate_url(caseURL);
 
         
-        const caseRaw = github_call(api_url + caseNUM);
+        const caseRaw = github_call(caseURL);
 
     } catch (error) {
         document.getElementById('status').innerText = error;
