@@ -50,7 +50,8 @@ function validate_url(url) {
     return url.match(/(\d+)$/)[0];
 }
 
-async function github_call(url){
+async function api_github_call(sufix){
+    const api_url = 'https://api.github.com/repos/IGCIT/Intel-GPU-Community-Issue-Tracker-IGCIT/issues/';
     const options = {
         method: 'GET', 
         headers: {
@@ -58,7 +59,7 @@ async function github_call(url){
             'X-GitHub-Api-Version': '2022-11-28'
         }
     };
-    
+    const url = api_url + sufix;
     res = await fetch(url, options);
     
     if(!res.ok){
@@ -78,7 +79,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseNUM = validate_url(caseURL);
 
         
-        const caseRaw = github_call(caseURL);
+        const caseRaw = api_github_call(caseNUM);
 
     } catch (error) {
         document.getElementById('status').innerText = error;
