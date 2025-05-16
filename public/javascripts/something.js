@@ -37,8 +37,17 @@ function clean() {
     document.getElementById('pse-analysis').innerText = '';
 }
 
+
+function logMessage(message) {
+    const consoleLog = document.getElementById('consoleLog');
+    const logEntry = document.createElement('div');
+    logEntry.textContent = message;
+    consoleLog.appendChild(logEntry);
+}
+    
+
 function show_error(error) {
-    document.getElementById('status').innerText = error;
+    logMessage(error);
     hitResult = error; 
     endTime = performance.now();
 }
@@ -74,7 +83,7 @@ async function api_github_call(sufix){
         if(!res.ok){
             throw new Error(`HTTP error! status: ${res.status}`);
         } 
-        document.getElementById('status').innerText = "[OK] github api call: " + url
+        logMessage("[OK] github api call: " + url)
         return res;
     } catch (error) {
         show_error("[GitHub API call error] " + error);
@@ -92,7 +101,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseNUM = validate_url(caseURL);
 
         const caseRaw = api_github_call(caseNUM);
-        const commentsRaw = github_call(caseNUM+"/comments"); 
+        const commentsRaw = api_github_call(caseNUM+"/comments"); 
 
     } catch (error) {
         show_error(error);
