@@ -69,14 +69,15 @@ async function api_github_call(sufix){
     try {    
         res = await fetch(url, options);
         if(res.status === 404){
-            throw new Error(`Github ${sufix} does not exists!`);
+            throw new Error(`Github URL ${url} does not exists!`);
         }
         if(!res.ok){
             throw new Error(`HTTP error! status: ${res.status}`);
         } 
+        document.getElementById('status').innerText = "[OK] github api call: " + url
         return res;
     } catch (error) {
-        show_error("[API call error] " + error);
+        show_error("[GitHub API call error] " + error);
     }
 }
 
@@ -91,6 +92,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const caseNUM = validate_url(caseURL);
 
         const caseRaw = api_github_call(caseNUM);
+        const commentsRaw = github_call(caseNUM+"/comments"); 
 
     } catch (error) {
         show_error(error);
