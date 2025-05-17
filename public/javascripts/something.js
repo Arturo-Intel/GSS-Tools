@@ -284,7 +284,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
                 "commentsInfo": commentsInfo 
             })
         );
-        console.log(data);
+        console.log(JSON.stringify(data));
         // No data pulled from iGPT
         if(JSON.stringify(data) === '{}') { 
             throw new Error("[data] Error pulling data from iGPT");
