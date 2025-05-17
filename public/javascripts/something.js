@@ -291,9 +291,9 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         }
 
         // Error from iGPT
-        if(data["case-error"]) {
-            throw new Error("[data[\"case-error\"]]" + data["case-error"]);
-        }
+   //     if(data["case-error"]) {
+   //        throw new Error("[data[\"case-error\"]]" + data["case-error"]);
+   //    }
 
         // fill all HTML structure with data info
         fill_HTML();
