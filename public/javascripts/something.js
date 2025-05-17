@@ -275,7 +275,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const commentsInfo = await api_github_call(caseNUM+"/comments"); 
         
         // Send Github data to iGPT
-        const data = await api_caseAnalyzer_call("/caseanalyzer/case", 
+        const data = await api_caseAnalyzer_call("/caseanalyzer/cases", 
             "POST", 
             {"Content-Type": "application/json"}, 
             JSON.stringify ({
