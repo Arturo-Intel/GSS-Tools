@@ -110,11 +110,10 @@ async function api_caseAnalyzer_call(url, method, headers, body){
             throw new Error(`HTTP error! status: ${res.status}`);
         } 
         logMessage("[OK] caseAnalyzer api call: " + url)
-        return res.json();
     } catch (error) {
         show_error("[caseAnalyzer API] " + error);
-        return false
     }
+    return res.json();
 }
 
 function fill_HTML() {
@@ -275,7 +274,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         const commentsInfo = await api_github_call(caseNUM+"/comments"); 
         
         // Send Github data to iGPT
-        const data = await api_caseAnalyzer_call("/caseanalyzer/cases", 
+        const data = await api_caseAnalyzer_call("/caseanalyzer/case", 
             "POST", 
             {"Content-Type": "application/json"}, 
             JSON.stringify ({
