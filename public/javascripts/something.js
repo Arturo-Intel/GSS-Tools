@@ -118,7 +118,7 @@ async function api_caseAnalyzer_call(url, method, headers, body){
     
 }
 
-function fill_HTML(data) {
+function fill_HTML(data, caseInfo) {
     document.getElementById("case").style.display = "block";
     document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
     document.getElementById("case-url").href = caseInfo.html_url
@@ -296,7 +296,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         }
 
         // fill all HTML structure with data info
-        fill_HTML(data);
+        fill_HTML(data, caseInfo);
         
         // "click" the summary tab
         document.getElementById("summary-button").click();    
