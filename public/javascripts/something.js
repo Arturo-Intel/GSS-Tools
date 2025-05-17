@@ -118,7 +118,7 @@ async function api_caseAnalyzer_call(url, method, headers, body){
     
 }
 
-function fill_HTML() {
+function fill_HTML(data) {
     document.getElementById("case").style.display = "block";
     document.getElementById('case-title').innerText = data["case-analysis"].case_title; 
     document.getElementById("case-url").href = caseInfo.html_url
@@ -284,19 +284,19 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
                 "commentsInfo": commentsInfo 
             })
         );
-        console.log(JSON.stringify(data));
+        
         // No data pulled from iGPT
-        if(JSON.stringify(data) === '{}') { 
+        if(!data) { 
             throw new Error("[data] Error pulling data from iGPT");
         }
 
         // Error from iGPT
-   //     if(data["case-error"]) {
-   //        throw new Error("[data[\"case-error\"]]" + data["case-error"]);
-   //    }
+        if(data["case-error"]) {
+           throw new Error("[data[\"case-error\"]]" + data["case-error"]);
+        }
 
         // fill all HTML structure with data info
-        fill_HTML();
+        fill_HTML(data);
         
         // "click" the summary tab
         document.getElementById("summary-button").click();    
