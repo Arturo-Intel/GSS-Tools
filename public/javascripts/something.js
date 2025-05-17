@@ -312,7 +312,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
                 "time": millisecondsToHHMMSS(endTime - startTime)
             })
         );
-        logMessage("[Ok]", true);
+        logMessage("[Done]");
 
     } catch (error) {
         logMessage(error);
