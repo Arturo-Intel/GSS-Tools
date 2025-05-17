@@ -110,10 +110,12 @@ async function api_caseAnalyzer_call(url, method, headers, body){
             throw new Error(`HTTP error! status: ${res.status}`);
         } 
         logMessage("[OK] caseAnalyzer api call: " + url)
+        return res.json();
     } catch (error) {
         show_error("[caseAnalyzer API] " + error);
+        return {};
     }
-    return res.json();
+    
 }
 
 function fill_HTML() {
@@ -284,7 +286,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
         );
         console.log(data);
         // No data pulled from iGPT
-        if(!data){
+        if(JSON.stringify(data) === '{}') { 
             throw new Error("[data] Error pulling data from iGPT");
         }
 
