@@ -286,7 +286,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
 
         // No data pulled from iGPT
         if(!data){
-            throw new Error("[api_caseAnalyzer_call]");
+            throw new Error("[data] Error pulling data from iGPT");
         }
 
         // Error from iGPT
