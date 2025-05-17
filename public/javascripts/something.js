@@ -283,7 +283,7 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
                 "commentsInfo": commentsInfo 
             })
         );
-
+        console.log(data);
         // No data pulled from iGPT
         if(!data){
             throw new Error("[data] Error pulling data from iGPT");
