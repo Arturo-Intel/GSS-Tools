@@ -34,11 +34,14 @@ router.post('/case',
     fetch.isAuthenticated,
     async (req, res) => {
         console.log('\n[START]');
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Connection', 'keep-alive');
         try {
             var analysis = ""
             const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
             const inputComments = "Case description: " + req.body.caseInfo.body + " Comments: " + JSON.stringify(req.body.commentsInfo);
-            analysis = await brain(inputCase, inputComments);
+            analysis = await brain(inputCase, inputComments, res);
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -67,8 +70,9 @@ router.post('/hit',
     }
 );
 
-async function brain(inputCase, inputComments) {
+async function brain(inputCase, inputComments, res) {
     console.log('[BRAIN]')
+    res.write('[BRAIN]')
     try {
         let SSUraw=null;
         let SSUsections = [];
@@ -76,7 +80,7 @@ async function brain(inputCase, inputComments) {
         DXDiagAnalysis = " DXDiag section not found."
         
         await Promise.all([
-            token = await getAccessToken(),
+            token = await getAccessToken(res),
             personaSSU = await fetchPersona("SSU"),
             personaLogEvents = await fetchPersona("LogEvents"),
             personaDXdiag = await fetchPersona("DXDiag"),
@@ -135,6 +139,8 @@ async function brain(inputCase, inputComments) {
         }
 
         console.log('[BRAIN] -fin')
+        res.write('[BRAIN] -fin')
+        res.end();
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysisJSON, 
@@ -145,10 +151,12 @@ async function brain(inputCase, inputComments) {
         }
         
     } catch (err) {
+        res.end();
         return {
             "case-error" : "[ERROR] brains - " + err
         }
     }
+    
 }
 
 async function invokeModel(accessToken, systemPrompt, content, fromWhere){
@@ -194,8 +202,9 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
 }
 
 
-async function getAccessToken(){
+async function getAccessToken(res){
     console.log('[TOKEN]')
+    res.write('[TOKEN]');
     try {
         const url = "https://apis-internal.intel.com/v1/auth/token";
         data = {
@@ -208,9 +217,12 @@ async function getAccessToken(){
         };
         const response = await axios.post(url, data, { headers: headers, timeout: 3000});
         console.log('[TOKEN] -fin');
+        res.write('[TOKEN] -fin');
         return response.data.access_token;
     }catch (err) {
         console.log("[ERROR] token -  " + err)
+        res.write("[ERROR] token -  " + err)
+        
     }
 }
 

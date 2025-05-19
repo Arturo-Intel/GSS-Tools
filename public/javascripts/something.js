@@ -19,7 +19,8 @@ function end_fx(){
 
 function clean() {
     document.getElementById("introduction-text").style.display = "none";
-
+    document.getElementById("case").style.display = "none";
+    
     document.getElementById('status').innerText = "";
     document.getElementById("ssu-path").textContent  = ""; 
     document.getElementById("ssu-path").href  = ""; 
