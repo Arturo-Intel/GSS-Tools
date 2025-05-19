@@ -39,12 +39,13 @@ router.post('/case',
             'Cache-Control': 'no-cache',
             'Connection': 'keep-alive'
         });
-        
+
         try {
             var analysis = ""
             const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
             const inputComments = "Case description: " + req.body.caseInfo.body + " Comments: " + JSON.stringify(req.body.commentsInfo);
-            analysis = await brain(inputCase, inputComments, res);
+            res.write('[BRAIN] from server')
+            analysis = await brain(inputCase, inputComments);
             res.json(analysis);
         } catch (error) {
             console.error('Error calling API:', error);
@@ -75,7 +76,7 @@ router.post('/hit',
 
 async function brain(inputCase, inputComments, res) {
     console.log('[BRAIN]')
-    res.write('[BRAIN]')
+
     try {
         let SSUraw=null;
         let SSUsections = [];
@@ -142,8 +143,6 @@ async function brain(inputCase, inputComments, res) {
         }
 
         console.log('[BRAIN] -fin')
-        res.write('[BRAIN] -fin')
-        res.end();
         return {
             "SSU-path" : ssuPath,
             "SSU-analysis" : SSUAnalysisJSON, 
@@ -154,7 +153,6 @@ async function brain(inputCase, inputComments, res) {
         }
         
     } catch (err) {
-        res.end();
         return {
             "case-error" : "[ERROR] brains - " + err
         }
