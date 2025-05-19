@@ -74,7 +74,7 @@ router.post('/hit',
     }
 );
 
-async function brain(inputCase, inputComments, res) {
+async function brain(inputCase, inputComments) {
     console.log('[BRAIN]')
 
     try {
