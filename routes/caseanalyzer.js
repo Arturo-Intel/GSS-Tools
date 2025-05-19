@@ -80,7 +80,7 @@ async function brain(inputCase, inputComments, res) {
         DXDiagAnalysis = " DXDiag section not found."
         
         await Promise.all([
-            token = await getAccessToken(res),
+            token = await getAccessToken(),
             personaSSU = await fetchPersona("SSU"),
             personaLogEvents = await fetchPersona("LogEvents"),
             personaDXdiag = await fetchPersona("DXDiag"),
@@ -202,9 +202,9 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
 }
 
 
-async function getAccessToken(res){
+async function getAccessToken(){
     console.log('[TOKEN]')
-    res.write('[TOKEN]');
+    
     try {
         const url = "https://apis-internal.intel.com/v1/auth/token";
         data = {
@@ -217,12 +217,9 @@ async function getAccessToken(res){
         };
         const response = await axios.post(url, data, { headers: headers, timeout: 3000});
         console.log('[TOKEN] -fin');
-        res.write('[TOKEN] -fin');
         return response.data.access_token;
     }catch (err) {
         console.log("[ERROR] token -  " + err)
-        res.write("[ERROR] token -  " + err)
-        
     }
 }
 
