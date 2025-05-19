@@ -7,32 +7,6 @@ const path = require('path');
 const fs = require('fs').promises;
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
-
-router.get('/log-stream', (req, res) => {
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
-    
-    const sendLog = (message) => {
-      res.write(`data: ${JSON.stringify({
-        timestamp: new Date(),
-        message
-      })}\n\n`);
-    };
-    
-    // Override console.log
-    const originalConsoleLog = console.log;
-    console.log = function(...args) {
-      originalConsoleLog.apply(console, args);
-      sendLog(args.join(' '));
-    };
-    
-    // Handle client disconnect
-    req.on('close', () => {
-      console.log = originalConsoleLog; // Restore original
-    });
-});
-
 /* GET case analyzer page. */
 router.get('/',
     fetch.isAuthenticated,

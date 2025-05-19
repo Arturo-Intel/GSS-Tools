@@ -1,6 +1,6 @@
 var hitResult = "OK";
 var endTime;
-const eventSource = new EventSource('/log-stream');
+
 
 function start_fx(){
     document.getElementById("apiCallButton").setAttribute("disabled", "disabled");
@@ -43,7 +43,7 @@ function logMessage(message, show=false) {
     const consoleLog = document.getElementById('consoleLog');
     const logEntry = document.createElement('div');
     let now = new Date();
-    let timeString = now.toLocaleTimeString(); 
+    let timeString = now.toLocaleTimeString(); 
 
     logEntry.textContent = "["+ timeString + "] " + message;
     consoleLog.appendChild(logEntry);
@@ -296,13 +296,6 @@ document.getElementById('apiCallButton').addEventListener('click', async () => {
            throw new Error("[data[\"case-error\"]]" + data["case-error"]);
         }
         
-        const consoleDiv = document.getElementById('consoleLog');
-        eventSource.onmessage = (e) => {
-            const data = JSON.parse(e.data);
-            consoleDiv.innerHTML += `[${data.timestamp}] ${data.message}<br>`;
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
-        };
-
         // fill all HTML structure with data info
         fill_HTML(data, caseInfo);
         
