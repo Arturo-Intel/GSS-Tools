@@ -8,6 +8,31 @@ const fs = require('fs').promises;
 var { GRAPH_ME_ENDPOINT, PHOTO } = require('../authConfig');
 
 
+router.get('/log-stream', (req, res) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    
+    const sendLog = (message) => {
+      res.write(`data: ${JSON.stringify({
+        timestamp: new Date(),
+        message
+      })}\n\n`);
+    };
+    
+    // Override console.log
+    const originalConsoleLog = console.log;
+    console.log = function(...args) {
+      originalConsoleLog.apply(console, args);
+      sendLog(args.join(' '));
+    };
+    
+    // Handle client disconnect
+    req.on('close', () => {
+      console.log = originalConsoleLog; // Restore original
+    });
+});
+
 /* GET case analyzer page. */
 router.get('/',
     fetch.isAuthenticated,
@@ -24,7 +49,7 @@ router.get('/',
                 sidebar: 'sidebarCaseAnalyzer',
             });
         } catch (err) {
-            console.error('Error calling GRAPH API:', err);
+            console.log('Error calling GRAPH API:', err);
             res.redirect('/auth/signin');
         }
     }
@@ -48,7 +73,7 @@ router.post('/case',
             analysis = await brain(inputCase, inputComments);
             res.json(analysis);
         } catch (error) {
-            console.error('Error calling API:', error);
+            console.log('Error calling API:', error);
             res.status(500).send('Error calling API');
         }
     }
@@ -67,7 +92,7 @@ router.post('/hit',
         try {
             const rows = await dbConn.query('INSERT INTO activity_log SET ?', form_data)
         } catch (err) {
-            console.error("Error save hit", err)
+            console.log("Error save hit", err)
             res.status(500).send('Error save hit');
         }
         
@@ -139,7 +164,7 @@ async function brain(inputCase, inputComments) {
             sentimentJSON = JSON.parse(sentimentAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
             caseJSON = JSON.parse(caseAnalysis.match(/\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}/g))
         }catch (err) {
-            console.error("JSON error", err)
+            console.log("JSON error", err)
         }
 
         console.log('[BRAIN] -fin')
