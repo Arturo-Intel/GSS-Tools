@@ -37,7 +37,6 @@ router.post('/case',
             var analysis = ""
             const inputCase = "User: "+ req.body.caseInfo.user.login + " Title: "+ req.body.caseInfo.title + "\n" + req.body.caseInfo.body;
             const inputComments = "Case description: " + req.body.caseInfo.body + " Comments: " + JSON.stringify(req.body.commentsInfo);
-            res.write('[BRAIN] from server')
             analysis = await brain(inputCase, inputComments);
             res.json(analysis);
         } catch (error) {
