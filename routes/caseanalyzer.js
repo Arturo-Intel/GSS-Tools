@@ -66,6 +66,45 @@ router.post('/hit',
     }
 );
 
+router.post('/save', 
+    fetch.isAuthenticated,
+    async (req, res, next) => {
+        var data = {
+            last_date: req.body.last_date,
+            github_num: req.body.github_num,
+            ai_analysis: req.body.ai_analysis,
+            ai_logs: req.body.ai_logs,
+            ai_feedback: req.body.ai_feedback,
+            pse_list: req.body.pse_list,
+            isvc_num: req.body.isvc_num,
+            sentiment: req.body.sentiment
+        }
+    
+        try {
+            const rows = await dbConn.query('INSERT INTO cases SET ?', data);
+        } catch (error) {
+            console.log("Error save data", error)
+            res.status(500).send('Error save data');        
+        }
+    }
+);
+
+router.get('/caseExists/:num',
+    async (req, res, next) => {
+        const num = req.params.num;
+        try {
+            const rows = await dbConn.query('SELECT COUNT(*) AS count FROM cases WHERE github_num = ?', num);
+            const exists =  rows[0].count > 0;
+            res.status(200).json({ exists });
+
+        } catch (error) {
+            console.log("Error cheking case num", error)
+            res.status(500).send('Error cheking case num');              
+        }
+    }
+);
+
+
 async function brain(inputCase, inputComments) {
     console.log('[BRAIN]')
 
@@ -193,7 +232,6 @@ async function invokeModel(accessToken, systemPrompt, content, fromWhere){
         return "[ERROR] " + fromWhere + " - " + err;
     }
 }
-
 
 async function getAccessToken(){
     console.log('[TOKEN]')
