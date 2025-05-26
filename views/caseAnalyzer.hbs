@@ -20,13 +20,17 @@
     <div id="status" style="height: 30px;" ></div>
 
     <div id="case" >
-        <div class="title-div">
-            <dl>
-                <dt>Title</dt>
-                <dd id="case-title" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt</dd>
-                <dd><a id="case-url" target="_blank" href="">https://github.com/Arturo-Intel/GSS-Tools</a></dd>
-                <dd id="case-state" class="state">elit</dd>
-            </dl>
+        <div class="flex-container">
+            <div class="title-div">
+                <dl>
+                    <dd id="case-title" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt</dd>
+                    <dd><a id="case-url" target="_blank" href="">https://github.com/Arturo-Intel/GSS-Tools</a></dd>
+                    <dd id="case-state" class="state">elit</dd>
+                </dl>
+            </div>
+            <div class="username-div">
+                <i>Insert image here</i>
+            </div>
         </div>
         <div class="tab">
             <button id="summary-button" class="tablinks" onclick="openTab(event, 'summary-tab')">Summary</button>
@@ -37,7 +41,7 @@
         <div id="summary-tab" class="tabcontent">
             <div class="analysis-report">
                 <div class="flex-container">
-                    <div  class="username-div">
+                    <div class="username-div">
                         <dl>
                             <dt>Submitter</dt>
                             <dd id="case-username">Lorem ipsum</dd>
