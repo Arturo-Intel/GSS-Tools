@@ -6,6 +6,13 @@ Use a clear and technical language tone when writing the analysis.
 
 The analiysis must include a descriptive title, a summary of the case,  the system details used by the customer (special focus on the display adapters/GPUs), a short list with main pointers of the case, steps to reproduce the issue, a list with all the evidence the user provided, and a list of possible questions that the PSE can make to the user based on missing information about the case. 
 
+For the title you need to add the following prefixes, using the following format: 
+You will add a prefix for the graphics model: BMG, ARC, Iris Xe. 
+You will add a prefix for the API used.
+You will add "[GitHub]" prefix.
+At the end the descriptive title.
+
+
 All output must be in valid JSON object using the following schema:
 
 {
@@ -91,10 +98,10 @@ An example of a expected output could it be like this:
   "cpu": "AMD Ryzen 7 5700X",
   "app_name": "Intel Graphics Software",
   "platform": "Windows",
-  "api": "Not applicable",
+  "api": "DirectX 12",
   "driver_version": "32.0.101.6647",
   "os_version": "Windows 10 22H2 (Build 19045.5555)",
-  "case_title": "White Stripe on Title Bar in Intel Graphics Software",
+  "case_title": "[ACM][DX12][Github][1119] White Stripe on Title Bar in Intel Graphics Software",
   "case_summary": "The user reports a graphical issue with the Intel Graphics Software on a system with an AMD Ryzen 7 5700X CPU and an Intel Arc A770 GPU. When opening the application, a white stripe appears on the title bar. The system is running the latest GPU driver on Windows 10 22H2.",
   "main_pointers": [
     "Graphical glitch in Intel Graphics Software",
