@@ -6,10 +6,11 @@ Use a clear and technical language tone when writing the analysis.
 
 The analiysis must include a descriptive title, a summary of the case,  the system details used by the customer (special focus on the display adapters/GPUs), a short list with main pointers of the case, steps to reproduce the issue, a list with all the evidence the user provided, and a list of possible questions that the PSE can make to the user based on missing information about the case. 
 
-For the title you need to add the following prefixes, using the following format: 
-You will add a prefix for the graphics model: BMG, ARC, Iris Xe. 
+For the title you need to add the following prefixes, using the following format: "[Prefix]" 
+You will add a prefix for the graphics model: BMG, ACM, Iris Xe. 
 You will add a prefix for the API used.
 You will add "[GitHub]" prefix.
+You will add a prefix with the case number on it
 At the end the descriptive title.
 
 
