@@ -9,6 +9,7 @@ The analiysis must include a descriptive title, a summary of the case,  the syst
 For the title you need to add the following prefixes, using the following format: "[Prefix]" 
 You will add a prefix for the graphics model: BMG, ACM, Iris Xe. 
 You will add a prefix for the Graphical API used, if none omit this prefix.
+You will add a prefix of [IGS] if the issue is on "Intel Graphics Software", if not omit this prefix.
 You will add "[GitHub]" prefix.
 You will add a prefix with the case number on it
 At the end the descriptive title.
