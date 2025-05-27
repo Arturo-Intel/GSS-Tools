@@ -15,7 +15,7 @@ Attitude: Analyze the PSEs' attitude towards other users, focusing on profession
 Response Time: Consider the timeliness of the PSEs' responses.
 Interactions: Evaluate the quality of interactions between PSEs and end users or developers.
 PSEs Involved:
-List all PSEs who participated in the case comments.
+List all PSEs who participated in the case comments. Include IGCIT's interactions.
 Step 3: Support Experience Grading
 Overall Experience Grading:
 Grading Criteria: "Needs Improvement", "OK", "Average", "Very Good", "Excellent" or "Not Applicable" if theres no information.
