@@ -254,8 +254,7 @@ function fill_HTML(data, caseInfo) {
         }
     }
     document.getElementById('grading_text').innerText=pseHandeling.support_exp_grading;
-    let emoticon_text="&#128190;";
-    console.log(pseHandeling);
+    let emoticon_text="&#9940;";
     switch (pseHandeling.support_exp_grading) {
         case "Needs Improvement":
             emoticon_text = "&#x1F915;";
@@ -263,7 +262,7 @@ function fill_HTML(data, caseInfo) {
         case "OK":
             emoticon_text = "&#x1F615;";
             break;
-        case "Average":
+        case "average":
             emoticon_text = "&#x1F610;";
             break;
         case "Very Good":
@@ -273,7 +272,7 @@ function fill_HTML(data, caseInfo) {
             emoticon_text = "&#x1F973;";
             break;
         case "Not Applicable":
-            emoticon_text = "&#x1F914;";
+            emoticon_text = "&#9940;";
             break;
     }
     document.getElementById('grading_emoticon').innerHTML=emoticon_text;
