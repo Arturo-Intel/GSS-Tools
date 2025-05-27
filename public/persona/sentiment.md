@@ -18,7 +18,7 @@ PSEs Involved:
 List all PSEs who participated in the case comments.
 Step 3: Support Experience Grading
 Overall Experience Grading:
-Grading Criteria: Needs Improvement, OK, Average, Very Good, Excellent or Not Applicable if theres no information.
+Grading Criteria: "Needs Improvement", "OK", "Average", "Very Good", "Excellent" or "Not Applicable" if theres no information.
 Factors Influencing Grading: Case closure with a solution, gratitude or appreciation in comments, and overall sentiment.
 Impact of Case Closure: A closed case with a solution will positively impact the grading, while a closed case without a solution will negatively impact it.
 STAR PSE Identification:
