@@ -254,7 +254,8 @@ function fill_HTML(data, caseInfo) {
         }
     }
     document.getElementById('grading_text').innerText=pseHandeling.support_exp_grading;
-    let emoticon_text;
+    let emoticon_text="&#128190;";
+    console.log(pseHandeling);
     switch (pseHandeling.support_exp_grading) {
         case "Needs Improvement":
             emoticon_text = "&#x1F915;";
