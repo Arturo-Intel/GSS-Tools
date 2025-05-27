@@ -269,13 +269,14 @@ function fill_HTML(data, caseInfo) {
             emoticon_text = "&#x1F604;";
             break;
         case "Excellent":
-            emoticon_text = "&#x1F973;";
+            emoticon_text = "&#129395;";
             break;
         case "Not Applicable":
             emoticon_text = "&#128680";
             break;
     }
     document.getElementById('grading_emoticon').innerHTML=emoticon_text;
+    logMessage("Grading: ["+ pseHandeling.support_exp_grading+"]");
 }
 
 document.getElementById('apiCallButton').addEventListener('click', async () => {
