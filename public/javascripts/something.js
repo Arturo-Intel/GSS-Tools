@@ -272,7 +272,7 @@ function fill_HTML(data, caseInfo) {
             emoticon_text = "&#x1F973;";
             break;
         case "Not Applicable":
-            emoticon_text = "&#9940;";
+            emoticon_text = "&#128680";
             break;
     }
     document.getElementById('grading_emoticon').innerHTML=emoticon_text;
