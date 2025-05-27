@@ -1,16 +1,30 @@
-You will receive a case description and comments. Comments will include end users, developers and PSEs or Product Support Engineers, the PSEs objective is to provide the best customer support experience, if the case has no comments use the description only
-
-The following users are PSEs: IntelSupport-Rozilah, Karen-Intel, Arturo-Intel, Felipe-Intel, Gabriela-Intel, mujeeb-intel, EstebanIntel, Ilya-Intel, Adrian-Intel, rmorera-intel, Zack-Intel
-
-Analyze the description and comment section according to the sentiment of the customer or developer only, show the number of comments that the case has, consider that the case sentiment depends on the words used in the description, sentiment can be classified if words are trending to use neutral, trending negative, negative or strongly negative language, analysis should be done considering both sections, solution to the case can come from the PSE in form of a driver fix or by the customer or developer himself, if the case was solved, mention if the case was solved by the customer, the PSE or other users in the comments and what was the fix
-
-Describe why you got to that sentiment result and be professional and technical
-
-Evaluate the comments from PSEs only and ellaborate on the following: technical competency, empathy, attitude towards other users, response time and interactions with the end users or developers, include all the PSEs login names that collaborated in the case
-
-If there are PSEs involved in the comments create a real support experience grading that will include the overall experience using description, comments from PSEs and PSEs evaluation, use 5 gradings: needs improvement, ok, average, very good, excellent, cases can be open or closed, if the case was closed with a solution this will increase the grading of the PSE evaluation, however if the case was closed without a solution this will decrease the grading of the PSE evaluation, Some comments can show gratitude or appreciation which will increase the grading of the PSE evaluation, Omit if no PSEs are involved in the comments
-
-Name the  STAR PSE that in average worked the best in the case and ellaborate why this PSE provided the best behaviors towards achieving customer satisfaction.
+To effectively analyze the case description and comments, we will follow a structured approach to assess sentiment, evaluate PSE performance, and provide a comprehensive grading of the support experience. Here’s how we will proceed:
+Step 1: Sentiment Analysis
+Case Description and Comments:
+Sentiment Classification: We will examine the language used in both the case description and comments to determine the sentiment. Sentiment can be classified as neutral, trending negative, negative, or strongly negative based on the presence of specific words or phrases that indicate dissatisfaction, frustration, or neutrality.
+Number of Comments: We will count the total number of comments to understand the level of engagement and interaction in the case.
+Solution Identification: If the case was solved, we will identify who provided the solution (customer, PSE, or other users) and what the fix was.
+Reasoning:
+Language Analysis: We will look for keywords or phrases that indicate sentiment, such as "issue," "problem," "frustrated," "resolved," "thank you," etc.
+Contextual Understanding: We will consider the context in which these words are used to accurately classify the sentiment.
+Step 2: PSE Evaluation
+PSE Comments Analysis:
+Technical Competency: Evaluate the technical accuracy and relevance of the PSEs' responses.
+Empathy: Assess the PSEs' ability to understand and address the customer's concerns empathetically.
+Attitude: Analyze the PSEs' attitude towards other users, focusing on professionalism and respect.
+Response Time: Consider the timeliness of the PSEs' responses.
+Interactions: Evaluate the quality of interactions between PSEs and end users or developers.
+PSEs Involved:
+List all PSEs who participated in the case comments.
+Step 3: Support Experience Grading
+Overall Experience Grading:
+Grading Criteria: Needs improvement, ok, average, very good, excellent.
+Factors Influencing Grading: Case closure with a solution, gratitude or appreciation in comments, and overall sentiment.
+Impact of Case Closure: A closed case with a solution will positively impact the grading, while a closed case without a solution will negatively impact it.
+STAR PSE Identification:
+Best Practices: Identify the PSE who demonstrated the best behaviors in terms of technical competency, empathy, attitude, and customer satisfaction.
+Justification: Provide reasons why this PSE stood out in the case.
+By following this structured approach, we will ensure a thorough and professional analysis of the case, providing valuable insights into sentiment, PSE performance, and overall support experience.
 
 All output must be in valid JSON object using the following schema:
 
