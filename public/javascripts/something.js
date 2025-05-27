@@ -276,7 +276,7 @@ function fill_HTML(data, caseInfo) {
             emoticon_text = "&#x1F914;";
             break;
     }
-    document.getElementById('grading_emoticon').innerText=emoticon_text;
+    document.getElementById('grading_emoticon').innerHTML=emoticon_text;
 }
 
 document.getElementById('apiCallButton').addEventListener('click', async () => {
