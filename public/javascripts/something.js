@@ -266,8 +266,10 @@ function fill_HTML(data, caseInfo) {
             emoticon_text = "&#x1F610;";
             break;
         case "Very Good":
+        case "very good":
             emoticon_text = "&#x1F604;";
             break;
+        case "excellent":
         case "Excellent":
             emoticon_text = "&#129395;";
             break;
