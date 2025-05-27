@@ -253,6 +253,29 @@ function fill_HTML(data, caseInfo) {
             }
         }
     }
+    document.getElementById('grading_text').innerText=pseHandeling.support_exp_grading;
+    let emoticon_text;
+    switch (pseHandeling.support_exp_grading) {
+        case "Needs Improvement":
+            emoticon_text = "&#x1F915;";
+            break;
+        case "OK":
+            emoticon_text = "&#x1F615;";
+            break;
+        case "Average":
+            emoticon_text = "&#x1F610;";
+            break;
+        case "Very Good":
+            emoticon_text = "&#x1F604;";
+            break;
+        case "Excellent":
+            emoticon_text = "&#x1F973;";
+            break;
+        case "Not Applicable":
+            emoticon_text = "&#x1F914;";
+            break;
+    }
+    document.getElementById('grading_emoticon').innerText=emoticon_text;
 }
 
 document.getElementById('apiCallButton').addEventListener('click', async () => {
