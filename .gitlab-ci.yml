@@ -1,0 +1,12 @@
+include:
+  - component: $CI_SERVER_FQDN/36678-kct-scm/internal/components/semgrep/semgrep@~latest
+
+semgrep:
+  tags: [kctcm.linux.small]
+  rules:
+    # Allow triggering a scan manually from the GitLab UI for any branch
+    - if: $CI_PIPELINE_SOURCE == "web"
+    # Scan changed files in MRs when the default branch is the target (diff-aware scanning):
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+    # Scan mainline (default) branches and report all findings.
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
